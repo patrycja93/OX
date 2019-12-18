@@ -14,6 +14,8 @@
 *Optimistic*
 
 ** Created board to play.
+*** Create BoardExecutive class.
+*** Display board.
 ** Write methods checking the winner.
 *** go through board horizontally
 *** go through board vertically
