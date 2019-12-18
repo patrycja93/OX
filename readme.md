@@ -1,6 +1,6 @@
 #About "OX"
 
-Autor: Patrycja Hyjek
+Author: Patrycja Hyjek
 
 ### Launching
 
