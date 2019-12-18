@@ -8,7 +8,7 @@
 
 *Realistic*
 
-* Created flow diagram.
+* [x] Created flow diagram.
 * Created CRC diagrams.
 
 *Optimistic*
