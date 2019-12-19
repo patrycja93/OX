@@ -26,17 +26,18 @@
 
 *Pessimistic*
 
-** Create BoardExecutive class.
-** Created interface Board.
-** Created Field class.
-** Created Sign enum.
+* [x] Create BoardExecutive class.
+* [x] Created interface Board.
+* [x] Created Field class.
+* [x] Created Sign enum.
 
 *Realistic*
 
-** Display board.
+* [x] Display board.
 
 *Optimistic*
 
+** Create Judge class
 ** Write methods checking the winner.
 *** go through board horizontally
 *** go through board vertically
