@@ -22,4 +22,23 @@
 *** go through diagonal up
 *** go through diagonal down
 
+*19.12.2019*
 
+*Pessimistic*
+
+** Create BoardExecutive class.
+** Created interface Board.
+** Created Field class.
+** Created Sign enum.
+
+*Realistic*
+
+** Display board.
+
+*Optimistic*
+
+** Write methods checking the winner.
+*** go through board horizontally
+*** go through board vertically
+*** go through diagonal up
+*** go through diagonal down
