@@ -26,10 +26,10 @@
 
 *Pessimistic*
 
-** Create BoardExecutive class.
-** Created interface Board.
-** Created Field class.
-** Created Sign enum.
+* [x] Create BoardExecutive class.
+* [x] Created interface Board.
+* [x] Created Field class.
+* [x] Created Sign enum.
 
 *Realistic*
 
