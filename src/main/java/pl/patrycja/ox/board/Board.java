@@ -9,7 +9,7 @@ import pl.patrycja.ox.Sign;
  * @author Patrycja Hyjek
  */
 
-public interface Board {
+public interface Board extends Observable {
     /**
      * This method is called whenever we want to add a sign to the board
      *
