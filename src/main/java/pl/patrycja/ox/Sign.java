@@ -1,6 +1,6 @@
-package pl.patrycja.ox.board;
+package pl.patrycja.ox;
 
-enum Sign {
+public enum Sign {
     CROSS("X"), NAUGHT("O"), EMPTY(" ");
 
     String sign;
