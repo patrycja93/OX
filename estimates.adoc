@@ -37,9 +37,9 @@
 
 *Optimistic*
 
-** Create Judge class
+* [x] Create Judge class
 ** Write methods checking the winner.
-*** go through board horizontally
+*** [x] go through board horizontally
 *** go through board vertically
 *** go through diagonal up
 *** go through diagonal down

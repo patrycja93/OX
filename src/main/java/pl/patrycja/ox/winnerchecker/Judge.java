@@ -1,25 +1,54 @@
 package pl.patrycja.ox.winnerchecker;
 
 import pl.patrycja.ox.Sign;
+import pl.patrycja.ox.ui.ConsoleUI;
+import pl.patrycja.ox.ui.UI;
 
 import java.util.Map;
 
 public class Judge implements Spectators {
 
     int unbrokenLineSign = 2;
+    private UI ui = new ConsoleUI();
 
     @Override
     public void subscribe(Map<Integer, Sign> fields, int size, int lastShoot) {
         /*
         check if winner -> if false do nothing else change round show score
          */
-        checkHorizontal(fields, size, lastShoot);
+        if (fields.size() > unbrokenLineSign) {
+            if (checkHorizontal(fields, size, lastShoot)) {
+                ui.display("Winner!");
+            }
+        }
     }
 
-    boolean checkHorizontal(Map<Integer, Sign> fields, int size, int lastShoot){
-        int counter = 0;
+    boolean checkHorizontal(Map<Integer, Sign> fields, int size, int lastShoot) {
+        int counter = 1;
+        Sign sing = fields.get(lastShoot);
+        int rowNumber = lastShoot / size;
+        int min = rowNumber * size;
+        int max = (rowNumber + 1) * size;
 
-        return true;
+        for (int i = lastShoot + 1; i < max; i++) {
+            if (fields.containsKey(i)) {
+                if (fields.get(i) == sing) {
+                    counter = counter + 1;
+                }
+            } else {
+                break;
+            }
+        }
+
+        for (int i = lastShoot - 1; i >= min; i--) {
+            if (fields.containsKey(i)) {
+                if (fields.get(i) == sing) {
+                    counter = counter + 1;
+                }
+            } else {
+                break;
+            }
+        }
+        return counter == unbrokenLineSign;
     }
-
 }

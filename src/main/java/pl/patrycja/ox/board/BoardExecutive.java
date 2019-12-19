@@ -23,16 +23,13 @@ class BoardExecutive implements Board {
         int fullSize = size * size;
         int maxFieldNumberLength = getFieldNumberLength(fullSize);
         for (int i = 0; i < fullSize; i++) {
-            int amountOfSpace = maxFieldNumberLength - getFieldNumberLength(i + 1);
-            while (amountOfSpace > 0) {
-                board.append(" ");
-                amountOfSpace = amountOfSpace - 1;
-            }
             if (!fields.containsKey(i)) {
+                addSpace(maxFieldNumberLength - getFieldNumberLength(i + 1), board);
                 int index = i + 1;
                 board.append(index).append(" ");
             } else {
                 Sign sign = fields.get(i);
+                addSpace(maxFieldNumberLength - 1, board);
                 board.append(sign).append(" ");
             }
             if ((i + 1) % Math.sqrt(fullSize) == 0) board.append("\n");
@@ -51,12 +48,16 @@ class BoardExecutive implements Board {
         }
     }
 
+    @Override
+    public void inform(List<Spectators> spectators) {
+        spectators.forEach(spectator -> spectator.subscribe(fields, size, lastShoot));
+    }
+
     private int getFieldNumberLength(Integer i) {
         return String.valueOf(i).length();
     }
 
-    @Override
-    public void inform(List<Spectators> spectators) {
-        spectators.forEach(spectator -> spectator.subscribe(fields, size, lastShoot));
+    private void addSpace(Integer spaceNumber, StringBuilder board) {
+        board.append(" ".repeat(Math.max(0, spaceNumber)));
     }
 }
