@@ -1,7 +1,7 @@
 package pl.patrycja.ox;
 
 public enum Sign {
-    CROSS("X"), NAUGHT("O"), EMPTY(" ");
+    CROSS("X"), NAUGHT("O");
 
     String sign;
 

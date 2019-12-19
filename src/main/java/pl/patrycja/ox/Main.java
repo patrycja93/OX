@@ -7,11 +7,10 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Board board = BoardFactory.boardCreator().createBoard(30);
-        board.displayBoard();
-
+        Board board = BoardFactory.createBoard(30);
+        System.out.println(board);
         boolean result = board.putSignToBoard(3, Sign.CROSS);
-        board.displayBoard();
+        System.out.println(board);
         System.out.println(result);
     }
 }
