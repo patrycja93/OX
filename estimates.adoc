@@ -33,7 +33,7 @@
 
 *Realistic*
 
-** Display board.
+* [x] Display board.
 
 *Optimistic*
 
