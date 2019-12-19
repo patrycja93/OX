@@ -21,7 +21,7 @@ public class Main {
 
         Board board = BoardFactory.createBoard(10);
         ui.display(board.toString());
-        int n = 3;
+        int n = 5;
         while (n > 0) {
             String scanner = new Scanner(System.in).nextLine();
             board.putSignToBoard(Integer.parseInt(scanner), Sign.CROSS);
