@@ -18,8 +18,8 @@ class BoardExecutive implements Board {
     public String toString() {
         StringBuilder board = new StringBuilder();
         int fullSize = size * size;
+        int maxFieldNumberLength = getFieldNumberLength(fullSize);
         for (int i = 0; i < fullSize; i++) {
-            int maxFieldNumberLength = getFieldNumberLength(fullSize);
             int amountOfSpace = maxFieldNumberLength - getFieldNumberLength(i + 1);
             while (amountOfSpace > 0) {
                 board.append(" ");
