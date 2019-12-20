@@ -59,7 +59,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>pl.patrycja.ox.Main</mainClass>
+                            <mainClass>pl.patrycja.ox.Game</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

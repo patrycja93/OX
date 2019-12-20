@@ -37,9 +37,25 @@
 
 *Optimistic*
 
-** Create Judge class
+* [x] Create Judge class
 ** Write methods checking the winner.
-*** go through board horizontally
-*** go through board vertically
+*** [x] go through board horizontally
+*** [x] go through board vertically
 *** go through diagonal up
 *** go through diagonal down
+
+*20.12.2019*
+
+*Pessimistic*
+
+* Add player class.
+* Check if player win.
+
+*Realistic*
+
+* Check diagonal unbroken line
+
+*Optimistic*
+
+* Check which players is winner.
+
