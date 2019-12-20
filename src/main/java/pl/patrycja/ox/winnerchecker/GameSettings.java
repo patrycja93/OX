@@ -18,4 +18,6 @@ public class GameSettings {
         this.boardSize = boardSize;
     }
 
+
+    //TODO which player is first
 }

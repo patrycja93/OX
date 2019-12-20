@@ -6,11 +6,11 @@ import pl.patrycja.ox.ui.ConsoleUI;
 import pl.patrycja.ox.ui.UI;
 import pl.patrycja.ox.winnerchecker.GameSettings;
 import pl.patrycja.ox.winnerchecker.Judge;
+import pl.patrycja.ox.winnerchecker.Match;
 import pl.patrycja.ox.winnerchecker.Spectators;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Game {
 
@@ -20,7 +20,7 @@ public class Game {
         UI ui = new ConsoleUI();
         Judge judge = new Judge(ui);
 
-        while (!judge.checkGameSettings(gameSettings)){
+        while (!judge.checkGameSettings(gameSettings)) {
             ui.read();
         }
 
@@ -30,13 +30,9 @@ public class Game {
         Board board = BoardFactory.createBoard(gameSettings.boardSize);
         ui.display(board.toString());
 
-        int n = 5;
-        while (n > 0) {
-            String scanner = new Scanner(System.in).nextLine();
-            board.putSignToBoard(Integer.parseInt(scanner), Sign.CROSS);
-            ui.display(board.toString());
-            board.inform(spectators);
-            n--;
+        while (gameSettings.matchesNumber > 0) {
+            Match match = new Match(ui, board, spectators);
+            match.start();
         }
     }
 }

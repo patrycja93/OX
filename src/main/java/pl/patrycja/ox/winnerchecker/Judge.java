@@ -9,6 +9,8 @@ public class Judge implements Spectators {
 
     private GameSettings gameSettings;
     private UI ui;
+    private WinnerChecker winnerChecker;
+    private boolean isFinish;
 
     public Judge(UI ui) {
         this.ui = ui;
@@ -23,6 +25,7 @@ public class Judge implements Spectators {
         return true;
     }
 
+    //TODO: change name method
     @Override
     public void subscribe(Map<Integer, Sign> fields, int size, int lastShot) {
         /*
@@ -31,8 +34,15 @@ public class Judge implements Spectators {
         if (fields.size() > gameSettings.unbrokenLine) {
             if (checkVertical(fields, size, lastShot) || checkHorizontal(fields, size, lastShot)) {
                 ui.display("Winner!");
+                isFinish = true;
+            } else {
+                isFinish = false;
             }
         }
+    }
+
+    public boolean isFinishMatch() {
+        return isFinish;
     }
 
     boolean checkHorizontal(Map<Integer, Sign> fields, int size, int lastShot) {
