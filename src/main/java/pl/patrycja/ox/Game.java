@@ -29,12 +29,11 @@ public class Game {
         Board board = BoardFactory.createBoard(gameSettings.boardSize);
 
         while (gameSettings.matchesNumber > 0) {
-            //TODO: clean board
+            board.clean();
             ui.display(board.toString());
             Match match = new Match(ui, board, spectators, judge);
             match.start();
             match.inform(spectators);
-            System.out.println("start new game");
             judge.setNewMatch();
         }
     }

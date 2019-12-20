@@ -49,6 +49,11 @@ class BoardExecutive implements Board {
     }
 
     @Override
+    public void clean() {
+        fields.clear();
+    }
+
+    @Override
     public void inform(List<Spectators> spectators) {
         spectators.forEach(spectator -> spectator.lookAtBoard(fields, size, lastShot));
     }

@@ -17,4 +17,6 @@ public interface Board extends Observable {
      * @param sign        an argument which will be added to board
      */
     boolean putSignToBoard(int fieldNumber, Sign sign);
+
+    void clean();
 }
