@@ -28,7 +28,8 @@ public class JudgeTest {
         }};
 
         //when
-        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShot);
+        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
+        boolean existsUnbrokenHorizontalLine = judge.isFinishMatch();
 
         //then
         assertTrue(existsUnbrokenHorizontalLine, "You haven't two unbroken line.");
@@ -42,6 +43,9 @@ public class JudgeTest {
         Judge judge = new Judge(ui);
         judge.checkGameSettings(gameSettings);
         Map<Integer, Sign> fields = new HashMap<>() {{
+            put(0, Sign.CROSS);
+            put(9, Sign.CROSS);
+            put(15, Sign.CROSS);
             put(4, Sign.CROSS);
             put(5, Sign.CROSS);
             put(6, Sign.CROSS);
@@ -50,7 +54,8 @@ public class JudgeTest {
         int lastShot = 7;
 
         //when
-        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShot);
+        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
+        boolean existsUnbrokenHorizontalLine = judge.isFinishMatch();
 
         //then
         assertTrue(existsUnbrokenHorizontalLine, "You haven't four unbroken line.");
@@ -71,7 +76,8 @@ public class JudgeTest {
         int lastShot = 2;
 
         //when
-        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShot);
+        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
+        boolean existsUnbrokenHorizontalLine = judge.isFinishMatch();
 
         //then
         assertFalse(existsUnbrokenHorizontalLine, "You have unbroken line.");
@@ -93,7 +99,8 @@ public class JudgeTest {
         int lastShot = 7;
 
         //when
-        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShot);
+        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
+        boolean existsUnbrokenHorizontalLine = judge.isFinishMatch();
 
         //then
         assertFalse(existsUnbrokenHorizontalLine, "You have unbroken line.");
@@ -103,7 +110,7 @@ public class JudgeTest {
     public void checkVerticalShouldReturnTrueForUnbrokenLineEqualsTwo() {
         //given
         UI ui = new ConsoleUI();
-        GameSettings gameSettings = new GameSettings(2, 3,3);
+        GameSettings gameSettings = new GameSettings(2, 3, 3);
         Judge judge = new Judge(ui);
         judge.checkGameSettings(gameSettings);
         Map<Integer, Sign> fields = new HashMap<>() {{
@@ -114,7 +121,8 @@ public class JudgeTest {
         int lastShot = 5;
 
         //when
-        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShot);
+        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
+        boolean existsUnbrokenVerticalLine = judge.isFinishMatch();
 
         //then
         assertTrue(existsUnbrokenVerticalLine, "You haven't two unbroken line.");
@@ -124,11 +132,14 @@ public class JudgeTest {
     public void checkVerticalShouldReturnTrueForUnbrokenLineEqualsFour() {
         //given
         UI ui = new ConsoleUI();
-        GameSettings gameSettings = new GameSettings(4, 3,4);
+        GameSettings gameSettings = new GameSettings(4, 3, 4);
         Judge judge = new Judge(ui);
         judge.checkGameSettings(gameSettings);
         Map<Integer, Sign> fields = new HashMap<>() {{
             put(3, Sign.CROSS);
+            put(4, Sign.CROSS);
+            put(9, Sign.CROSS);
+            put(12, Sign.CROSS);
             put(7, Sign.CROSS);
             put(11, Sign.CROSS);
             put(15, Sign.CROSS);
@@ -136,7 +147,8 @@ public class JudgeTest {
         int lastShot = 15;
 
         //when
-        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShot);
+        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
+        boolean existsUnbrokenVerticalLine = judge.isFinishMatch();
 
         //then
         assertTrue(existsUnbrokenVerticalLine, "You haven't four unbroken line.");
@@ -147,7 +159,7 @@ public class JudgeTest {
     public void checkVerticalShouldReturnFalseForUnbrokenLineEqualsTwo() {
         //given
         UI ui = new ConsoleUI();
-        GameSettings gameSettings = new GameSettings(2, 3,3);
+        GameSettings gameSettings = new GameSettings(2, 3, 3);
         Judge judge = new Judge(ui);
         judge.checkGameSettings(gameSettings);
         Map<Integer, Sign> fields = new HashMap<>() {{
@@ -158,7 +170,8 @@ public class JudgeTest {
         int lastShot = 2;
 
         //when
-        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShot);
+        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
+        boolean existsUnbrokenVerticalLine = judge.isFinishMatch();
 
         //then
         assertFalse(existsUnbrokenVerticalLine, "You have unbroken line.");
@@ -168,7 +181,7 @@ public class JudgeTest {
     public void checkVerticalShouldReturnFalseForUnbrokenLineEqualsFour() {
         //given
         UI ui = new ConsoleUI();
-        GameSettings gameSettings = new GameSettings(4, 3,4);
+        GameSettings gameSettings = new GameSettings(4, 3, 4);
         Judge judge = new Judge(ui);
         judge.checkGameSettings(gameSettings);
         Map<Integer, Sign> fields = new HashMap<>() {{
@@ -180,7 +193,8 @@ public class JudgeTest {
         int lastShot = 7;
 
         //when
-        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShot);
+        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
+        boolean existsUnbrokenVerticalLine = judge.isFinishMatch();
 
         //then
         assertFalse(existsUnbrokenVerticalLine, "You have unbroken line.");

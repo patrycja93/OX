@@ -22,10 +22,9 @@ public class Game {
         List<Spectators> spectators = new ArrayList<>();
         spectators.add(judge);
 
-        //It will be needed when input from user
-        /*while (!judge.checkGameSettings(gameSettings)) {
+        while (!judge.checkGameSettings(gameSettings)) {
             ui.read();
-        }*/
+        }
 
         Board board = BoardFactory.createBoard(gameSettings.boardSize);
         ui.display(board.toString());
