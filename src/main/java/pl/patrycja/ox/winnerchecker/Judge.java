@@ -8,8 +8,13 @@ import java.util.Map;
 
 public class Judge implements Spectators {
 
-    int unbrokenLineSign = 2;
-    private UI ui = new ConsoleUI();
+    int unbrokenLineSign;
+    private UI ui;
+
+    public Judge(int unbrokenLineSign, UI ui) {
+        this.unbrokenLineSign = unbrokenLineSign;
+        this.ui = ui;
+    }
 
     @Override
     public void subscribe(Map<Integer, Sign> fields, int size, int lastShoot) {
@@ -48,13 +53,6 @@ public class Judge implements Spectators {
         return counter >= unbrokenLineSign;
     }
 
-    private int counterEscalate(Map<Integer, Sign> fields, int counter, Sign sing, int i) {
-        if (fields.get(i) == sing) {
-            counter = counter + 1;
-        }
-        return counter;
-    }
-
     boolean checkVertical(Map<Integer, Sign> fields, int size, int lastShoot) {
         int counter = 1;
         Sign sing = fields.get(lastShoot);
@@ -83,5 +81,12 @@ public class Judge implements Spectators {
             }
         }
         return counter >= unbrokenLineSign;
+    }
+
+    private int counterEscalate(Map<Integer, Sign> fields, int counter, Sign sing, int i) {
+        if (fields.get(i) == sing) {
+            counter = counter + 1;
+        }
+        return counter;
     }
 }

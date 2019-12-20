@@ -13,14 +13,22 @@ import java.util.Scanner;
 
 public class Main {
 
+    //TODO: checking if unBrokenLine is bigger than size
+
     public static void main(String[] args) {
 
         UI ui = new ConsoleUI();
-        List<Spectators> spectators = new ArrayList<>();
-        spectators.add(new Judge());
+        int unBrokenLine = 2;
+        int sizeBoard = 10;
 
-        Board board = BoardFactory.createBoard(10);
+        Judge judge = new Judge(unBrokenLine, ui);
+
+        List<Spectators> spectators = new ArrayList<>();
+        spectators.add(judge);
+
+        Board board = BoardFactory.createBoard(sizeBoard);
         ui.display(board.toString());
+
         int n = 5;
         while (n > 0) {
             String scanner = new Scanner(System.in).nextLine();
