@@ -15,7 +15,7 @@ public class Judge implements Spectators {
     }
 
     public boolean checkGameSettings(GameSettings gameSettings) {
-        if (gameSettings.unbrokenLines > gameSettings.boardSize) {
+        if (gameSettings.unbrokenLine > gameSettings.boardSize) {
             ui.display("Unbroken number of sign cannot be greater then board size.");
             return false;
         }
@@ -24,25 +24,25 @@ public class Judge implements Spectators {
     }
 
     @Override
-    public void subscribe(Map<Integer, Sign> fields, int size, int lastShoot) {
+    public void subscribe(Map<Integer, Sign> fields, int size, int lastShot) {
         /*
         check if winner -> if false do nothing else change round show score
          */
-        if (fields.size() > gameSettings.unbrokenLines) {
-            if (checkVertical(fields, size, lastShoot) || checkHorizontal(fields, size, lastShoot)) {
+        if (fields.size() > gameSettings.unbrokenLine) {
+            if (checkVertical(fields, size, lastShot) || checkHorizontal(fields, size, lastShot)) {
                 ui.display("Winner!");
             }
         }
     }
 
-    boolean checkHorizontal(Map<Integer, Sign> fields, int size, int lastShoot) {
+    boolean checkHorizontal(Map<Integer, Sign> fields, int size, int lastShot) {
         int counter = 1;
-        Sign sing = fields.get(lastShoot);
-        int rowNumber = lastShoot / size;
+        Sign sing = fields.get(lastShot);
+        int rowNumber = lastShot / size;
         int min = rowNumber * size;
         int max = (rowNumber + 1) * size;
 
-        for (int i = lastShoot + 1; i <= max; i++) {
+        for (int i = lastShot + 1; i <= max; i++) {
             if (fields.containsKey(i)) {
                 counter = counterEscalate(fields, counter, sing, i);
             } else {
@@ -50,21 +50,21 @@ public class Judge implements Spectators {
             }
         }
 
-        for (int i = lastShoot - 1; i >= min; i--) {
+        for (int i = lastShot - 1; i >= min; i--) {
             if (fields.containsKey(i)) {
                 counter = counterEscalate(fields, counter, sing, i);
             } else {
                 break;
             }
         }
-        return counter >= gameSettings.unbrokenLines;
+        return counter >= gameSettings.unbrokenLine;
     }
 
-    boolean checkVertical(Map<Integer, Sign> fields, int size, int lastShoot) {
+    boolean checkVertical(Map<Integer, Sign> fields, int size, int lastShot) {
         int counter = 1;
-        Sign sing = fields.get(lastShoot);
-        int fieldUp = lastShoot - size;
-        int fieldDown = lastShoot + size;
+        Sign sing = fields.get(lastShot);
+        int fieldUp = lastShot - size;
+        int fieldDown = lastShot + size;
 
         while ((fieldUp) > 0) {
             if (fields.containsKey(fieldUp)) {
@@ -87,7 +87,7 @@ public class Judge implements Spectators {
                 break;
             }
         }
-        return counter >= gameSettings.unbrokenLines;
+        return counter >= gameSettings.unbrokenLine;
     }
 
     private int counterEscalate(Map<Integer, Sign> fields, int counter, Sign sing, int i) {

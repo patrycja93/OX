@@ -11,7 +11,7 @@ class BoardExecutive implements Board {
 
     private int size;
     private Map<Integer, Sign> fields = new HashMap<>();
-    private int lastShoot;
+    private int lastShot;
 
     BoardExecutive(int size) {
         this.size = size;
@@ -41,7 +41,7 @@ class BoardExecutive implements Board {
     public boolean putSignToBoard(int fieldNumber, Sign sign) {
         if (!fields.containsKey(fieldNumber - 1)) {
             fields.put(fieldNumber - 1, sign);
-            lastShoot = fieldNumber - 1;
+            lastShot = fieldNumber - 1;
             return true;
         } else {
             return false;
@@ -50,7 +50,7 @@ class BoardExecutive implements Board {
 
     @Override
     public void inform(List<Spectators> spectators) {
-        spectators.forEach(spectator -> spectator.subscribe(fields, size, lastShoot));
+        spectators.forEach(spectator -> spectator.subscribe(fields, size, lastShot));
     }
 
     private int getFieldNumberLength(Integer i) {

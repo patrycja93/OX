@@ -14,8 +14,6 @@ import java.util.Scanner;
 
 public class Game {
 
-    //TODO: checking if unBrokenLine is bigger than size
-
     public static void main(String[] args) {
 
         GameSettings gameSettings = new GameSettings(2, 3, 10);

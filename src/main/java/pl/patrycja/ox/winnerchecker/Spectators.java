@@ -6,5 +6,5 @@ import java.util.Map;
 
 public interface Spectators {
 
-    void subscribe(Map<Integer, Sign> fields, int size, int lastShoot);
+    void subscribe(Map<Integer, Sign> fields, int size, int lastShot);
 }

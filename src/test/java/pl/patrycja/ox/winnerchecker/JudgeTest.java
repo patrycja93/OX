@@ -20,7 +20,7 @@ public class JudgeTest {
         GameSettings gameSettings = new GameSettings(2, 3, 3);
         Judge judge = new Judge(ui);
         judge.checkGameSettings(gameSettings);
-        int lastShoot = 5;
+        int lastShot = 5;
         Map<Integer, Sign> fields = new HashMap<>() {{
             put(4, Sign.CROSS);
             put(2, Sign.CROSS);
@@ -28,7 +28,7 @@ public class JudgeTest {
         }};
 
         //when
-        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShoot);
+        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShot);
 
         //then
         assertTrue(existsUnbrokenHorizontalLine, "You haven't two unbroken line.");
@@ -47,10 +47,10 @@ public class JudgeTest {
             put(6, Sign.CROSS);
             put(7, Sign.CROSS);
         }};
-        int lastShoot = 7;
+        int lastShot = 7;
 
         //when
-        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShoot);
+        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShot);
 
         //then
         assertTrue(existsUnbrokenHorizontalLine, "You haven't four unbroken line.");
@@ -68,10 +68,10 @@ public class JudgeTest {
             put(4, Sign.CROSS);
             put(2, Sign.CROSS);
         }};
-        int lastShoot = 2;
+        int lastShot = 2;
 
         //when
-        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShoot);
+        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShot);
 
         //then
         assertFalse(existsUnbrokenHorizontalLine, "You have unbroken line.");
@@ -90,10 +90,10 @@ public class JudgeTest {
             put(2, Sign.CROSS);
             put(7, Sign.CROSS);
         }};
-        int lastShoot = 7;
+        int lastShot = 7;
 
         //when
-        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShoot);
+        boolean existsUnbrokenHorizontalLine = judge.checkHorizontal(fields, gameSettings.boardSize, lastShot);
 
         //then
         assertFalse(existsUnbrokenHorizontalLine, "You have unbroken line.");
@@ -111,10 +111,10 @@ public class JudgeTest {
             put(2, Sign.CROSS);
             put(5, Sign.CROSS);
         }};
-        int lastShoot = 5;
+        int lastShot = 5;
 
         //when
-        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShoot);
+        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShot);
 
         //then
         assertTrue(existsUnbrokenVerticalLine, "You haven't two unbroken line.");
@@ -133,10 +133,10 @@ public class JudgeTest {
             put(11, Sign.CROSS);
             put(15, Sign.CROSS);
         }};
-        int lastShoot = 15;
+        int lastShot = 15;
 
         //when
-        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShoot);
+        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShot);
 
         //then
         assertTrue(existsUnbrokenVerticalLine, "You haven't four unbroken line.");
@@ -155,10 +155,10 @@ public class JudgeTest {
             put(4, Sign.CROSS);
             put(2, Sign.CROSS);
         }};
-        int lastShoot = 2;
+        int lastShot = 2;
 
         //when
-        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShoot);
+        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShot);
 
         //then
         assertFalse(existsUnbrokenVerticalLine, "You have unbroken line.");
@@ -177,10 +177,10 @@ public class JudgeTest {
             put(2, Sign.CROSS);
             put(7, Sign.CROSS);
         }};
-        int lastShoot = 7;
+        int lastShot = 7;
 
         //when
-        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShoot);
+        boolean existsUnbrokenVerticalLine = judge.checkVertical(fields, gameSettings.boardSize, lastShot);
 
         //then
         assertFalse(existsUnbrokenVerticalLine, "You have unbroken line.");
