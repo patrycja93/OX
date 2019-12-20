@@ -3,14 +3,19 @@ package pl.patrycja.ox.winnerchecker;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Judge implements Spectators {
 
     private GameSettings gameSettings;
     private UI ui;
-    private WinnerChecker winnerChecker;
-    private boolean isFinish;
+    private boolean isFinish = false;
+    private List<WinnerChecker> winnerChecker = new ArrayList<>() {{
+        add(new WinnerCheckerHorizontal());
+        add(new WinnerCheckerVertical());
+    }};
 
     public Judge(UI ui) {
         this.ui = ui;
@@ -27,83 +32,24 @@ public class Judge implements Spectators {
 
     //TODO: change name method
     @Override
-    public void subscribe(Map<Integer, Sign> fields, int size, int lastShot) {
-        /*
-        check if winner -> if false do nothing else change round show score
-         */
+    public void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot) {
+
         if (fields.size() > gameSettings.unbrokenLine) {
-            if (checkVertical(fields, size, lastShot) || checkHorizontal(fields, size, lastShot)) {
-                ui.display("Winner!");
-                isFinish = true;
-            } else {
-                isFinish = false;
-            }
+            winnerChecker.forEach(winnerChecker -> {
+                if (winnerChecker.checkingWinnerCondition(fields, size, lastShot, gameSettings.unbrokenLine)) {
+                    isFinish = true;
+                    gameSettings.unbrokenLine -= 1;
+                }
+            });
         }
+    }
+
+    @Override
+    public void matchFinished() {
+        //Show scores
     }
 
     public boolean isFinishMatch() {
         return isFinish;
-    }
-
-    boolean checkHorizontal(Map<Integer, Sign> fields, int size, int lastShot) {
-        int counter = 1;
-        Sign sing = fields.get(lastShot);
-        int rowNumber = lastShot / size;
-        int min = rowNumber * size;
-        int max = (rowNumber + 1) * size;
-
-        for (int i = lastShot + 1; i <= max; i++) {
-            if (fields.containsKey(i)) {
-                counter = counterEscalate(fields, counter, sing, i);
-            } else {
-                break;
-            }
-        }
-
-        for (int i = lastShot - 1; i >= min; i--) {
-            if (fields.containsKey(i)) {
-                counter = counterEscalate(fields, counter, sing, i);
-            } else {
-                break;
-            }
-        }
-        return counter >= gameSettings.unbrokenLine;
-    }
-
-    boolean checkVertical(Map<Integer, Sign> fields, int size, int lastShot) {
-        int counter = 1;
-        Sign sing = fields.get(lastShot);
-        int fieldUp = lastShot - size;
-        int fieldDown = lastShot + size;
-
-        while ((fieldUp) > 0) {
-            if (fields.containsKey(fieldUp)) {
-                if (fields.get(fieldUp) == sing) {
-                    counter = counter + 1;
-                    fieldUp = fieldUp - size;
-                }
-            } else {
-                break;
-            }
-        }
-
-        while ((fieldDown) < (size * size)) {
-            if (fields.containsKey(fieldDown)) {
-                if (fields.get(fieldDown) == sing) {
-                    counter = counter + 1;
-                    fieldDown = fieldDown + size;
-                }
-            } else {
-                break;
-            }
-        }
-        return counter >= gameSettings.unbrokenLine;
-    }
-
-    private int counterEscalate(Map<Integer, Sign> fields, int counter, Sign sing, int i) {
-        if (fields.get(i) == sing) {
-            counter = counter + 1;
-        }
-        return counter;
     }
 }

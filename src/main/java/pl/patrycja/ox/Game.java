@@ -19,19 +19,19 @@ public class Game {
         GameSettings gameSettings = new GameSettings(2, 3, 10);
         UI ui = new ConsoleUI();
         Judge judge = new Judge(ui);
-
-        while (!judge.checkGameSettings(gameSettings)) {
-            ui.read();
-        }
-
         List<Spectators> spectators = new ArrayList<>();
         spectators.add(judge);
+
+        //It will be needed when input from user
+        /*while (!judge.checkGameSettings(gameSettings)) {
+            ui.read();
+        }*/
 
         Board board = BoardFactory.createBoard(gameSettings.boardSize);
         ui.display(board.toString());
 
         while (gameSettings.matchesNumber > 0) {
-            Match match = new Match(ui, board, spectators);
+            Match match = new Match(ui, board, spectators, judge);
             match.start();
         }
     }

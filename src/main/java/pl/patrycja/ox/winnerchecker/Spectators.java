@@ -7,6 +7,8 @@ import java.util.Map;
 
 public interface Spectators {
 
-    void subscribe(Map<Integer, Sign> fields, int size, int lastShot);
+    void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot);
+
+    void matchFinished();
 
 }
