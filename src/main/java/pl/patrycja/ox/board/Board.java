@@ -1,5 +1,6 @@
 package pl.patrycja.ox.board;
 
+import pl.patrycja.ox.Observable;
 import pl.patrycja.ox.Sign;
 
 /**

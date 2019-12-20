@@ -9,6 +9,5 @@ public interface Spectators {
 
     void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot);
 
-    void matchFinished();
-
+    void matchSummary();
 }

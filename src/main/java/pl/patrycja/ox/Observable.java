@@ -1,4 +1,4 @@
-package pl.patrycja.ox.board;
+package pl.patrycja.ox;
 
 import pl.patrycja.ox.winnerchecker.Spectators;
 

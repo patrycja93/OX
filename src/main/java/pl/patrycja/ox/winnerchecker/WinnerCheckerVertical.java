@@ -4,7 +4,7 @@ import pl.patrycja.ox.Sign;
 
 import java.util.Map;
 
-public class WinnerCheckerVertical implements WinnerChecker {
+class WinnerCheckerVertical implements WinnerChecker {
 
     @Override
     public boolean checkingWinnerCondition(Map<Integer, Sign> fields, int size, int lastShot, int unbrokenLine) {
