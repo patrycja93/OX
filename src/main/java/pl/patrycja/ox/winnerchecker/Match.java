@@ -28,7 +28,7 @@ public class Match implements Observable {
             board.putSignToBoard(Integer.parseInt(read.nextLine()), Sign.CROSS);
             ui.display(board.toString());
             board.inform(spectators);
-        } while (judge.isFinishMatch());
+        } while (!judge.isFinishMatch());
     }
 
     @Override

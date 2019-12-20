@@ -27,11 +27,12 @@ public class Game {
         }
 
         Board board = BoardFactory.createBoard(gameSettings.boardSize);
-        ui.display(board.toString());
 
         while (gameSettings.matchesNumber > 0) {
+            ui.display(board.toString());
             Match match = new Match(ui, board, spectators, judge);
             match.start();
+            match.inform(spectators);
         }
     }
 }

@@ -38,7 +38,7 @@ public class Judge implements Spectators {
             winnerChecker.forEach(winnerChecker -> {
                 if (winnerChecker.checkingWinnerCondition(fields, size, lastShot, gameSettings.unbrokenLine)) {
                     isFinish = true;
-                    gameSettings.unbrokenLine -= 1;
+                    gameSettings.matchesNumber -= 1;
                 }
             });
         }
@@ -46,7 +46,7 @@ public class Judge implements Spectators {
 
     @Override
     public void matchFinished() {
-        //Show scores
+        ui.display("We have a winner.");
     }
 
     public boolean isFinishMatch() {
