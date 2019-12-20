@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SpectatorsRoom {
 
-    public static List<Spectators> addSpectators(GameSettings gameSettings) {
+    public static List<Spectator> addSpectators(GameSettings gameSettings) {
         return new ArrayList<>() {{
             add(new Judge(new ConsoleUI(), gameSettings));
         }};

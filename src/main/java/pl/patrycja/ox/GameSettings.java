@@ -30,6 +30,7 @@ public class GameSettings {
 
         public GameSettings build() {
             if (unbrokenLine > boardSize) {
+                //TODO: add exception handling
                 throw new IllegalStateException("Unbroken number of sign cannot be greater then board size.");
             } else {
                 GameSettings gameSettings = new GameSettings();

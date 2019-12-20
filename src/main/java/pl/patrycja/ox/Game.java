@@ -7,6 +7,7 @@ public class Game {
 
     public static void main(String[] args) {
 
+        //TODO: get input from user
         GameSettings gameSettings = GameSettings.builder()
                 .boardSize(6)
                 .unbrokenLine(7)

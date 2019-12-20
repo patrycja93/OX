@@ -3,7 +3,7 @@ package pl.patrycja.ox;
 import pl.patrycja.ox.board.Board;
 import pl.patrycja.ox.board.BoardFactory;
 import pl.patrycja.ox.ui.UI;
-import pl.patrycja.ox.winnerchecker.Spectators;
+import pl.patrycja.ox.winnerchecker.Spectator;
 import pl.patrycja.ox.winnerchecker.SpectatorsRoom;
 
 import java.util.List;
@@ -12,17 +12,17 @@ import java.util.Scanner;
 class Match implements Observable {
 
     Board board;
-    List<Spectators> spectators;
+    List<Spectator> spectators;
     UI ui;
 
-    public Match(Board board, List<Spectators> spectators, UI ui) {
+    public Match(Board board, List<Spectator> spectators, UI ui) {
         this.board = board;
         this.spectators = spectators;
         this.ui = ui;
     }
 
     public static Match init(GameSettings gameSettings, UI ui) {
-        List<Spectators> spectators = SpectatorsRoom.addSpectators(gameSettings);
+        List<Spectator> spectators = SpectatorsRoom.addSpectators(gameSettings);
         Board board = BoardFactory.createBoard(gameSettings.boardSize);
         return new Match(board, spectators, ui);
     }
@@ -38,7 +38,7 @@ class Match implements Observable {
     }
 
     @Override
-    public void inform(List<Spectators> spectators) {
-        spectators.forEach(Spectators::matchSummary);
+    public void inform(List<Spectator> spectators) {
+        spectators.forEach(Spectator::matchSummary);
     }
 }

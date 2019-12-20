@@ -7,7 +7,7 @@ import pl.patrycja.ox.ui.UI;
 import java.util.List;
 import java.util.Map;
 
-class Judge implements Spectators {
+class Judge implements Spectator {
 
     private GameSettings gameSettings;
     private UI ui;

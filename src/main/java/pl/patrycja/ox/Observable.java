@@ -1,10 +1,10 @@
 package pl.patrycja.ox;
 
-import pl.patrycja.ox.winnerchecker.Spectators;
+import pl.patrycja.ox.winnerchecker.Spectator;
 
 import java.util.List;
 
 public interface Observable {
 
-    void inform(List<Spectators> spectators);
+    void inform(List<Spectator> spectators);
 }

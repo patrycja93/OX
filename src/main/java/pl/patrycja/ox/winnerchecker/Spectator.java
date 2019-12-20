@@ -5,7 +5,7 @@ import pl.patrycja.ox.board.Board;
 
 import java.util.Map;
 
-public interface Spectators {
+public interface Spectator {
 
     void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot);
 

@@ -1,7 +1,7 @@
 package pl.patrycja.ox.board;
 
 import pl.patrycja.ox.Sign;
-import pl.patrycja.ox.winnerchecker.Spectators;
+import pl.patrycja.ox.winnerchecker.Spectator;
 
 import java.util.HashMap;
 import java.util.List;
@@ -54,7 +54,7 @@ class BoardExecutive implements Board {
     }
 
     @Override
-    public void inform(List<Spectators> spectators) {
+    public void inform(List<Spectator> spectators) {
         spectators.forEach(spectator -> spectator.lookAtBoard(fields, size, lastShot));
     }
 
