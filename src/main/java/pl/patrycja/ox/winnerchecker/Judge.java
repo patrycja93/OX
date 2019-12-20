@@ -1,19 +1,26 @@
 package pl.patrycja.ox.winnerchecker;
 
 import pl.patrycja.ox.Sign;
-import pl.patrycja.ox.ui.ConsoleUI;
 import pl.patrycja.ox.ui.UI;
 
 import java.util.Map;
 
 public class Judge implements Spectators {
 
-    int unbrokenLineSign;
+    private GameSettings gameSettings;
     private UI ui;
 
-    public Judge(int unbrokenLineSign, UI ui) {
-        this.unbrokenLineSign = unbrokenLineSign;
+    public Judge(UI ui) {
         this.ui = ui;
+    }
+
+    public boolean checkGameSettings(GameSettings gameSettings) {
+        if (gameSettings.unbrokenLines > gameSettings.boardSize) {
+            ui.display("Unbroken number of sign cannot be greater then board size.");
+            return false;
+        }
+        this.gameSettings = gameSettings;
+        return true;
     }
 
     @Override
@@ -21,7 +28,7 @@ public class Judge implements Spectators {
         /*
         check if winner -> if false do nothing else change round show score
          */
-        if (fields.size() > unbrokenLineSign) {
+        if (fields.size() > gameSettings.unbrokenLines) {
             if (checkVertical(fields, size, lastShoot) || checkHorizontal(fields, size, lastShoot)) {
                 ui.display("Winner!");
             }
@@ -50,7 +57,7 @@ public class Judge implements Spectators {
                 break;
             }
         }
-        return counter >= unbrokenLineSign;
+        return counter >= gameSettings.unbrokenLines;
     }
 
     boolean checkVertical(Map<Integer, Sign> fields, int size, int lastShoot) {
@@ -80,7 +87,7 @@ public class Judge implements Spectators {
                 break;
             }
         }
-        return counter >= unbrokenLineSign;
+        return counter >= gameSettings.unbrokenLines;
     }
 
     private int counterEscalate(Map<Integer, Sign> fields, int counter, Sign sing, int i) {

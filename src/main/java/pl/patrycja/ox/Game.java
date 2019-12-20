@@ -4,6 +4,7 @@ import pl.patrycja.ox.board.Board;
 import pl.patrycja.ox.board.BoardFactory;
 import pl.patrycja.ox.ui.ConsoleUI;
 import pl.patrycja.ox.ui.UI;
+import pl.patrycja.ox.winnerchecker.GameSettings;
 import pl.patrycja.ox.winnerchecker.Judge;
 import pl.patrycja.ox.winnerchecker.Spectators;
 
@@ -11,22 +12,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Main {
+public class Game {
 
     //TODO: checking if unBrokenLine is bigger than size
 
     public static void main(String[] args) {
 
+        GameSettings gameSettings = new GameSettings(2, 3, 10);
         UI ui = new ConsoleUI();
-        int unBrokenLine = 2;
-        int sizeBoard = 10;
+        Judge judge = new Judge(ui);
 
-        Judge judge = new Judge(unBrokenLine, ui);
+        while (!judge.checkGameSettings(gameSettings)){
+            ui.read();
+        }
 
         List<Spectators> spectators = new ArrayList<>();
         spectators.add(judge);
 
-        Board board = BoardFactory.createBoard(sizeBoard);
+        Board board = BoardFactory.createBoard(gameSettings.boardSize);
         ui.display(board.toString());
 
         int n = 5;
