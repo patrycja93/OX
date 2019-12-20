@@ -30,7 +30,6 @@ public class Judge implements Spectators {
         return true;
     }
 
-    //TODO: change name method
     @Override
     public void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot) {
 
@@ -51,5 +50,9 @@ public class Judge implements Spectators {
 
     public boolean isFinishMatch() {
         return isFinish;
+    }
+
+    public void setNewMatch() {
+        isFinish = false;
     }
 }

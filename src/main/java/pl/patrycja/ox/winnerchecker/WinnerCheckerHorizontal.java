@@ -14,7 +14,7 @@ public class WinnerCheckerHorizontal implements WinnerChecker {
         int min = rowNumber * size;
         int max = (rowNumber + 1) * size;
 
-        for (int i = lastShot + 1; i <= max; i++) {
+        for (int i = lastShot + 1; i < max; i++) {
             if (fields.containsKey(i)) {
                 if (fields.get(i) == sing) {
                     counter = counter + 1;
