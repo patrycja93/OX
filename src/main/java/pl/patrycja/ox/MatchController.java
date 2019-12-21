@@ -22,6 +22,7 @@ public class MatchController {
             if (players.get(i) == activePlayer) {
                 if (i + 1 < players.size()) {
                     activePlayer = players.get(i + 1);
+                    break;
                 } else {
                     activePlayer = players.get(0);
                 }
@@ -42,9 +43,9 @@ public class MatchController {
         ui.display("Which player should start: O or X ? ");
         Scanner scanner = ui.read();
         String sign = scanner.nextLine();
-        while (!sign.equals(Sign.CROSS.toString()) && !sign.equals(Sign.NAUGHT.toString())) {
+        while (!sign.equals(Sign.CROSS.sign) && !sign.equals(Sign.NAUGHT.sign)) {
             sign = scanner.nextLine();
         }
-        return Sign.valueOf(sign);
+        return Sign.getSign(sign);
     }
 }

@@ -18,6 +18,8 @@ class WinnerCheckerHorizontal implements WinnerChecker {
             if (fields.containsKey(i)) {
                 if (fields.get(i) == sing) {
                     counter = counter + 1;
+                } else {
+                    break;
                 }
             } else {
                 break;
@@ -28,6 +30,8 @@ class WinnerCheckerHorizontal implements WinnerChecker {
             if (fields.containsKey(i)) {
                 if (fields.get(i) == sing) {
                     counter = counter + 1;
+                } else {
+                    break;
                 }
             } else {
                 break;

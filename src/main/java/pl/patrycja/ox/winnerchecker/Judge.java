@@ -31,7 +31,7 @@ class Judge implements Spectator {
 
     private void finishMatch() {
         GameSettings.END_MATCH = true;
-        ui.display("Match number : " + gameSettings.matchNumber + ". Winner is " + Sign.CROSS);
+        ui.display("Winner is " + Sign.CROSS  + ".");
         gameSettings.matchNumber -= 1;
     }
 
@@ -42,5 +42,4 @@ class Judge implements Spectator {
             ui.display("End game!");
         }
     }
-
 }

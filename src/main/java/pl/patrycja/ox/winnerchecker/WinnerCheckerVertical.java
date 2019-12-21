@@ -18,6 +18,8 @@ class WinnerCheckerVertical implements WinnerChecker {
                 if (fields.get(fieldUp) == sing) {
                     counter = counter + 1;
                     fieldUp = fieldUp - size;
+                } else {
+                    break;
                 }
             } else {
                 break;
@@ -29,6 +31,8 @@ class WinnerCheckerVertical implements WinnerChecker {
                 if (fields.get(fieldDown) == sing) {
                     counter = counter + 1;
                     fieldDown = fieldDown + size;
+                } else {
+                    break;
                 }
             } else {
                 break;

@@ -15,19 +15,16 @@ class Match implements Observable {
     Board board;
     List<Spectator> spectators;
     UI ui = UIFactory.setUI();
-    GameSettings gameSettings;
     MatchController matchController;
 
-    Match(Board board, List<Spectator> spectators, GameSettings gameSettings) {
+    Match(Board board, List<Spectator> spectators) {
         this.board = board;
         this.spectators = spectators;
-        this.gameSettings = gameSettings;
     }
 
-    public static Match init(GameSettings gameSettings) {
-        List<Spectator> spectators = SpectatorsRoom.addSpectators(gameSettings);
-        Board board = BoardFactory.createBoard(gameSettings.boardSize);
-        return new Match(board, spectators, gameSettings);
+    public static Match init(int boardSize, List<Spectator> spectators) {
+        Board board = BoardFactory.createBoard(boardSize);
+        return new Match(board, spectators);
     }
 
     public Match addController(MatchController matchController) {
@@ -35,29 +32,20 @@ class Match implements Observable {
         return this;
     }
 
-    public void play() {
-        matchController.setPlayer();
-        while (gameSettings.matchNumber > 0) {
-            newMatch();
-            matchController.changePlayer();
-        }
-    }
-
     public void start() {
+        matchController.setPlayer();
+        ui.display(board.toString());
         while (!GameSettings.END_MATCH) {
             turn();
+            matchController.changePlayer();
         }
-    }
-
-    private void newMatch() {
-        ui.display(board.toString());
-        start();
         board.clean();
     }
 
     private void turn() {
         Scanner read = ui.read();
-        board.putSignToBoard(Integer.parseInt(read.nextLine()), matchController.getActivePlayerSign());
+        boolean b = board.putSignToBoard(Integer.parseInt(read.nextLine()), matchController.getActivePlayerSign());
+        ui.display("b: " + b);
         ui.display(board.toString());
         board.inform(spectators);
         inform(spectators);
