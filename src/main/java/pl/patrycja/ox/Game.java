@@ -1,5 +1,7 @@
 package pl.patrycja.ox;
 
+import java.util.ArrayList;
+
 public class Game {
 
     public static void main(String[] args) {
@@ -10,6 +12,15 @@ public class Game {
                 .unbrokenLine(3)
                 .build();
 
-        Match.init(gameSettings).play();
+        Player firstPlayer = new Player("A", Sign.CROSS);
+        Player secondPlayer = new Player("B", Sign.NAUGHT);
+        MatchController matchController = new MatchController(new ArrayList<>() {{
+            add(firstPlayer);
+            add(secondPlayer);
+        }});
+
+        Match.init(gameSettings)
+                .addController(matchController)
+                .play();
     }
 }

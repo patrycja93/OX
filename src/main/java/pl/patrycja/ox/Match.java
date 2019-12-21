@@ -16,6 +16,7 @@ class Match implements Observable {
     List<Spectator> spectators;
     UI ui = UIFactory.setUI();
     GameSettings gameSettings;
+    MatchController matchController;
 
     Match(Board board, List<Spectator> spectators, GameSettings gameSettings) {
         this.board = board;
@@ -29,21 +30,37 @@ class Match implements Observable {
         return new Match(board, spectators, gameSettings);
     }
 
+    public Match addController(MatchController matchController) {
+        this.matchController = matchController;
+        return this;
+    }
+
     public void play() {
+        matchController.setPlayer();
         while (gameSettings.matchNumber > 0) {
-            startNewMatch();
+            newMatch();
+            matchController.changePlayer();
         }
     }
 
-    public void startNewMatch() {
+    public void start() {
         while (!GameSettings.END_MATCH) {
-            ui.display(board.toString());
-            Scanner read = ui.read();
-            board.putSignToBoard(Integer.parseInt(read.nextLine()), Sign.CROSS);
-            ui.display(board.toString());
-            board.inform(spectators);
-            inform(spectators);
+            turn();
         }
+    }
+
+    private void newMatch() {
+        ui.display(board.toString());
+        start();
+        board.clean();
+    }
+
+    private void turn() {
+        Scanner read = ui.read();
+        board.putSignToBoard(Integer.parseInt(read.nextLine()), matchController.getActivePlayerSign());
+        ui.display(board.toString());
+        board.inform(spectators);
+        inform(spectators);
     }
 
     @Override
