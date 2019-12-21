@@ -3,6 +3,7 @@ package pl.patrycja.ox.winnerchecker;
 import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
+import pl.patrycja.ox.ui.UIFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -10,11 +11,10 @@ import java.util.Map;
 class Judge implements Spectator {
 
     private GameSettings gameSettings;
-    private UI ui;
+    private UI ui = UIFactory.setUI();
     private List<WinnerChecker> winnerCheckers = WinnerCheckerFactory.getWinnerCheckers();
 
-    public Judge(UI ui, GameSettings gameSettings) {
-        this.ui = ui;
+    public Judge(GameSettings gameSettings) {
         this.gameSettings = gameSettings;
     }
 
@@ -31,13 +31,13 @@ class Judge implements Spectator {
 
     private void finishMatch() {
         GameSettings.END_MATCH = true;
+        ui.display("Match number : " + gameSettings.matchNumber + ". Winner is " + Sign.CROSS);
         gameSettings.matchNumber -= 1;
     }
 
     @Override
     public void matchSummary() {
-        int matchNumber = gameSettings.matchNumber;
-        if (matchNumber == 0) {
+        if (gameSettings.matchNumber == 0) {
             GameSettings.END_GAME = true;
             ui.display("End game!");
         }
