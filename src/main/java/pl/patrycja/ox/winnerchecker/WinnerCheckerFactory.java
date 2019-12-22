@@ -1,15 +1,16 @@
 package pl.patrycja.ox.winnerchecker;
 
-import java.util.ArrayList;
+import pl.patrycja.ox.GameSettings;
+
 import java.util.List;
 
 class WinnerCheckerFactory {
-    static List<WinnerChecker> getWinnerCheckers() {
-        return new ArrayList<>() {{
-            add(new WinnerCheckerHorizontal());
-            add(new WinnerCheckerVertical());
-            add(new WinnerCheckerDiagonalUp());
-            add(new WinnerCheckerDiagonalDown());
-        }};
+    static List<WinnerChecker> getWinnerCheckers(GameSettings gameSettings) {
+        return List.of(
+                new WinnerCheckerHorizontal(gameSettings),
+                new WinnerCheckerVertical(gameSettings),
+                new WinnerCheckerDiagonalUp(gameSettings),
+                new WinnerCheckerDiagonalDown(gameSettings)
+        );
     }
 }

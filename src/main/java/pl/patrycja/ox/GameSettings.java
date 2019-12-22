@@ -12,36 +12,36 @@ import java.util.Scanner;
 
 public class GameSettings {
 
-    public static boolean END_GAME = false;
-    public static boolean END_MATCH = false;
-    public static Sign FIRST_PLAYER = Sign.CROSS;
-    public int unbrokenLine;
-    public int matchNumber;
-    public int boardSize;
-    public UI ui;
+    private boolean endGame = false;
+    private boolean endMatch = false;
+    private Sign firstPlayer = Sign.CROSS;
+    private int unbrokenLine;
+    private int matchNumber;
+    private int boardSize;
+    private UI ui;
 
-    public static final class Builder {
-        public int unbrokenLine = 3;
-        public int matchNumber = 3;
-        public int boardSize = 3;
-        public UI ui = UIFactory.setUI();
+    public static final class GameSettingsBuilder {
+        private int unbrokenLine = 3;
+        private int matchNumber = 3;
+        private int boardSize = 3;
+        private UI ui = UIFactory.setUI();
 
-        public Builder unbrokenLine(int unbrokenLine) {
+        public GameSettingsBuilder unbrokenLine(int unbrokenLine) {
             this.unbrokenLine = unbrokenLine;
             return this;
         }
 
-        public Builder matchesNumber(int matchesNumber) {
+        public GameSettingsBuilder matchesNumber(int matchesNumber) {
             this.matchNumber = matchesNumber;
             return this;
         }
 
-        public Builder boardSize(int boardSize) {
+        public GameSettingsBuilder boardSize(int boardSize) {
             this.boardSize = boardSize;
             return this;
         }
 
-        public Builder ui(UI ui) {
+        public GameSettingsBuilder ui(UI ui) {
             this.ui = ui;
             return this;
         }
@@ -61,12 +61,12 @@ public class GameSettings {
         }
     }
 
-    public static Builder builder() {
-        return new Builder();
+    public static GameSettingsBuilder builder() {
+        return new GameSettingsBuilder();
     }
 
     public void setPlayer() {
-        FIRST_PLAYER = askWhichPlayerStarts();
+        firstPlayer = askWhichPlayerStarts();
     }
 
     private Sign askWhichPlayerStarts() {
@@ -77,5 +77,45 @@ public class GameSettings {
             sign = scanner.nextLine();
         }
         return Sign.getSign(sign);
+    }
+
+    public int getUnbrokenLine() {
+        return unbrokenLine;
+    }
+
+    public int getMatchNumber() {
+        return matchNumber;
+    }
+
+    public void reduceMatchNumber() {
+        this.matchNumber = matchNumber - 1;
+    }
+
+    public int getBoardSize() {
+        return boardSize;
+    }
+
+    public boolean isEndGame() {
+        return endGame;
+    }
+
+    public void setEndGame(boolean endGame) {
+        this.endGame = endGame;
+    }
+
+    public boolean isEndMatch() {
+        return endMatch;
+    }
+
+    public void setEndMatch(boolean endMatch) {
+        this.endMatch = endMatch;
+    }
+
+    public Sign getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    public UI getUi() {
+        return ui;
     }
 }

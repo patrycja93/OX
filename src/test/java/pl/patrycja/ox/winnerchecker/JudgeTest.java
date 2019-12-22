@@ -121,7 +121,8 @@ public class JudgeTest {
 
     @BeforeMethod
     public void setEndMatchOnFalse() {
-        GameSettings.END_MATCH = false;
+        GameSettings gameSettings = new GameSettings();
+        gameSettings.setEndMatch(false);
     }
 
     @Test(dataProvider = "boardContainHorizontalUnbrokenLine")
@@ -137,8 +138,8 @@ public class JudgeTest {
         int lastShot = 5;
 
         //when
-        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
-        boolean existsUnbrokenHorizontalLine = GameSettings.END_MATCH;
+        judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
+        boolean existsUnbrokenHorizontalLine = gameSettings.isEndMatch();
 
         //then
         assertTrue(existsUnbrokenHorizontalLine, "You haven't two unbroken line.");
@@ -157,8 +158,8 @@ public class JudgeTest {
         int lastShot = 2;
 
         //when
-        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
-        boolean existsUnbrokenHorizontalLine = GameSettings.END_MATCH;
+        judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
+        boolean existsUnbrokenHorizontalLine = gameSettings.isEndMatch();
 
         //then
         assertFalse(existsUnbrokenHorizontalLine, "You have unbroken line.");
@@ -177,8 +178,8 @@ public class JudgeTest {
         int lastShot = 5;
 
         //when
-        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
-        boolean existsUnbrokenVerticalLine = GameSettings.END_MATCH;
+        judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
+        boolean existsUnbrokenVerticalLine = gameSettings.isEndMatch();
 
         //then
         assertTrue(existsUnbrokenVerticalLine, "You haven't two unbroken line.");
@@ -197,8 +198,8 @@ public class JudgeTest {
         int lastShot = 2;
 
         //when
-        judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
-        boolean existsUnbrokenVerticalLine = GameSettings.END_MATCH;
+        judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
+        boolean existsUnbrokenVerticalLine = gameSettings.isEndMatch();
 
         //then
         assertFalse(existsUnbrokenVerticalLine, "You have unbroken line.");

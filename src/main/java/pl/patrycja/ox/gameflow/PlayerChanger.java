@@ -5,13 +5,14 @@ import pl.patrycja.ox.Sign;
 
 import java.util.List;
 
-class MatchController {
+class PlayerChanger {
 
     private final List<Player> players;
-    private Sign activePlayerSign = Sign.getSign(GameSettings.FIRST_PLAYER.toString());
+    private Sign activePlayerSign;
 
-    MatchController(List<Player> players) {
+    PlayerChanger(List<Player> players, GameSettings gameSettings) {
         this.players = players;
+        activePlayerSign = Sign.getSign(gameSettings.getFirstPlayer().toString());
     }
 
     void changePlayer() {
