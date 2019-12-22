@@ -1,10 +1,10 @@
 package pl.patrycja.ox.winnerchecker;
 
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Sign;
-import pl.patrycja.ox.ui.ConsoleUI;
-import pl.patrycja.ox.ui.UI;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,7 @@ public class JudgeTest {
     public Object[][] boardContainHorizontalUnbrokenLine() {
         return new Object[][]{{3,
                 new HashMap<>() {{
-                    put(4, Sign.CROSS);
+                    put(4, Sign.NAUGHT);
                     put(2, Sign.CROSS);
                     put(5, Sign.CROSS);
                 }}}, {3,
@@ -89,7 +89,7 @@ public class JudgeTest {
         return new Object[][]{{3,
                 new HashMap<>() {{
                     put(0, Sign.CROSS);
-                    put(4, Sign.CROSS);
+                    put(4, Sign.NAUGHT);
                     put(2, Sign.CROSS);
                 }}}, {3,
                 new HashMap<>() {{
@@ -103,34 +103,42 @@ public class JudgeTest {
                     put(2, Sign.CROSS);
                 }}}, {3,
                 new HashMap<>() {{
-                    put(6, Sign.CROSS);
-                    put(4, Sign.CROSS);
-                    put(2, Sign.CROSS);
+                    put(0, Sign.NAUGHT);
+                    put(8, Sign.CROSS);
+                    put(2, Sign.NAUGHT);
                 }}}, {4,
                 new HashMap<>() {{
-                    put(0, Sign.CROSS);
+                    put(0, Sign.NAUGHT);
                     put(5, Sign.CROSS);
-                    put(10, Sign.CROSS);
-                    put(8, Sign.CROSS);
+                    put(10, Sign.NAUGHT);
+                    put(8, Sign.NAUGHT);
                     put(7, Sign.CROSS);
                     put(13, Sign.CROSS);
-                    put(2, Sign.CROSS);
+                    put(2, Sign.NAUGHT);
                 }}}
         };
+    }
+
+    @BeforeMethod
+    public void setEndMatchOnFalse() {
+        GameSettings.END_MATCH = false;
     }
 
     @Test(dataProvider = "boardContainHorizontalUnbrokenLine")
     public void testCheckingHorizontalUnbrokenLineAndReturnTrue(int size, Map<Integer, Sign> fields) {
         //given
-        UI ui = new ConsoleUI();
-        GameSettings gameSettings = new GameSettings(2, 3, size);
-        Judge judge = new Judge(ui);
-        judge.checkGameSettings(gameSettings);
+        GameSettings gameSettings = GameSettings.builder()
+                .unbrokenLine(2)
+                .matchesNumber(3)
+                .boardSize(size)
+                .build();
+
+        Judge judge = new Judge(gameSettings);
         int lastShot = 5;
 
         //when
         judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
-        boolean existsUnbrokenHorizontalLine = judge.isFinishMatch();
+        boolean existsUnbrokenHorizontalLine = GameSettings.END_MATCH;
 
         //then
         assertTrue(existsUnbrokenHorizontalLine, "You haven't two unbroken line.");
@@ -139,16 +147,18 @@ public class JudgeTest {
     @Test(dataProvider = "boardNotContainUnbrokenLine")
     public void testCheckingHorizontalUnbrokenLineAndReturnFalse(int size, Map<Integer, Sign> fields) {
         //given
-        UI ui = new ConsoleUI();
-        GameSettings gameSettings = new GameSettings(2, 3, size);
-        Judge judge = new Judge(ui);
-        judge.checkGameSettings(gameSettings);
+        GameSettings gameSettings = GameSettings.builder()
+                .unbrokenLine(2)
+                .matchesNumber(3)
+                .boardSize(size)
+                .build();
+
+        Judge judge = new Judge(gameSettings);
         int lastShot = 2;
 
         //when
         judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
-        boolean existsUnbrokenHorizontalLine = judge.isFinishMatch();
-        System.out.println(existsUnbrokenHorizontalLine);
+        boolean existsUnbrokenHorizontalLine = GameSettings.END_MATCH;
 
         //then
         assertFalse(existsUnbrokenHorizontalLine, "You have unbroken line.");
@@ -157,15 +167,18 @@ public class JudgeTest {
     @Test(dataProvider = "boardContainVerticalUnbrokenLine")
     public void testCheckingVerticalUnbrokenLineAndReturnTrue(int size, Map<Integer, Sign> fields) {
         //given
-        UI ui = new ConsoleUI();
-        GameSettings gameSettings = new GameSettings(2, 3, size);
-        Judge judge = new Judge(ui);
-        judge.checkGameSettings(gameSettings);
+        GameSettings gameSettings = GameSettings.builder()
+                .unbrokenLine(2)
+                .matchesNumber(3)
+                .boardSize(size)
+                .build();
+
+        Judge judge = new Judge(gameSettings);
         int lastShot = 5;
 
         //when
         judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
-        boolean existsUnbrokenVerticalLine = judge.isFinishMatch();
+        boolean existsUnbrokenVerticalLine = GameSettings.END_MATCH;
 
         //then
         assertTrue(existsUnbrokenVerticalLine, "You haven't two unbroken line.");
@@ -174,15 +187,18 @@ public class JudgeTest {
     @Test(dataProvider = "boardNotContainUnbrokenLine")
     public void testCheckingVerticalUnbrokenLineAndReturnFalse(int size, Map<Integer, Sign> fields) {
         //given
-        UI ui = new ConsoleUI();
-        GameSettings gameSettings = new GameSettings(2, 3, size);
-        Judge judge = new Judge(ui);
-        judge.checkGameSettings(gameSettings);
+        GameSettings gameSettings = GameSettings.builder()
+                .unbrokenLine(2)
+                .matchesNumber(3)
+                .boardSize(size)
+                .build();
+
+        Judge judge = new Judge(gameSettings);
         int lastShot = 2;
 
         //when
         judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
-        boolean existsUnbrokenVerticalLine = judge.isFinishMatch();
+        boolean existsUnbrokenVerticalLine = GameSettings.END_MATCH;
 
         //then
         assertFalse(existsUnbrokenVerticalLine, "You have unbroken line.");

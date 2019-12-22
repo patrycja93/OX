@@ -1,58 +1,42 @@
 package pl.patrycja.ox.winnerchecker;
 
+import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Sign;
-import pl.patrycja.ox.ui.UI;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class Judge implements Spectators {
+class Judge implements Spectator{
 
+    private List<WinnerChecker> winnerCheckers = WinnerCheckerFactory.getWinnerCheckers();
     private GameSettings gameSettings;
-    private UI ui;
-    private boolean isFinish = false;
-    private List<WinnerChecker> winnerChecker = new ArrayList<>() {{
-        add(new WinnerCheckerHorizontal());
-        add(new WinnerCheckerVertical());
-    }};
 
-    public Judge(UI ui) {
-        this.ui = ui;
-    }
-
-    public boolean checkGameSettings(GameSettings gameSettings) {
-        if (gameSettings.unbrokenLine > gameSettings.boardSize) {
-            ui.display("Unbroken number of sign cannot be greater then board size.");
-            return false;
-        }
+    public Judge(GameSettings gameSettings) {
         this.gameSettings = gameSettings;
-        return true;
     }
 
     @Override
     public void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot) {
-
         if (fields.size() >= (gameSettings.unbrokenLine * 2) - 1) {
-            winnerChecker.forEach(winnerChecker -> {
-                if (winnerChecker.checkingWinnerCondition(fields, size, lastShot, gameSettings.unbrokenLine)) {
-                    isFinish = true;
-                    gameSettings.matchesNumber -= 1;
+            winnerCheckers.forEach(winnerChecker -> {
+                if (winnerChecker.checkingWinnerCondition(fields, lastShot, gameSettings)) {
+                    finishMatch(fields.get(lastShot));
                 }
             });
         }
     }
 
+    private void finishMatch(Sign sign) {
+        GameSettings.END_MATCH = true;
+        gameSettings.ui.display("Winner is " + sign + ".");
+        gameSettings.matchNumber -= 1;
+    }
+
     @Override
-    public void matchFinished() {
-        ui.display("We have a winner.");
-    }
-
-    public boolean isFinishMatch() {
-        return isFinish;
-    }
-
-    public void setNewMatch() {
-        isFinish = false;
+    public void matchSummary() {
+        if (gameSettings.matchNumber == 0) {
+            GameSettings.END_GAME = true;
+            gameSettings.ui.display("End game!");
+        }
     }
 }

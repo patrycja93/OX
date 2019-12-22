@@ -48,8 +48,8 @@
 
 *Pessimistic*
 
-* Add player class.
-* Check if player win.
+* [x] Add player class.
+* [x] Check if player win.
 
 *Realistic*
 

@@ -6,26 +6,28 @@ import pl.patrycja.ox.Sign;
 import java.util.Map;
 import java.util.function.Predicate;
 
-class WinnerCheckerHorizontal implements WinnerChecker {
+public class WinnerCheckerDiagonalUp implements WinnerChecker {
 
     @Override
     public boolean checkingWinnerCondition(Map<Integer, Sign> fields, int lastShot, GameSettings gameSettings) {
         int counter = 1;
         Sign sing = fields.get(lastShot);
-        int rowNumber = lastShot / gameSettings.boardSize;
-        int min = rowNumber * gameSettings.boardSize;
-        int max = ((rowNumber + 1) * gameSettings.boardSize) - 1;
+        int boardSize = gameSettings.boardSize;
+        int fieldUp = (lastShot - boardSize) + 1;
+        int fieldDown = lastShot + boardSize - 1;
+        int min = 0;
+        int max = (boardSize * boardSize) - 1;
 
         Predicate<Integer> predicate = i -> fields.containsKey(i) && (fields.get(i) == sing);
 
-        counter = checkHorizon(predicate, counter, -(lastShot - 1), min);
-        counter = checkHorizon(predicate, counter, lastShot + 1, max);
+        counter = checkDiagonalUp(predicate, boardSize, counter, -fieldUp, min, 1);
+        counter = checkDiagonalUp(predicate, boardSize, counter, fieldDown, max, -1);
 
         return counter >= gameSettings.unbrokenLine;
     }
 
-    private int checkHorizon(Predicate<Integer> predicate, int counter, int min, int max) {
-        for (int i = min; i <= max; i++) {
+    int checkDiagonalUp(Predicate<Integer> predicate, int boardSize, int counter, int nextField, int max, int swipe) {
+        for (int i = nextField; i < max; i = i + boardSize + swipe) {
             if (predicate.test(Math.abs(i))) {
                 counter = counter + 1;
             } else {
