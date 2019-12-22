@@ -2,7 +2,7 @@ package pl.patrycja.ox;
 
 import pl.patrycja.ox.gameflow.Game;
 
-class Playground {
+class TicTacToe {
 
     public static void main(String[] args) {
         Game game = new Game();

@@ -12,12 +12,13 @@ public class Game {
 
     //TODO: get input from user
     GameSettings gameSettings = GameSettings.builder()
-            .boardSize(6)
+            .boardSize(3)
             .unbrokenLine(3)
             .build();
 
     Player firstPlayer = new Player("A", Sign.CROSS);
     Player secondPlayer = new Player("B", Sign.NAUGHT);
+
     List<Spectator> spectators = SpectatorsRoom.addSpectators(gameSettings);
     MatchController matchController = new MatchController(new ArrayList<>() {{
         add(firstPlayer);

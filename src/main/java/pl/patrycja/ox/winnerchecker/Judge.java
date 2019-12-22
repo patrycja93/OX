@@ -2,13 +2,11 @@ package pl.patrycja.ox.winnerchecker;
 
 import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Sign;
-import pl.patrycja.ox.ui.UI;
-import pl.patrycja.ox.ui.UIFactory;
 
 import java.util.List;
 import java.util.Map;
 
-class Judge implements Spectator {
+class Judge implements Spectator{
 
     private List<WinnerChecker> winnerCheckers = WinnerCheckerFactory.getWinnerCheckers();
     private GameSettings gameSettings;

@@ -7,8 +7,8 @@ import java.util.List;
 
 class MatchController {
 
-    private List<Player> players;
-    private Sign activePlayer = Sign.getSign(GameSettings.FIRST_PLAYER.toString());
+    private final List<Player> players;
+    private Sign activePlayerSign = Sign.getSign(GameSettings.FIRST_PLAYER.toString());
 
     MatchController(List<Player> players) {
         this.players = players;
@@ -16,18 +16,18 @@ class MatchController {
 
     void changePlayer() {
         for (int i = 0; i < players.size(); i++) {
-            if (players.get(i).sign == activePlayer) {
+            if (players.get(i).sign == activePlayerSign) {
                 if (i + 1 < players.size()) {
-                    activePlayer = Sign.getSign(players.get(i + 1).sign.toString());
+                    activePlayerSign = Sign.getSign(players.get(i + 1).sign.toString());
                     break;
                 } else {
-                    activePlayer = Sign.getSign(players.get(0).sign.toString());
+                    activePlayerSign = Sign.getSign(players.get(0).sign.toString());
                 }
             }
         }
     }
 
-    Sign getActivePlayer() {
-        return activePlayer;
+    Sign getActivePlayerSign() {
+        return activePlayerSign;
     }
 }

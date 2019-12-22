@@ -18,7 +18,7 @@ public class JudgeTest {
     public Object[][] boardContainHorizontalUnbrokenLine() {
         return new Object[][]{{3,
                 new HashMap<>() {{
-                    put(4, Sign.CROSS);
+                    put(4, Sign.NAUGHT);
                     put(2, Sign.CROSS);
                     put(5, Sign.CROSS);
                 }}}, {3,
@@ -89,7 +89,7 @@ public class JudgeTest {
         return new Object[][]{{3,
                 new HashMap<>() {{
                     put(0, Sign.CROSS);
-                    put(4, Sign.CROSS);
+                    put(4, Sign.NAUGHT);
                     put(2, Sign.CROSS);
                 }}}, {3,
                 new HashMap<>() {{
@@ -103,18 +103,18 @@ public class JudgeTest {
                     put(2, Sign.CROSS);
                 }}}, {3,
                 new HashMap<>() {{
-                    put(6, Sign.CROSS);
-                    put(4, Sign.CROSS);
-                    put(2, Sign.CROSS);
+                    put(0, Sign.NAUGHT);
+                    put(8, Sign.CROSS);
+                    put(2, Sign.NAUGHT);
                 }}}, {4,
                 new HashMap<>() {{
-                    put(0, Sign.CROSS);
+                    put(0, Sign.NAUGHT);
                     put(5, Sign.CROSS);
-                    put(10, Sign.CROSS);
-                    put(8, Sign.CROSS);
+                    put(10, Sign.NAUGHT);
+                    put(8, Sign.NAUGHT);
                     put(7, Sign.CROSS);
                     put(13, Sign.CROSS);
-                    put(2, Sign.CROSS);
+                    put(2, Sign.NAUGHT);
                 }}}
         };
     }

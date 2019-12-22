@@ -5,6 +5,11 @@ import pl.patrycja.ox.ui.UIFactory;
 
 import java.util.Scanner;
 
+/**
+ * @author Patrycja Hyjek
+ *
+ */
+
 public class GameSettings {
 
     public static boolean END_GAME = false;

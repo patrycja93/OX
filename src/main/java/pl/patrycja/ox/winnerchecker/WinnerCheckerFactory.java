@@ -8,6 +8,8 @@ class WinnerCheckerFactory {
         return new ArrayList<>() {{
             add(new WinnerCheckerHorizontal());
             add(new WinnerCheckerVertical());
+            add(new WinnerCheckerDiagonalUp());
+            add(new WinnerCheckerDiagonalDown());
         }};
     }
 }

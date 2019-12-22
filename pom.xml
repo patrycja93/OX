@@ -14,8 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.java.version>11</project.java.version>
-        <maven.compiler.source>${project.java.version}</maven.compiler.source>
-        <maven.compiler.target>${project.java.version}</maven.compiler.target>
+        <maven.compiler.realase>${project.java.version}</maven.compiler.realase>
         <plugin.compiler.version>3.8.0</plugin.compiler.version>
         <plugin.enforcer.version>3.0.0-M3</plugin.enforcer.version>
         <dependency.testng>7.0.0</dependency.testng>
@@ -59,7 +58,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>pl.patrycja.ox.Playground</mainClass>
+                            <mainClass>pl.patrycja.ox.TicTacToe</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
