@@ -26,14 +26,14 @@ public class WinnerCheckerDiagonalDown implements WinnerChecker {
 
         Predicate<Integer> predicate = i -> fields.containsKey(i) && (fields.get(i) == sing);
 
-        counter = checkDiagonalDown(predicate, boardSize, counter, -fieldUp, min, -1);
-        counter = checkDiagonalDown(predicate, boardSize, counter, fieldDown, max, 1);
+        counter = checkDiagonalDown(predicate, boardSize, counter, -fieldUp, min, 1);
+        counter = checkDiagonalDown(predicate, boardSize, counter, fieldDown, max, -1);
 
         return counter >= gameSettings.getUnbrokenLine();
     }
 
     int checkDiagonalDown(Predicate<Integer> predicate, int boardSize, int counter, int nextField, int max, int swipe) {
-        for (int i = nextField; i < max && i > 0; i = i + boardSize + swipe) {
+        for (int i = nextField; i <= max; i = i + boardSize + swipe) {
             if (predicate.test(Math.abs(i))) {
                 counter = counter + 1;
             } else {
