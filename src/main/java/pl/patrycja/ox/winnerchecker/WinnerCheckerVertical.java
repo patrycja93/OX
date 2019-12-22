@@ -8,11 +8,17 @@ import java.util.function.Predicate;
 
 class WinnerCheckerVertical implements WinnerChecker {
 
+    private GameSettings gameSettings;
+
+    public WinnerCheckerVertical(GameSettings gameSettings) {
+        this.gameSettings = gameSettings;
+    }
+
     @Override
-    public boolean checkingWinnerCondition(Map<Integer, Sign> fields, int lastShot, GameSettings gameSettings) {
+    public boolean checkingWinnerCondition(Map<Integer, Sign> fields, int lastShot) {
         int counter = 1;
         Sign sing = fields.get(lastShot);
-        int boardSize = gameSettings.boardSize;
+        int boardSize = gameSettings.getBoardSize();
         int fieldUp = lastShot - boardSize;
         int fieldDown = lastShot + boardSize;
         int min = 0;
@@ -23,7 +29,7 @@ class WinnerCheckerVertical implements WinnerChecker {
         counter = checkVertical(predicate, boardSize, counter, -fieldUp, min);
         counter = checkVertical(predicate, boardSize, counter, fieldDown, max);
 
-        return counter >= gameSettings.unbrokenLine;
+        return counter >= gameSettings.getUnbrokenLine();
     }
 
     int checkVertical(Predicate<Integer> predicate, int boardSize, int counter, int nextField, int max) {

@@ -8,11 +8,17 @@ import java.util.function.Predicate;
 
 public class WinnerCheckerDiagonalDown implements WinnerChecker {
 
+    private GameSettings gameSettings;
+
+    public WinnerCheckerDiagonalDown(GameSettings gameSettings) {
+        this.gameSettings = gameSettings;
+    }
+
     @Override
-    public boolean checkingWinnerCondition(Map<Integer, Sign> fields, int lastShot, GameSettings gameSettings) {
+    public boolean checkingWinnerCondition(Map<Integer, Sign> fields, int lastShot) {
         int counter = 1;
         Sign sing = fields.get(lastShot);
-        int boardSize = gameSettings.boardSize;
+        int boardSize = gameSettings.getBoardSize();
         int fieldUp = (lastShot - boardSize) - 1;
         int fieldDown = lastShot + boardSize + 1;
         int min = 0;
@@ -23,7 +29,7 @@ public class WinnerCheckerDiagonalDown implements WinnerChecker {
         counter = checkDiagonalDown(predicate, boardSize, counter, -fieldUp, min, -1);
         counter = checkDiagonalDown(predicate, boardSize, counter, fieldDown, max, 1);
 
-        return counter >= gameSettings.unbrokenLine;
+        return counter >= gameSettings.getUnbrokenLine();
     }
 
     int checkDiagonalDown(Predicate<Integer> predicate, int boardSize, int counter, int nextField, int max, int swipe) {

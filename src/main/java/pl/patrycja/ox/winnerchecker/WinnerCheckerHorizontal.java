@@ -8,20 +8,27 @@ import java.util.function.Predicate;
 
 class WinnerCheckerHorizontal implements WinnerChecker {
 
+    private GameSettings gameSettings;
+
+    public WinnerCheckerHorizontal(GameSettings gameSettings) {
+        this.gameSettings = gameSettings;
+    }
+
     @Override
-    public boolean checkingWinnerCondition(Map<Integer, Sign> fields, int lastShot, GameSettings gameSettings) {
+    public boolean checkingWinnerCondition(Map<Integer, Sign> fields, int lastShot) {
         int counter = 1;
         Sign sing = fields.get(lastShot);
-        int rowNumber = lastShot / gameSettings.boardSize;
-        int min = rowNumber * gameSettings.boardSize;
-        int max = ((rowNumber + 1) * gameSettings.boardSize) - 1;
+        int boardSize = gameSettings.getBoardSize();
+        int rowNumber = lastShot / boardSize;
+        int min = rowNumber * boardSize;
+        int max = ((rowNumber + 1) * boardSize) - 1;
 
         Predicate<Integer> predicate = i -> fields.containsKey(i) && (fields.get(i) == sing);
 
         counter = checkHorizon(predicate, counter, -(lastShot - 1), min);
         counter = checkHorizon(predicate, counter, lastShot + 1, max);
 
-        return counter >= gameSettings.unbrokenLine;
+        return counter >= gameSettings.getUnbrokenLine();
     }
 
     private int checkHorizon(Predicate<Integer> predicate, int counter, int min, int max) {

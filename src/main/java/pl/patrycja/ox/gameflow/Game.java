@@ -5,7 +5,6 @@ import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.winnerchecker.Spectator;
 import pl.patrycja.ox.winnerchecker.SpectatorsRoom;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Game {
@@ -20,16 +19,13 @@ public class Game {
     Player secondPlayer = new Player("B", Sign.NAUGHT);
 
     List<Spectator> spectators = SpectatorsRoom.addSpectators(gameSettings);
-    MatchController matchController = new MatchController(new ArrayList<>() {{
-        add(firstPlayer);
-        add(secondPlayer);
-    }});
+    PlayerChanger playerChanger = new PlayerChanger(List.of(firstPlayer, secondPlayer), gameSettings);
 
     public void play() {
         gameSettings.setPlayer();
-        while (gameSettings.matchNumber > 0) {
-            Match.init(gameSettings.boardSize, gameSettings.ui, spectators)
-                    .addController(matchController)
+        while (!gameSettings.isEndGame()) {
+            Match.init(gameSettings, spectators)
+                    .addController(playerChanger)
                     .start();
         }
     }
