@@ -5,10 +5,10 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>pl.patrycja</groupId>
-    <artifactId>OX</artifactId>
+    <artifactId>ox</artifactId>
     <version>0.1</version>
     <name>OX</name>
-    <description>#DESC</description>
+    <description>The game is created for two players at the moment. Maybe in the future will be more players. The gamers enter sign - O or X in turns. A player which as the first put demanding number of signs in a row is a winner!</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -59,7 +59,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>pl.patrycja.ox.Game</mainClass>
+                            <mainClass>pl.patrycja.ox.Playground</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

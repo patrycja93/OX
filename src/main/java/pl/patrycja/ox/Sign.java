@@ -8,12 +8,12 @@ public enum Sign {
 
     String sign;
 
-    static Map<String, Sign> signMap = new HashMap<>(){{
+    static Map<String, Sign> signMap = new HashMap<>() {{
         put("O", NAUGHT);
         put("X", CROSS);
     }};
 
-    static Sign getSign(String s){
+    public static Sign getSign(String s) {
         return signMap.get(s);
     }
 

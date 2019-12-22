@@ -1,4 +1,6 @@
-package pl.patrycja.ox;
+package pl.patrycja.ox.gameflow;
+
+import pl.patrycja.ox.Sign;
 
 import java.util.Objects;
 

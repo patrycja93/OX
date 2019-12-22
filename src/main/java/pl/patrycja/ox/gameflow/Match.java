@@ -1,39 +1,41 @@
-package pl.patrycja.ox;
+package pl.patrycja.ox.gameflow;
 
+import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.Observable;
 import pl.patrycja.ox.board.Board;
 import pl.patrycja.ox.board.BoardFactory;
 import pl.patrycja.ox.ui.UI;
-import pl.patrycja.ox.ui.UIFactory;
 import pl.patrycja.ox.winnerchecker.Spectator;
-import pl.patrycja.ox.winnerchecker.SpectatorsRoom;
 
 import java.util.List;
 import java.util.Scanner;
 
 class Match implements Observable {
 
-    Board board;
-    List<Spectator> spectators;
-    UI ui = UIFactory.setUI();
-    MatchController matchController;
+    private Board board;
+    private List<Spectator> spectators;
+    private UI ui;
+    private MatchController matchController;
 
-    Match(Board board, List<Spectator> spectators) {
+    Match(Board board, List<Spectator> spectators, UI ui) {
         this.board = board;
         this.spectators = spectators;
+        this.ui = ui;
     }
 
-    public static Match init(int boardSize, List<Spectator> spectators) {
+    static Match init(int boardSize, UI ui, List<Spectator> spectators) {
         Board board = BoardFactory.createBoard(boardSize);
-        return new Match(board, spectators);
+        GameSettings.END_MATCH = false;
+        return new Match(board, spectators, ui);
     }
 
-    public Match addController(MatchController matchController) {
+    Match addController(MatchController matchController) {
         this.matchController = matchController;
         return this;
     }
 
-    public void start() {
-        matchController.setPlayer();
+    void start() {
+        //TODO: ask about language
         ui.display(board.toString());
         while (!GameSettings.END_MATCH) {
             turn();
@@ -44,8 +46,8 @@ class Match implements Observable {
 
     private void turn() {
         Scanner read = ui.read();
-        boolean b = board.putSignToBoard(Integer.parseInt(read.nextLine()), matchController.getActivePlayerSign());
-        ui.display("b: " + b);
+        boolean success = board.putSignToBoard(Integer.parseInt(read.nextLine()), matchController.getActivePlayer());
+        //TODO : if success == false ask again
         ui.display(board.toString());
         board.inform(spectators);
         inform(spectators);

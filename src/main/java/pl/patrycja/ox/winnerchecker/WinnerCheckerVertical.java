@@ -1,43 +1,39 @@
 package pl.patrycja.ox.winnerchecker;
 
+import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Sign;
 
 import java.util.Map;
+import java.util.function.Predicate;
 
 class WinnerCheckerVertical implements WinnerChecker {
 
     @Override
-    public boolean checkingWinnerCondition(Map<Integer, Sign> fields, int size, int lastShot, int unbrokenLine) {
+    public boolean checkingWinnerCondition(Map<Integer, Sign> fields, int lastShot, GameSettings gameSettings) {
         int counter = 1;
         Sign sing = fields.get(lastShot);
-        int fieldUp = lastShot - size;
-        int fieldDown = lastShot + size;
+        int boardSize = gameSettings.boardSize;
+        int fieldUp = lastShot - boardSize;
+        int fieldDown = lastShot + boardSize;
+        int min = 0;
+        int max = (boardSize * boardSize) - 1;
 
-        while ((fieldUp) > 0) {
-            if (fields.containsKey(fieldUp)) {
-                if (fields.get(fieldUp) == sing) {
-                    counter = counter + 1;
-                    fieldUp = fieldUp - size;
-                } else {
-                    break;
-                }
+        Predicate<Integer> predicate = i -> fields.containsKey(i) && (fields.get(i) == sing);
+
+        counter = checkVertical(predicate, boardSize, counter, -fieldUp, min);
+        counter = checkVertical(predicate, boardSize, counter, fieldDown, max);
+
+        return counter >= gameSettings.unbrokenLine;
+    }
+
+    int checkVertical(Predicate<Integer> predicate, int boardSize, int counter, int nextField, int max) {
+        for (int i = nextField; i <= max; i = i + boardSize) {
+            if (predicate.test(Math.abs(i))) {
+                counter = counter + 1;
             } else {
                 break;
             }
         }
-
-        while ((fieldDown) < (size * size)) {
-            if (fields.containsKey(fieldDown)) {
-                if (fields.get(fieldDown) == sing) {
-                    counter = counter + 1;
-                    fieldDown = fieldDown + size;
-                } else {
-                    break;
-                }
-            } else {
-                break;
-            }
-        }
-        return counter >= unbrokenLine;
+        return counter;
     }
 }

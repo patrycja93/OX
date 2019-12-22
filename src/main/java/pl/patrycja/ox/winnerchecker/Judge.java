@@ -10,9 +10,8 @@ import java.util.Map;
 
 class Judge implements Spectator {
 
-    private GameSettings gameSettings;
-    private UI ui = UIFactory.setUI();
     private List<WinnerChecker> winnerCheckers = WinnerCheckerFactory.getWinnerCheckers();
+    private GameSettings gameSettings;
 
     public Judge(GameSettings gameSettings) {
         this.gameSettings = gameSettings;
@@ -22,16 +21,16 @@ class Judge implements Spectator {
     public void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot) {
         if (fields.size() >= (gameSettings.unbrokenLine * 2) - 1) {
             winnerCheckers.forEach(winnerChecker -> {
-                if (winnerChecker.checkingWinnerCondition(fields, size, lastShot, gameSettings.unbrokenLine)) {
-                    finishMatch();
+                if (winnerChecker.checkingWinnerCondition(fields, lastShot, gameSettings)) {
+                    finishMatch(fields.get(lastShot));
                 }
             });
         }
     }
 
-    private void finishMatch() {
+    private void finishMatch(Sign sign) {
         GameSettings.END_MATCH = true;
-        ui.display("Winner is " + Sign.CROSS  + ".");
+        gameSettings.ui.display("Winner is " + sign + ".");
         gameSettings.matchNumber -= 1;
     }
 
@@ -39,7 +38,7 @@ class Judge implements Spectator {
     public void matchSummary() {
         if (gameSettings.matchNumber == 0) {
             GameSettings.END_GAME = true;
-            ui.display("End game!");
+            gameSettings.ui.display("End game!");
         }
     }
 }

@@ -159,7 +159,6 @@ public class JudgeTest {
         //when
         judge.lookAtBoard(fields, gameSettings.boardSize, lastShot);
         boolean existsUnbrokenHorizontalLine = GameSettings.END_MATCH;
-        System.out.println(existsUnbrokenHorizontalLine);
 
         //then
         assertFalse(existsUnbrokenHorizontalLine, "You have unbroken line.");
