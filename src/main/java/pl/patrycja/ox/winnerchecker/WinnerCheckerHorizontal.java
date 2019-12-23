@@ -25,14 +25,14 @@ class WinnerCheckerHorizontal implements WinnerChecker {
 
         Predicate<Integer> predicate = i -> fields.containsKey(i) && (fields.get(i) == sing);
 
-        counter = checkHorizon(predicate, counter, -(lastShot - 1), min);
-        counter = checkHorizon(predicate, counter, lastShot + 1, max);
+        counter = checkHorizon(predicate, counter, -(lastShot - 1), min, -1);
+        counter = checkHorizon(predicate, counter, lastShot + 1, max, 1);
 
         return counter >= gameSettings.getUnbrokenLine();
     }
 
-    private int checkHorizon(Predicate<Integer> predicate, int counter, int min, int max) {
-        for (int i = min; Math.abs(i) <= max; i = Math.abs(i) + 1) {
+    private int checkHorizon(Predicate<Integer> predicate, int counter, int min, int max, int swipe) {
+        for (int i = min; i <= max * swipe; i = i + 1) {
             if (predicate.test(Math.abs(i))) {
                 counter = counter + 1;
             } else {
