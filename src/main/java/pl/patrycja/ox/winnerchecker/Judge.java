@@ -18,7 +18,8 @@ class Judge implements Spectator {
 
     @Override
     public void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot) {
-        if (fields.size() >= (gameSettings.getUnbrokenLine() * 2) - 1) {
+
+    if (fields.size() >= (gameSettings.getUnbrokenLine() * 2) - 1) {
             winnerCheckers.forEach(winnerChecker -> {
                 if (winnerChecker.checkingWinnerCondition(fields, lastShot)) {
                     finishMatch(fields.get(lastShot));

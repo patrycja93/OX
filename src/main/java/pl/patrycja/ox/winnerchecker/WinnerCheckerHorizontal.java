@@ -32,7 +32,7 @@ class WinnerCheckerHorizontal implements WinnerChecker {
     }
 
     private int checkHorizon(Predicate<Integer> predicate, int counter, int min, int max) {
-        for (int i = min; i <= max; i++) {
+        for (int i = min; Math.abs(i) <= max; i = Math.abs(i) + 1) {
             if (predicate.test(Math.abs(i))) {
                 counter = counter + 1;
             } else {

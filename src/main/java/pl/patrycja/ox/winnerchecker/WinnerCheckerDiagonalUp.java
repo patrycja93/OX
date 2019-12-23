@@ -26,8 +26,8 @@ public class WinnerCheckerDiagonalUp implements WinnerChecker {
 
         Predicate<Integer> predicate = i -> fields.containsKey(i) && (fields.get(i) == sing);
 
-        counter = checkDiagonalUp(predicate, boardSize, counter, -fieldUp, min, 1);
-        counter = checkDiagonalUp(predicate, boardSize, counter, fieldDown, max, -1);
+        counter = checkDiagonalUp(predicate, boardSize, counter, -fieldUp, min, -1);
+        counter = checkDiagonalUp(predicate, boardSize, counter, fieldDown, max, 1);
 
         return counter >= gameSettings.getUnbrokenLine();
     }
