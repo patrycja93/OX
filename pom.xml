@@ -6,7 +6,7 @@
 
     <groupId>pl.patrycja</groupId>
     <artifactId>ox</artifactId>
-    <version>0.1</version>
+    <version>1.0.0</version>
     <name>OX</name>
     <description>The game is created for two players at the moment. Maybe in the future will be more players. The gamers enter sign - O or X in turns. A player which as the first put demanding number of signs in a row is a winner!</description>
 
