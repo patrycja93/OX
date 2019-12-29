@@ -4,10 +4,10 @@ import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Observable;
 import pl.patrycja.ox.board.Board;
 import pl.patrycja.ox.board.BoardFactory;
+import pl.patrycja.ox.ui.InputChecker;
 import pl.patrycja.ox.winnerchecker.Spectator;
 
 import java.util.List;
-import java.util.Scanner;
 
 class Match implements Observable {
 
@@ -44,12 +44,31 @@ class Match implements Observable {
     }
 
     private void turn() {
-        Scanner read = gameSettings.getUi().read();
-        boolean success = board.putSignToBoard(Integer.parseInt(read.nextLine()), playerChanger.getActivePlayerSign());
-        //TODO : if success == false ask again
+        String read = gameSettings.getUi().read();
+        getInputFromUser(read);
         gameSettings.getUi().display(board.toString());
         board.inform(spectators);
         inform(spectators);
+    }
+
+    private boolean checkIfPlaceIsFree(int input) {
+        if (!board.putSignToBoard(input, playerChanger.getActivePlayerSign())) {
+            gameSettings.getUi().display("This place is already occupied. Try again.");
+            return false;
+        }
+        return true;
+    }
+
+    private void getInputFromUser(String input) {
+        while (isWrongInput(input)) {
+            input = gameSettings.getUi().read();
+        }
+    }
+
+    private boolean isWrongInput(String input) {
+        return !InputChecker.checkNumber(input)
+                || !InputChecker.checkPositiveNumber(input, gameSettings.getBoardSize())
+                || !checkIfPlaceIsFree(Integer.parseInt(input));
     }
 
     @Override

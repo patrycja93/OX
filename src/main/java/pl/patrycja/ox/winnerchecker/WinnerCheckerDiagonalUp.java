@@ -23,17 +23,19 @@ public class WinnerCheckerDiagonalUp implements WinnerChecker {
         int fieldDown = lastShot + boardSize - 1;
         int min = 0;
         int max = (boardSize * boardSize) - 1;
+        int rowNumber = lastShot / boardSize;
 
         Predicate<Integer> predicate = i -> fields.containsKey(i) && (fields.get(i) == sing);
 
-        counter = checkDiagonalUp(predicate, boardSize, counter, -fieldUp, min, -1);
-        counter = checkDiagonalUp(predicate, boardSize, counter, fieldDown, max, 1);
+        counter = checkDiagonalUp(predicate, boardSize, rowNumber, counter, -fieldUp, min);
+        counter = checkDiagonalUp(predicate, boardSize, rowNumber, counter, fieldDown, max);
 
         return counter >= gameSettings.getUnbrokenLine();
     }
 
-    int checkDiagonalUp(Predicate<Integer> predicate, int boardSize, int counter, int nextField, int max, int swipe) {
-        for (int i = nextField; i < max; i = i + boardSize + swipe) {
+    int checkDiagonalUp(Predicate<Integer> predicate, int boardSize, int lastShotRowNumber, int counter, int nextField, int max) {
+        for (int i = nextField; i < max && !checkRowNumber(i, boardSize, lastShotRowNumber); i = i + boardSize - 1) {
+            lastShotRowNumber = Math.abs(i / boardSize);
             if (predicate.test(Math.abs(i))) {
                 counter = counter + 1;
             } else {
@@ -41,5 +43,9 @@ public class WinnerCheckerDiagonalUp implements WinnerChecker {
             }
         }
         return counter;
+    }
+
+    private boolean checkRowNumber(int nextField, int boardSize, int lastShotRowNumber) {
+        return (Math.abs(nextField / boardSize) - lastShotRowNumber) == 0;
     }
 }

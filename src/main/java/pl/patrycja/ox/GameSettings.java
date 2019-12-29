@@ -71,10 +71,9 @@ public class GameSettings {
 
     private Sign askWhichPlayerStarts() {
         ui.display("Which player should start: O or X ? ");
-        Scanner scanner = ui.read();
-        String sign = scanner.nextLine();
+        String sign = ui.read();
         while (!sign.equals(Sign.CROSS.sign) && !sign.equals(Sign.NAUGHT.sign)) {
-            sign = scanner.nextLine();
+            sign = ui.read();
         }
         return Sign.getSign(sign);
     }
