@@ -8,7 +8,6 @@ import pl.patrycja.ox.ui.InputChecker;
 import pl.patrycja.ox.winnerchecker.Spectator;
 
 import java.util.List;
-import java.util.Scanner;
 
 class Match implements Observable {
 
@@ -45,9 +44,8 @@ class Match implements Observable {
     }
 
     private void turn() {
-        Scanner read = gameSettings.getUi().read();
-        String input = read.next();
-        getInputFromUser(read, input);
+        String read = gameSettings.getUi().read();
+        getInputFromUser(read);
         gameSettings.getUi().display(board.toString());
         board.inform(spectators);
         inform(spectators);
@@ -61,13 +59,12 @@ class Match implements Observable {
         return true;
     }
 
-    private int getInputFromUser(Scanner read, String input) {
+    private void getInputFromUser(String input) {
         while (!InputChecker.checkNumber(input)
                 || !InputChecker.checkPositiveNumber(input, gameSettings.getBoardSize())
                 || !checkIfPlaceIsFree(Integer.parseInt(input))) {
-            input = read.next();
+            input = gameSettings.getUi().read();
         }
-        return Integer.parseInt(input);
     }
 
     @Override

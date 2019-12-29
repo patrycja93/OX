@@ -5,6 +5,7 @@ import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Sign;
+import pl.patrycja.ox.ui.UI;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -119,20 +120,10 @@ public class JudgeTest {
         };
     }
 
-    @BeforeMethod
-    public void setEndMatchOnFalse() {
-        GameSettings gameSettings = new GameSettings();
-        gameSettings.setEndMatch(false);
-    }
-
     @Test(dataProvider = "boardContainHorizontalUnbrokenLine")
     public void testCheckingHorizontalUnbrokenLineAndReturnTrue(int size, Map<Integer, Sign> fields) {
         //given
-        GameSettings gameSettings = GameSettings.builder()
-                .unbrokenLine(2)
-                .matchesNumber(3)
-                .boardSize(size)
-                .build();
+        GameSettings gameSettings = createGameSettings(size);
 
         Judge judge = new Judge(gameSettings);
         int lastShot = 5;
@@ -148,11 +139,7 @@ public class JudgeTest {
     @Test(dataProvider = "boardNotContainUnbrokenLine")
     public void testCheckingHorizontalUnbrokenLineAndReturnFalse(int size, Map<Integer, Sign> fields) {
         //given
-        GameSettings gameSettings = GameSettings.builder()
-                .unbrokenLine(2)
-                .matchesNumber(3)
-                .boardSize(size)
-                .build();
+        GameSettings gameSettings = createGameSettings(size);
 
         Judge judge = new Judge(gameSettings);
         int lastShot = 2;
@@ -168,11 +155,7 @@ public class JudgeTest {
     @Test(dataProvider = "boardContainVerticalUnbrokenLine")
     public void testCheckingVerticalUnbrokenLineAndReturnTrue(int size, Map<Integer, Sign> fields) {
         //given
-        GameSettings gameSettings = GameSettings.builder()
-                .unbrokenLine(2)
-                .matchesNumber(3)
-                .boardSize(size)
-                .build();
+        GameSettings gameSettings = createGameSettings(size);
 
         Judge judge = new Judge(gameSettings);
         int lastShot = 5;
@@ -188,11 +171,7 @@ public class JudgeTest {
     @Test(dataProvider = "boardNotContainUnbrokenLine")
     public void testCheckingVerticalUnbrokenLineAndReturnFalse(int size, Map<Integer, Sign> fields) {
         //given
-        GameSettings gameSettings = GameSettings.builder()
-                .unbrokenLine(2)
-                .matchesNumber(3)
-                .boardSize(size)
-                .build();
+        GameSettings gameSettings = createGameSettings(size);
 
         Judge judge = new Judge(gameSettings);
         int lastShot = 2;
@@ -203,5 +182,25 @@ public class JudgeTest {
 
         //then
         assertFalse(existsUnbrokenVerticalLine, "You have unbroken line.");
+    }
+
+    private GameSettings createGameSettings(int size) {
+        return GameSettings.builder()
+                .unbrokenLine(2)
+                .matchesNumber(3)
+                .boardSize(size)
+                .ui(new UI() {
+                    @Override
+                    public void display(String input) {
+                        //empty for tests purposes
+                    }
+
+                    @Override
+                    public String read() {
+                        //not being used in tests
+                        return null;
+                    }
+                })
+                .build();
     }
 }
