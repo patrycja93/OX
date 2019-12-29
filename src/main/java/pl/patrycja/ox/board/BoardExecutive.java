@@ -44,7 +44,6 @@ class BoardExecutive implements Board {
             lastShot = fieldNumber - 1;
             return true;
         } else {
-
             return false;
         }
     }

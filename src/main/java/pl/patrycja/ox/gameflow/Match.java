@@ -60,11 +60,15 @@ class Match implements Observable {
     }
 
     private void getInputFromUser(String input) {
-        while (!InputChecker.checkNumber(input)
-                || !InputChecker.checkPositiveNumber(input, gameSettings.getBoardSize())
-                || !checkIfPlaceIsFree(Integer.parseInt(input))) {
+        while (isWrongInput(input)) {
             input = gameSettings.getUi().read();
         }
+    }
+
+    private boolean isWrongInput(String input) {
+        return !InputChecker.checkNumber(input)
+                || !InputChecker.checkPositiveNumber(input, gameSettings.getBoardSize())
+                || !checkIfPlaceIsFree(Integer.parseInt(input));
     }
 
     @Override
