@@ -4,13 +4,19 @@ import java.util.Scanner;
 
 class ConsoleUI implements UI {
 
+    private Scanner scanner;
+
+    public ConsoleUI() {
+        scanner = new Scanner(System.in);
+    }
+
     @Override
     public void display(String input) {
         System.out.println(input);
     }
 
     @Override
-    public Scanner read() {
-        return new Scanner(System.in);
+    public String read() {
+        return scanner.nextLine();
     }
 }

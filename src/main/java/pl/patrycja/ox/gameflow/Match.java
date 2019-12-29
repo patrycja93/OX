@@ -44,8 +44,8 @@ class Match implements Observable {
     }
 
     private void turn() {
-        Scanner read = gameSettings.getUi().read();
-        boolean success = board.putSignToBoard(Integer.parseInt(read.nextLine()), playerChanger.getActivePlayerSign());
+        String read = gameSettings.getUi().read();
+        boolean success = board.putSignToBoard(Integer.parseInt(read), playerChanger.getActivePlayerSign());
         //TODO : if success == false ask again
         gameSettings.getUi().display(board.toString());
         board.inform(spectators);
