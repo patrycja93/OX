@@ -18,19 +18,26 @@ class Judge implements Spectator {
 
     @Override
     public void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot) {
-
-    if (fields.size() >= (gameSettings.getUnbrokenLine() * 2) - 1) {
-            winnerCheckers.forEach(winnerChecker -> {
-                if (winnerChecker.checkingWinnerCondition(fields, lastShot)) {
-                    finishMatch(fields.get(lastShot));
-                }
-            });
+        if (isWinner(fields, lastShot)) {
+            finishMatch("Winner is " + fields.get(lastShot) + ".");
+        } else {
+            int boardSize = gameSettings.getBoardSize();
+            if (fields.size() == boardSize * boardSize) {
+                finishMatch("Draw!");
+            }
         }
     }
 
-    private void finishMatch(Sign sign) {
+    private boolean isWinner(Map<Integer, Sign> fields, int lastShot) {
+        if (fields.size() >= (gameSettings.getUnbrokenLine() * 2) - 1) {
+            return winnerCheckers.stream().anyMatch(winnerChecker -> winnerChecker.checkingWinnerCondition(fields, lastShot));
+        }
+        return false;
+    }
+
+    private void finishMatch(String message) {
         gameSettings.setEndMatch(true);
-        gameSettings.getUi().display("Winner is " + sign + ".");
+        gameSettings.getUi().display(message);
         gameSettings.reduceMatchNumber();
     }
 
