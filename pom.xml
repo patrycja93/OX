@@ -14,9 +14,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <project.java.version>11</project.java.version>
-        <maven.compiler.realase>${project.java.version}</maven.compiler.realase>
+        <maven.compiler.release>${project.java.version}</maven.compiler.release>
         <plugin.compiler.version>3.8.0</plugin.compiler.version>
         <plugin.enforcer.version>3.0.0-M3</plugin.enforcer.version>
+        <plugin.jacoco.version>0.8.2</plugin.jacoco.version>
         <plugin.jar.version>3.2.0</plugin.jar.version>
         <dependency.testng>7.0.0</dependency.testng>
         <dependency.mockito>3.0.0</dependency.mockito>
@@ -83,14 +84,13 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.2</version>
+                <version>${plugin.jacoco.version}</version>
                 <executions>
                     <execution>
                         <goals>
                             <goal>prepare-agent</goal>
                         </goals>
                     </execution>
-                    <!-- attached to Maven test phase -->
                     <execution>
                         <id>report</id>
                         <phase>test</phase>
