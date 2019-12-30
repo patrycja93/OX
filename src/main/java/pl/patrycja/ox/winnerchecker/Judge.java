@@ -29,7 +29,9 @@ class Judge implements Spectator {
     }
 
     private boolean isWinner(Map<Integer, Sign> fields, int lastShot) {
-        if (fields.size() >= (gameSettings.getUnbrokenLine() * 2) - 1) {
+        int playersNumber = 2;
+        int minimumNumberOfSignsWhenWinnerCanExists = (gameSettings.getUnbrokenLine() * playersNumber) - 1;
+        if (fields.size() >= minimumNumberOfSignsWhenWinnerCanExists) {
             return winnerCheckers.stream().anyMatch(winnerChecker -> winnerChecker.checkingWinnerCondition(fields, lastShot));
         }
         return false;
