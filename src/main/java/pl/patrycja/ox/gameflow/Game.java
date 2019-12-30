@@ -7,6 +7,11 @@ import pl.patrycja.ox.winnerchecker.SpectatorsRoom;
 
 import java.util.List;
 
+/**
+ * A class Game presents a game flow.
+ *
+ * @author Patrycja Hyjek
+ */
 public class Game {
 
     //TODO: get input from user
@@ -21,6 +26,9 @@ public class Game {
     List<Spectator> spectators = SpectatorsRoom.addSpectators(gameSettings);
     PlayerChanger playerChanger = new PlayerChanger(List.of(firstPlayer, secondPlayer), gameSettings);
 
+    /**
+     * This method is called whenever we start a new game.
+     */
     public void play() {
         gameSettings.setPlayer();
         while (!gameSettings.isEndGame()) {

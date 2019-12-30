@@ -191,7 +191,7 @@ public class JudgeTest {
                 .boardSize(size)
                 .ui(new UI() {
                     @Override
-                    public void display(String input) {
+                    public void display(Object input) {
                         //empty for tests purposes
                     }
 

@@ -3,6 +3,10 @@ package pl.patrycja.ox;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Enum Sign contains two sign - O and X.
+ * */
+
 public enum Sign {
     CROSS("X"), NAUGHT("O");
 
@@ -13,6 +17,11 @@ public enum Sign {
         put("X", CROSS);
     }};
 
+    /**
+     * This method return Sign.
+     *
+     * @param s is a key in hashmap
+     * */
     public static Sign getSign(String s) {
         return signMap.get(s);
     }
