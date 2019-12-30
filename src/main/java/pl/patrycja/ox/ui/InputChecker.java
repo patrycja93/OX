@@ -1,9 +1,20 @@
 package pl.patrycja.ox.ui;
 
+/**
+ * A class InputChecker is responsible for checking input from user.
+ *
+ * @author Patrycja Hyjek
+ */
 public class InputChecker {
 
     static UI ui = UIFactory.setUI();
 
+    /**
+     * This method is called to check if number is Integer. It returns true
+     * in case it is an Integer, otherwise returns false.
+     *
+     * @param number is an argument to check if it is an Integer
+     */
     public static boolean checkNumber(String number) {
         try {
             Integer.parseInt(String.valueOf(number));
@@ -14,6 +25,12 @@ public class InputChecker {
         }
     }
 
+    /**
+     * This method is called to check if number is in a range form 1 to board size..
+     *
+     * @param number is an argument to check if it is in a range
+     * @param boardSize is an upper range
+     */
     public static boolean checkPositiveNumber(String number, int boardSize) {
         try {
             int input = Integer.parseInt(String.valueOf(number));

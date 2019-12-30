@@ -19,5 +19,8 @@ public interface Board extends Observable {
      */
     boolean putSignToBoard(int fieldNumber, Sign sign);
 
+    /**
+     * This method is called whenever we want to delete from the board all signs.
+     */
     void clean();
 }

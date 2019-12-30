@@ -73,6 +73,6 @@ class Match implements Observable {
 
     @Override
     public void inform(List<Spectator> spectators) {
-        spectators.forEach(Spectator::matchSummary);
+        spectators.forEach(Spectator::gameSummary);
     }
 }

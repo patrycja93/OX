@@ -42,7 +42,7 @@ class Judge implements Spectator {
     }
 
     @Override
-    public void matchSummary() {
+    public void gameSummary() {
         if (gameSettings.getMatchNumber() == 0) {
             gameSettings.setEndGame(true);
             gameSettings.getUi().display("End game!");

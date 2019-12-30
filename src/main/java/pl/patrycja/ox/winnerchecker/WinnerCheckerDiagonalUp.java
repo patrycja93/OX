@@ -6,7 +6,7 @@ import pl.patrycja.ox.Sign;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class WinnerCheckerDiagonalUp implements WinnerChecker {
+class WinnerCheckerDiagonalUp implements WinnerChecker {
 
     private GameSettings gameSettings;
 

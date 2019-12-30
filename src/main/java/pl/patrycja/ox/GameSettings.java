@@ -6,6 +6,7 @@ import pl.patrycja.ox.ui.UIFactory;
 import java.util.Scanner;
 
 /**
+ * This class contain all main game's settings.
  * @author Patrycja Hyjek
  *
  */
