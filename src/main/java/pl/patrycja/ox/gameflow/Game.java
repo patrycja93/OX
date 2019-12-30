@@ -7,12 +7,8 @@ import pl.patrycja.ox.winnerchecker.SpectatorsRoom;
 
 import java.util.List;
 
-/**
- * A class Game presents a game flow.
- *
- * @author Patrycja Hyjek
- */
-public class Game {
+
+class Game {
 
     //TODO: get input from user
     GameSettings gameSettings = GameSettings.builder()
@@ -23,14 +19,11 @@ public class Game {
     Player firstPlayer = new Player("A", Sign.CROSS);
     Player secondPlayer = new Player("B", Sign.NAUGHT);
 
-    List<Spectator> spectators = SpectatorsRoom.addSpectators(gameSettings);
-    PlayerChanger playerChanger = new PlayerChanger(List.of(firstPlayer, secondPlayer), gameSettings);
-
-    /**
-     * This method is called whenever we start a new game.
-     */
     public void play() {
         gameSettings.setPlayer();
+        List<Spectator> spectators = SpectatorsRoom.addSpectators(gameSettings);
+        PlayerChanger playerChanger = new PlayerChanger(List.of(firstPlayer, secondPlayer), gameSettings);
+
         while (!gameSettings.isEndGame()) {
             Match.init(gameSettings, spectators)
                     .addController(playerChanger)

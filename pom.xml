@@ -76,7 +76,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>pl.patrycja.ox.TicTacToe</mainClass>
+                            <mainClass>pl.patrycja.ox.gameflow.TicTacToe</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

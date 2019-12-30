@@ -26,9 +26,9 @@ public class InputChecker {
     }
 
     /**
-     * This method is called to check if number is in a range form 1 to board size..
+     * This method is called to check if number is in a range form 1 to board size.
      *
-     * @param number is an argument to check if it is in a range
+     * @param number    is an argument to check if it is in a range
      * @param boardSize is an upper range
      */
     public static boolean checkPositiveNumber(String number, int boardSize) {

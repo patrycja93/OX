@@ -15,7 +15,7 @@ public class GameSettings {
 
     private boolean endGame = false;
     private boolean endMatch = false;
-    private Sign firstPlayer = Sign.CROSS;
+    private Sign firstPlayer;
     private int unbrokenLine;
     private int matchNumber;
     private int boardSize;
@@ -67,7 +67,7 @@ public class GameSettings {
     }
 
     public void setPlayer() {
-        firstPlayer = askWhichPlayerStarts();
+        this.firstPlayer = askWhichPlayerStarts();
     }
 
     private Sign askWhichPlayerStarts() {
