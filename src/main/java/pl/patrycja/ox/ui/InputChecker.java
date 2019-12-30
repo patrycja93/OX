@@ -9,7 +9,7 @@ public class InputChecker {
             Integer.parseInt(String.valueOf(number));
             return true;
         } catch (IllegalArgumentException e) {
-            ui.display("Wrong argument. Please write number.");
+            ui.display("Wrong argument. Please write a number.");
             return false;
         }
     }
@@ -20,7 +20,7 @@ public class InputChecker {
             if (input > 0 && input <= boardSize * boardSize) {
                 return true;
             } else {
-                ui.display("Argument have to be more than 0 and less than " + boardSize * boardSize + " .");
+                ui.display("Argument has to be more than 0 and less than " + ((boardSize * boardSize) + 1) + ".");
                 return false;
             }
         } catch (IllegalArgumentException e) {

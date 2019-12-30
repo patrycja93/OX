@@ -3,7 +3,7 @@ package pl.patrycja.ox.ui;
 
 public interface UI {
 
-    void display(String input);
+    void display(Object input);
 
     String read();
 }

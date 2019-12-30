@@ -11,7 +11,7 @@ class ConsoleUI implements UI {
     }
 
     @Override
-    public void display(String input) {
+    public void display(Object input) {
         System.out.println(input);
     }
 

@@ -35,7 +35,7 @@ class Match implements Observable {
 
     void start() {
         //TODO: ask about language
-        gameSettings.getUi().display(board.toString());
+        gameSettings.getUi().display(board);
         while (!gameSettings.isEndMatch()) {
             turn();
             playerChanger.changePlayer();
@@ -46,7 +46,7 @@ class Match implements Observable {
     private void turn() {
         String read = gameSettings.getUi().read();
         getInputFromUser(read);
-        gameSettings.getUi().display(board.toString());
+        gameSettings.getUi().display(board);
         board.inform(spectators);
         inform(spectators);
     }
