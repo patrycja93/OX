@@ -5,6 +5,7 @@ import pl.patrycja.ox.ui.UIFactory;
 
 /**
  * This class contains all main game's settings.
+ * In this class are all values to which access have others class
  *
  * @author Patrycja Hyjek
  */
@@ -19,7 +20,9 @@ public class GameSettings {
     private UI ui;
 
     /**
-     * This class creates object GameSettings
+     * This class creates and return object GameSettings consist of
+     * unbrokenLine, matchNumber, boardSize and ui.
+     * All variables has default values.
      */
     public static final class GameSettingsBuilder {
         private int unbrokenLine = 3;
@@ -27,21 +30,37 @@ public class GameSettings {
         private int boardSize = 3;
         private UI ui = UIFactory.setConsoleUI();
 
+        /**
+         * This method set number of unbrokenLine
+         * @param unbrokenLine is number of unbroken line sf sign
+         */
         public GameSettingsBuilder unbrokenLine(int unbrokenLine) {
             this.unbrokenLine = unbrokenLine;
             return this;
         }
 
+        /**
+         * This method set how much matches will be in the game
+         * @param matchesNumber is amount of matches
+         */
         public GameSettingsBuilder matchesNumber(int matchesNumber) {
             this.matchNumber = matchesNumber;
             return this;
         }
 
+        /**
+         * This method set how large will be board
+         * @param boardSize is size of the game's board
+         */
         public GameSettingsBuilder boardSize(int boardSize) {
             this.boardSize = boardSize;
             return this;
         }
 
+        /**
+         * This method set kind of UI
+         * @param ui say from where get the input data and where to display messages
+         */
         public GameSettingsBuilder ui(UI ui) {
             this.ui = ui;
             return this;
