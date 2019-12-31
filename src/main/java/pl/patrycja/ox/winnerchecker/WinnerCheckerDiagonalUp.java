@@ -33,7 +33,7 @@ class WinnerCheckerDiagonalUp implements WinnerChecker {
         return counter >= gameSettings.getUnbrokenLine();
     }
 
-    int checkDiagonalUp(Predicate<Integer> predicate, int boardSize, int lastShotRowNumber, int counter, int nextField, int max) {
+    private int checkDiagonalUp(Predicate<Integer> predicate, int boardSize, int lastShotRowNumber, int counter, int nextField, int max) {
         for (int i = nextField; i < max && !checkRowNumber(i, boardSize, lastShotRowNumber); i = i + boardSize - 1) {
             lastShotRowNumber = Math.abs(i / boardSize);
             if (predicate.test(Math.abs(i))) {

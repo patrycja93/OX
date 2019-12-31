@@ -5,7 +5,6 @@ package pl.patrycja.ox.ui;
  *
  * @author Patrycja Hyjek
  */
-
 public class UIFactory {
     /**
      * This method is called whenever we want to set UI.

@@ -10,7 +10,6 @@ class FileUI implements UI {
     private Scanner scanner;
     private BufferedWriter bufferedWriter;
 
-
     public FileUI() {
         try {
             this.scanner = new Scanner(new File(fileIn));
@@ -20,7 +19,6 @@ class FileUI implements UI {
             e.printStackTrace();
         }
     }
-
 
     @Override
     public void display(Object input) {
