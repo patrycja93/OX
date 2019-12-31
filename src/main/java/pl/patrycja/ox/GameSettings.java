@@ -3,24 +3,24 @@ package pl.patrycja.ox;
 import pl.patrycja.ox.ui.UI;
 import pl.patrycja.ox.ui.UIFactory;
 
-import java.util.Scanner;
-
 /**
- * This class contain all main game's settings.
- * @author Patrycja Hyjek
+ * This class contains all main game's settings.
  *
+ * @author Patrycja Hyjek
  */
-
 public class GameSettings {
 
     private boolean endGame = false;
     private boolean endMatch = false;
-    private Sign firstPlayer = Sign.CROSS;
+    private Sign firstPlayer;
     private int unbrokenLine;
     private int matchNumber;
     private int boardSize;
     private UI ui;
 
+    /**
+     * This class creates object GameSettings
+     */
     public static final class GameSettingsBuilder {
         private int unbrokenLine = 3;
         private int matchNumber = 3;
@@ -47,6 +47,9 @@ public class GameSettings {
             return this;
         }
 
+        /**
+         * This method returns object GameSettings
+         */
         public GameSettings build() {
             if (unbrokenLine > boardSize) {
                 //TODO: add exception handling
@@ -62,12 +65,88 @@ public class GameSettings {
         }
     }
 
+    /**
+     * This method returns object GameSettingsBuilder
+     */
     public static GameSettingsBuilder builder() {
         return new GameSettingsBuilder();
     }
 
+    /**
+     * This method set player which will be start a game
+     */
     public void setPlayer() {
-        firstPlayer = askWhichPlayerStarts();
+        this.firstPlayer = askWhichPlayerStarts();
+    }
+
+    /**
+     * This method return number of unbroken line
+     */
+    public int getUnbrokenLine() {
+        return unbrokenLine;
+    }
+
+    /**
+     * This method return match number
+     */
+    public int getMatchNumber() {
+        return matchNumber;
+    }
+
+    /**
+     * This method reduce match number
+     */
+    public void reduceMatchNumber() {
+        this.matchNumber = matchNumber - 1;
+    }
+
+    /**
+     * This method return board size
+     */
+    public int getBoardSize() {
+        return boardSize;
+    }
+
+    /**
+     * This method check if game is finished
+     */
+    public boolean isEndGame() {
+        return endGame;
+    }
+
+    /**
+     * This method changes state for endGame value
+     */
+    public void setEndGame(boolean endGame) {
+        this.endGame = endGame;
+    }
+
+    /**
+     * This method checks if match is finished
+     */
+    public boolean isEndMatch() {
+        return endMatch;
+    }
+
+    /**
+     * This method changes state for endMatch value
+     */
+    public void setEndMatch(boolean endMatch) {
+        this.endMatch = endMatch;
+    }
+
+    /**
+     * This method return player who starts a game
+     */
+    public Sign getFirstPlayer() {
+        return firstPlayer;
+    }
+
+    /**
+     * This method returns UI
+     */
+    public UI getUi() {
+        return ui;
     }
 
     private Sign askWhichPlayerStarts() {
@@ -77,45 +156,5 @@ public class GameSettings {
             sign = ui.read();
         }
         return Sign.getSign(sign);
-    }
-
-    public int getUnbrokenLine() {
-        return unbrokenLine;
-    }
-
-    public int getMatchNumber() {
-        return matchNumber;
-    }
-
-    public void reduceMatchNumber() {
-        this.matchNumber = matchNumber - 1;
-    }
-
-    public int getBoardSize() {
-        return boardSize;
-    }
-
-    public boolean isEndGame() {
-        return endGame;
-    }
-
-    public void setEndGame(boolean endGame) {
-        this.endGame = endGame;
-    }
-
-    public boolean isEndMatch() {
-        return endMatch;
-    }
-
-    public void setEndMatch(boolean endMatch) {
-        this.endMatch = endMatch;
-    }
-
-    public Sign getFirstPlayer() {
-        return firstPlayer;
-    }
-
-    public UI getUi() {
-        return ui;
     }
 }

@@ -32,7 +32,7 @@ class WinnerCheckerVertical implements WinnerChecker {
         return counter >= gameSettings.getUnbrokenLine();
     }
 
-    int checkVertical(Predicate<Integer> predicate, int boardSize, int counter, int nextField, int max) {
+    private int checkVertical(Predicate<Integer> predicate, int boardSize, int counter, int nextField, int max) {
         for (int i = nextField; i <= max; i = i + boardSize) {
             if (predicate.test(Math.abs(i))) {
                 counter = counter + 1;

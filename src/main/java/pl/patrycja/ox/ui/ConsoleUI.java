@@ -7,7 +7,7 @@ class ConsoleUI implements UI {
     private Scanner scanner;
 
     public ConsoleUI() {
-        scanner = new Scanner(System.in);
+        this.scanner = new Scanner(System.in);
     }
 
     @Override
