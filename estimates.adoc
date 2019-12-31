@@ -1,28 +1,66 @@
 = Estimates
 
-*18.12.2019*
+== *31.12.2019*
 
 *Pessimistic*
 
-* [x] Created project.
+* Correct automatic tests.
+** Add automatic displaying test.
+** Add note in ReadME how to run project with automatic test.
 
 *Realistic*
 
-* [x] Created flow diagram.
-* [x] Created CRC diagrams.
+* Add tests.
 
 *Optimistic*
 
-** Created board to play.
-*** Create BoardExecutive class.
-*** Display board.
-** Write methods checking the winner.
-*** go through board horizontally
-*** go through board vertically
-*** go through diagonal up
-*** go through diagonal down
+* Correct input checking.
 
-*19.12.2019*
+== *30.12.2019*
+
+*Pessimistic*
+
+* [x] Add automatic tests.
+
+*Realistic*
+
+* [x] Error handling.
+
+*Optimistic*
+
+* Add tests.
+
+== *23.12.2019*
+
+*Pessimistic*
+
+* [x] Checking user input.
+
+*Realistic*
+
+* Error handling.
+
+*Optimistic*
+
+* Add loggers.
+
+== *20.12.2019*
+
+*Pessimistic*
+
+* [x] Add player class.
+* [x] Check if player win.
+
+*Realistic*
+
+* Check diagonal unbroken line
+
+*Optimistic*
+
+* Check which players is winner.
+
+
+== *19.12.2019*
 
 *Pessimistic*
 
@@ -44,32 +82,25 @@
 *** go through diagonal up
 *** go through diagonal down
 
-*20.12.2019*
+
+== *18.12.2019*
 
 *Pessimistic*
 
-* [x] Add player class.
-* [x] Check if player win.
+* [x] Created project.
 
 *Realistic*
 
-* Check diagonal unbroken line
+* [x] Created flow diagram.
+* [x] Created CRC diagrams.
 
 *Optimistic*
 
-* Check which players is winner.
-
-*23.12.2019*
-
-*Pessimistic*
-
-* [x] Checking user input.
-
-*Realistic*
-
-* Error handling.
-
-*Optimistic*
-
-* Add loggers.
-
+** Created board to play.
+*** Create BoardExecutive class.
+*** Display board.
+** Write methods checking the winner.
+*** go through board horizontally
+*** go through board vertically
+*** go through diagonal up
+*** go through diagonal down
