@@ -19,7 +19,6 @@ public enum Sign {
 
     /**
      * This method return Sign.
-     *
      * @param s is a key in hashmap
      * */
     public static Sign getSign(String s) {

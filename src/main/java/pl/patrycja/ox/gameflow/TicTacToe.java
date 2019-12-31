@@ -11,7 +11,12 @@ class TicTacToe {
      * This method is called whenever we start a new game.
      */
     public static void main(String[] args) {
-        Game game = new Game();
+        boolean ifDemo = checkIfDemo(args);
+        Game game = new Game(ifDemo);
         game.play();
+    }
+
+    private static boolean checkIfDemo(String[] args) {
+        return args.length > 0 && args[0].equals("demo");
     }
 }

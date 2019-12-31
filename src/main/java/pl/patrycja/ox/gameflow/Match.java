@@ -43,20 +43,17 @@ class Match implements Observable {
         board.clean();
     }
 
+    @Override
+    public void inform(List<Spectator> spectators) {
+        spectators.forEach(Spectator::gameSummary);
+    }
+
     private void turn() {
         String read = gameSettings.getUi().read();
         getInputFromUser(read);
         gameSettings.getUi().display(board);
         board.inform(spectators);
         inform(spectators);
-    }
-
-    private boolean checkIfPlaceIsFree(int input) {
-        if (!board.putSignToBoard(input, playerChanger.getActivePlayerSign())) {
-            gameSettings.getUi().display("This place is already occupied. Try again.");
-            return false;
-        }
-        return true;
     }
 
     private void getInputFromUser(String input) {
@@ -66,13 +63,16 @@ class Match implements Observable {
     }
 
     private boolean isWrongInput(String input) {
-        return !InputChecker.checkNumber(input)
-                || !InputChecker.checkPositiveNumber(input, gameSettings.getBoardSize())
+        return !InputChecker.checkNumber(input, gameSettings.getUi())
+                || !InputChecker.checkPositiveNumber(input, gameSettings.getBoardSize(), gameSettings.getUi())
                 || !checkIfPlaceIsFree(Integer.parseInt(input));
     }
 
-    @Override
-    public void inform(List<Spectator> spectators) {
-        spectators.forEach(Spectator::gameSummary);
+    private boolean checkIfPlaceIsFree(int input) {
+        if (!board.putSignToBoard(input, playerChanger.getActivePlayerSign())) {
+            gameSettings.getUi().display("This place is already occupied. Try again.");
+            return false;
+        }
+        return true;
     }
 }

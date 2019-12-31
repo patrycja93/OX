@@ -25,7 +25,7 @@ public class GameSettings {
         private int unbrokenLine = 3;
         private int matchNumber = 3;
         private int boardSize = 3;
-        private UI ui = UIFactory.setUI();
+        private UI ui = UIFactory.setConsoleUI();
 
         public GameSettingsBuilder unbrokenLine(int unbrokenLine) {
             this.unbrokenLine = unbrokenLine;
