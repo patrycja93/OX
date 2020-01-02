@@ -15,16 +15,17 @@ class Match implements Observable {
     private List<Spectator> spectators;
     private GameSettings gameSettings;
     private PlayerChanger playerChanger;
+    private boolean endMatch;
 
     Match(Board board, List<Spectator> spectators, GameSettings gameSettings) {
         this.board = board;
         this.spectators = spectators;
+        this.endMatch = false;
         this.gameSettings = gameSettings;
     }
 
     static Match init(GameSettings gameSettings, List<Spectator> spectators) {
-        Board board = BoardFactory.createBoard(gameSettings.getBoardSize());
-        gameSettings.setEndMatch(false);
+        Board board = BoardFactory.createBoard(gameSettings.getBoardSize(), spectators);
         return new Match(board, spectators, gameSettings);
     }
 
@@ -36,8 +37,9 @@ class Match implements Observable {
     void start() {
         //TODO: ask about language
         gameSettings.getUi().display(board);
-        while (!gameSettings.isEndMatch()) {
+        while (!endMatch) {
             turn();
+            gameSettings.getUi().display(board);
             playerChanger.changePlayer();
         }
         board.clean();
@@ -45,34 +47,21 @@ class Match implements Observable {
 
     @Override
     public void inform(List<Spectator> spectators) {
-        spectators.forEach(Spectator::gameSummary);
+         endMatch = spectators.stream().anyMatch(Spectator::isMatchOver);
     }
 
     private void turn() {
-        String read = gameSettings.getUi().read();
-        getInputFromUser(read);
-        gameSettings.getUi().display(board);
-        board.inform(spectators);
+        getFieldNumber();
         inform(spectators);
     }
 
-    private void getInputFromUser(String input) {
-        while (isWrongInput(input)) {
-            input = gameSettings.getUi().read();
-        }
-    }
+    private void getFieldNumber() {
+        InputChecker inputChecker = new InputChecker(gameSettings.getUi(), gameSettings.getBoardSize());
+        int fieldNumber = inputChecker.getValidNumber();
 
-    private boolean isWrongInput(String input) {
-        return !InputChecker.checkNumber(input, gameSettings.getUi())
-                || !InputChecker.checkPositiveNumber(input, gameSettings.getBoardSize(), gameSettings.getUi())
-                || !checkIfPlaceIsFree(Integer.parseInt(input));
-    }
-
-    private boolean checkIfPlaceIsFree(int input) {
-        if (!board.putSignToBoard(input, playerChanger.getActivePlayerSign())) {
+        while (!board.putSignToBoard(fieldNumber, playerChanger.getActivePlayerSign())) {
             gameSettings.getUi().display("This place is already occupied. Try again.");
-            return false;
+            fieldNumber = inputChecker.getValidNumber();
         }
-        return true;
     }
 }

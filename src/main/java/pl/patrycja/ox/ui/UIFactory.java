@@ -6,17 +6,8 @@ package pl.patrycja.ox.ui;
  * @author Patrycja Hyjek
  */
 public class UIFactory {
-    /**
-     * This method is called whenever we want to set UI for ConsoleUI.
-     */
-    public static UI setConsoleUI() {
-        return new ConsoleUI();
-    }
 
-    /**
-     * This method is called whenever we want to set UI for FileUI.
-     */
-    public static UI setFileUI() {
-        return new FileUI();
+    public static UI set(boolean demo) {
+        return demo ? new FileUI() : new ConsoleUI();
     }
 }

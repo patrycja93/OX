@@ -19,6 +19,7 @@ public class SpectatorsRoom {
      */
     public static List<Spectator> addSpectators(GameSettings gameSettings) {
         return new ArrayList<>() {{
+            add(new Assessor(gameSettings));
             add(new Judge(gameSettings));
         }};
     }

@@ -1,10 +1,10 @@
 package pl.patrycja.ox.winnerchecker;
 
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Sign;
+import pl.patrycja.ox.TestUI;
 import pl.patrycja.ox.ui.UI;
 
 import java.util.HashMap;
@@ -19,7 +19,7 @@ public class JudgeTest {
     public Object[][] boardContainHorizontalUnbrokenLine() {
         return new Object[][]{{3,
                 new HashMap<>() {{
-                    put(4, Sign.NAUGHT);
+                    put(4, Sign.CROSS);
                     put(2, Sign.CROSS);
                     put(5, Sign.CROSS);
                 }}}, {3,
@@ -130,7 +130,7 @@ public class JudgeTest {
 
         //when
         judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
-        boolean existsUnbrokenHorizontalLine = gameSettings.isEndMatch();
+        boolean existsUnbrokenHorizontalLine = judge.isMatchOver();
 
         //then
         assertTrue(existsUnbrokenHorizontalLine, "You haven't two unbroken line.");
@@ -146,7 +146,7 @@ public class JudgeTest {
 
         //when
         judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
-        boolean existsUnbrokenHorizontalLine = gameSettings.isEndMatch();
+        boolean existsUnbrokenHorizontalLine = judge.isMatchOver();
 
         //then
         assertFalse(existsUnbrokenHorizontalLine, "You have unbroken line.");
@@ -162,7 +162,7 @@ public class JudgeTest {
 
         //when
         judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
-        boolean existsUnbrokenVerticalLine = gameSettings.isEndMatch();
+        boolean existsUnbrokenVerticalLine = judge.isMatchOver();
 
         //then
         assertTrue(existsUnbrokenVerticalLine, "You haven't two unbroken line.");
@@ -178,7 +178,7 @@ public class JudgeTest {
 
         //when
         judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
-        boolean existsUnbrokenVerticalLine = gameSettings.isEndMatch();
+        boolean existsUnbrokenVerticalLine = judge.isMatchOver();
 
         //then
         assertFalse(existsUnbrokenVerticalLine, "You have unbroken line.");
@@ -189,18 +189,7 @@ public class JudgeTest {
                 .unbrokenLine(2)
                 .matchesNumber(3)
                 .boardSize(size)
-                .ui(new UI() {
-                    @Override
-                    public void display(Object input) {
-                        //empty for tests purposes
-                    }
-
-                    @Override
-                    public String read() {
-                        //not being used in tests
-                        return null;
-                    }
-                })
+                .ui(new TestUI())
                 .build();
     }
 }
