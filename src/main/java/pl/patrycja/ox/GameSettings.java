@@ -1,7 +1,6 @@
 package pl.patrycja.ox;
 
 import pl.patrycja.ox.ui.UI;
-import pl.patrycja.ox.ui.UIFactory;
 
 /**
  * This class contains all main game's settings.
@@ -25,13 +24,14 @@ public class GameSettings {
      * All variables has default values.
      */
     public static final class GameSettingsBuilder {
-        private int unbrokenLine = 3;
-        private int matchNumber = 3;
-        private int boardSize = 3;
-        private UI ui = UIFactory.setConsoleUI();
+        private int unbrokenLine = defaultValue();
+        private int matchNumber = defaultValue();
+        private int boardSize = defaultValue();
+        private UI ui;
 
         /**
          * This method set number of unbrokenLine
+         *
          * @param unbrokenLine is number of unbroken line sf sign
          */
         public GameSettingsBuilder unbrokenLine(int unbrokenLine) {
@@ -41,6 +41,7 @@ public class GameSettings {
 
         /**
          * This method set how much matches will be in the game
+         *
          * @param matchesNumber is amount of matches
          */
         public GameSettingsBuilder matchesNumber(int matchesNumber) {
@@ -50,6 +51,7 @@ public class GameSettings {
 
         /**
          * This method set how large will be board
+         *
          * @param boardSize is size of the game's board
          */
         public GameSettingsBuilder boardSize(int boardSize) {
@@ -59,6 +61,7 @@ public class GameSettings {
 
         /**
          * This method set kind of UI
+         *
          * @param ui say from where get the input data and where to display messages
          */
         public GameSettingsBuilder ui(UI ui) {
@@ -175,5 +178,9 @@ public class GameSettings {
             sign = ui.read();
         }
         return Sign.getSign(sign);
+    }
+
+    private static int defaultValue() {
+        return 3;
     }
 }

@@ -12,9 +12,11 @@ class BoardExecutive implements Board {
     private int size;
     private Map<Integer, Sign> fields = new HashMap<>();
     private int lastShot;
+    private List<Spectator> spectators;
 
-    BoardExecutive(int size) {
+    BoardExecutive(int size, List<Spectator> spectators) {
         this.size = size;
+        this.spectators = spectators;
     }
 
     @Override
@@ -42,6 +44,7 @@ class BoardExecutive implements Board {
         if (!fields.containsKey(fieldNumber - 1)) {
             fields.put(fieldNumber - 1, sign);
             lastShot = fieldNumber - 1;
+            inform(spectators);
             return true;
         } else {
             return false;

@@ -7,13 +7,30 @@ package pl.patrycja.ox.ui;
  */
 public class InputChecker {
 
+    private UI ui;
+    private int boardSize;
+
+    public InputChecker(UI ui, int boardSize) {
+        this.ui = ui;
+        this.boardSize = boardSize;
+    }
+
+    public int getNumber() {
+        String input = ui.read();
+        while (!checkIfInteger(input, ui)
+                || !checkIfNumberIsInRange(input, boardSize, ui)) {
+            input = ui.read();
+        }
+        return Integer.parseInt(String.valueOf(input));
+    }
+
     /**
      * This method is called to check if number is Integer. It returns true
      * in case it is an Integer, otherwise returns false.
      *
      * @param number is an argument to check if it is an Integer
      */
-    public static boolean checkNumber(String number, UI ui) {
+    private boolean checkIfInteger(String number, UI ui) {
         try {
             Integer.parseInt(String.valueOf(number));
             return true;
@@ -29,7 +46,7 @@ public class InputChecker {
      * @param number    is an argument to check if it is in a range
      * @param boardSize is an upper range
      */
-    public static boolean checkPositiveNumber(String number, int boardSize, UI ui) {
+    private boolean checkIfNumberIsInRange(String number, int boardSize, UI ui) {
         try {
             int input = Integer.parseInt(String.valueOf(number));
             if (input > 0 && input <= boardSize * boardSize) {

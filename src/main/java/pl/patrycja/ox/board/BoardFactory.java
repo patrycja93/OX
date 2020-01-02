@@ -1,5 +1,9 @@
 package pl.patrycja.ox.board;
 
+import pl.patrycja.ox.winnerchecker.Spectator;
+
+import java.util.List;
+
 /**
  * A class BoardFactory create and return a new board.
  *
@@ -12,7 +16,7 @@ public class BoardFactory {
      *
      * @param size is a board size.
      */
-    public static Board createBoard(int size) {
-        return new BoardExecutive(size);
+    public static Board createBoard(int size, List<Spectator> spectators) {
+        return new BoardExecutive(size, spectators);
     }
 }
