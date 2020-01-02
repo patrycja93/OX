@@ -14,7 +14,7 @@ public class GameSettings {
     private boolean endMatch = false;
     private Sign firstPlayer;
     private int unbrokenLine;
-    private int matchNumber;
+    private int numberOfMatches;
     private int boardSize;
     private UI ui;
 
@@ -79,7 +79,7 @@ public class GameSettings {
             } else {
                 GameSettings gameSettings = new GameSettings();
                 gameSettings.unbrokenLine = this.unbrokenLine;
-                gameSettings.matchNumber = this.matchNumber;
+                gameSettings.numberOfMatches = this.matchNumber;
                 gameSettings.boardSize = this.boardSize;
                 gameSettings.ui = this.ui;
                 return gameSettings;
@@ -111,15 +111,15 @@ public class GameSettings {
     /**
      * This method return match number
      */
-    public int getMatchNumber() {
-        return matchNumber;
+    public int getNumberOfMatches() {
+        return numberOfMatches;
     }
 
     /**
      * This method reduce match number
      */
     public void reduceMatchNumber() {
-        this.matchNumber = matchNumber - 1;
+        this.numberOfMatches = numberOfMatches - 1;
     }
 
     /**

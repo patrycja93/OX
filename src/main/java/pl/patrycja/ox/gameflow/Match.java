@@ -57,11 +57,11 @@ class Match implements Observable {
 
     private void getFieldNumber() {
         InputChecker inputChecker = new InputChecker(gameSettings.getUi(), gameSettings.getBoardSize());
-        int fieldNumber = inputChecker.getNumber();
+        int fieldNumber = inputChecker.getValidNumber();
 
         while (!board.putSignToBoard(fieldNumber, playerChanger.getActivePlayerSign())) {
             gameSettings.getUi().display("This place is already occupied. Try again.");
-            fieldNumber = inputChecker.getNumber();
+            fieldNumber = inputChecker.getValidNumber();
         }
     }
 }

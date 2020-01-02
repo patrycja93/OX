@@ -25,7 +25,7 @@ class Game {
         gameSettings.setPlayer();
         PlayerChanger playerChanger = new PlayerChanger(List.of(firstPlayer, secondPlayer), gameSettings);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < gameSettings.getNumberOfMatches(); i++) {
             List<Spectator> spectators = SpectatorsRoom.addSpectators(gameSettings);
             Match.init(gameSettings, spectators)
                     .addController(playerChanger)

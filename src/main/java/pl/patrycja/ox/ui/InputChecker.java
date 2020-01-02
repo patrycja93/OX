@@ -15,7 +15,11 @@ public class InputChecker {
         this.boardSize = boardSize;
     }
 
-    public int getNumber() {
+    /**
+     * Returns number when it's type is an Integer from 1 to board size.
+     * @return int number
+     */
+    public int getValidNumber() {
         String input = ui.read();
         while (!checkIfInteger(input, ui)
                 || !checkIfNumberIsInRange(input, boardSize, ui)) {
@@ -24,12 +28,6 @@ public class InputChecker {
         return Integer.parseInt(String.valueOf(input));
     }
 
-    /**
-     * This method is called to check if number is Integer. It returns true
-     * in case it is an Integer, otherwise returns false.
-     *
-     * @param number is an argument to check if it is an Integer
-     */
     private boolean checkIfInteger(String number, UI ui) {
         try {
             Integer.parseInt(String.valueOf(number));
@@ -40,12 +38,6 @@ public class InputChecker {
         }
     }
 
-    /**
-     * This method is called to check if number is in a range form 1 to board size.
-     *
-     * @param number    is an argument to check if it is in a range
-     * @param boardSize is an upper range
-     */
     private boolean checkIfNumberIsInRange(String number, int boardSize, UI ui) {
         try {
             int input = Integer.parseInt(String.valueOf(number));

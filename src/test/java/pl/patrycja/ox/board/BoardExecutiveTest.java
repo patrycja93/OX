@@ -4,6 +4,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Sign;
+import pl.patrycja.ox.TestUI;
+import pl.patrycja.ox.ui.UIFactory;
 import pl.patrycja.ox.winnerchecker.Spectator;
 import pl.patrycja.ox.winnerchecker.SpectatorsRoom;
 
@@ -18,7 +20,10 @@ public class BoardExecutiveTest {
 
     @BeforeTest
     public void createSpectators() {
-        GameSettings gameSettings = GameSettings.builder().build();
+        GameSettings gameSettings = GameSettings
+                .builder()
+                .ui(new TestUI())
+                .build();
         spectators = SpectatorsRoom.addSpectators(gameSettings);
     }
 
