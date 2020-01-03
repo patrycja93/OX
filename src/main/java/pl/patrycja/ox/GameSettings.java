@@ -3,15 +3,11 @@ package pl.patrycja.ox;
 import pl.patrycja.ox.ui.UI;
 
 /**
- * This class contains all main game's settings.
- * In this class are all values to which access have others class
- *
+ * Holding all settings for particular game.
  * @author Patrycja Hyjek
  */
 public class GameSettings {
 
-    private boolean endGame = false;
-    private boolean endMatch = false;
     private Sign firstPlayer;
     private int unbrokenLine;
     private int numberOfMatches;
@@ -19,7 +15,7 @@ public class GameSettings {
     private UI ui;
 
     /**
-     * This class creates and return object GameSettings consist of
+     * Creates and return object GameSettings consist of
      * unbrokenLine, matchNumber, boardSize and ui.
      * All variables has default values.
      */
@@ -30,7 +26,7 @@ public class GameSettings {
         private UI ui;
 
         /**
-         * This method set number of unbrokenLine
+         * Set number of unbrokenLine
          *
          * @param unbrokenLine is number of unbroken line sf sign
          */
@@ -40,7 +36,7 @@ public class GameSettings {
         }
 
         /**
-         * This method set how much matches will be in the game
+         * Set how much matches will be in the game
          *
          * @param matchesNumber is amount of matches
          */
@@ -50,7 +46,7 @@ public class GameSettings {
         }
 
         /**
-         * This method set how large will be board
+         * Set how large will be board
          *
          * @param boardSize is size of the game's board
          */
@@ -60,7 +56,7 @@ public class GameSettings {
         }
 
         /**
-         * This method set kind of UI
+         * Set kind of UI
          *
          * @param ui say from where get the input data and where to display messages
          */
@@ -70,9 +66,9 @@ public class GameSettings {
         }
 
         /**
-         * This method returns object GameSettings
+         * Returns object GameSettings
          */
-        public GameSettings build() throws IllegalStateException{
+        public GameSettings build() {
             if (unbrokenLine > boardSize) {
                 //TODO: add exception handling
                 throw new IllegalStateException("Unbroken number of sign cannot be greater then board size.");
@@ -88,77 +84,49 @@ public class GameSettings {
     }
 
     /**
-     * This method returns object GameSettingsBuilder
+     * Returns object GameSettingsBuilder
      */
     public static GameSettingsBuilder builder() {
         return new GameSettingsBuilder();
     }
 
     /**
-     * This method set player which will be start a game
+     * Set player which will be start a game
      */
     public void setPlayer() {
         this.firstPlayer = askWhichPlayerStarts();
     }
 
     /**
-     * This method return number of unbroken line
+     * Return number of unbroken line
      */
     public int getUnbrokenLine() {
         return unbrokenLine;
     }
 
     /**
-     * This method return match number
+     * Return match number
      */
     public int getNumberOfMatches() {
         return numberOfMatches;
     }
 
     /**
-     * This method return board size
+     * Return board size
      */
     public int getBoardSize() {
         return boardSize;
     }
 
     /**
-     * This method check if game is finished
-     */
-    public boolean isEndGame() {
-        return endGame;
-    }
-
-    /**
-     * This method changes state for endGame value
-     */
-    public void setEndGame(boolean endGame) {
-        this.endGame = endGame;
-    }
-
-    /**
-     * This method checks if match is finished
-     */
-    public boolean isEndMatch() {
-        return endMatch;
-    }
-
-    /**
-     * This method changes state for endMatch value
-     */
-    public void setEndMatch(boolean endMatch) {
-        this.endMatch = endMatch;
-    }
-
-    /**
-     * This method return player who starts a game
+     * Return player who starts a game
      */
     public Sign getFirstPlayer() {
         return firstPlayer;
     }
 
     /**
-     * This method returns UI
+     * Returns UI
      */
     public UI getUi() {
         return ui;

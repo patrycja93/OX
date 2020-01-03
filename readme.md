@@ -30,9 +30,8 @@ Results from demo will be saved in: main/resources/pl/patrycja/ox/ui/test_out.tx
 
 ### Tips:
 
-1. If you put the second argument greater than first in demo mode, argument will be switched.
+1. If you put the second argument greater than first in demo mode, the game won't generate sequences.
 2. If amount of arguments will be different than three, game will launch in normal mode.
-
 
 ### Future
 

@@ -13,10 +13,8 @@ class FileUI implements UI {
 
     public FileUI() {
         try {
-            this.scanner = new Scanner(new File(getClass()
-                    .getResource("test_sequence.txt").getPath()));
-            this.bufferedWriter = new BufferedWriter(new FileWriter(new File(getClass()
-                    .getResource("test_out.txt").getPath())));
+            this.scanner = new Scanner(new File("src/main/resources/pl/patrycja/ox/ui/test_sequence.txt"));
+            this.bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/pl/patrycja/ox/ui/test_out.txt"));
             this.scanner.useDelimiter(" ");
         } catch (IOException e) {
             e.printStackTrace();
