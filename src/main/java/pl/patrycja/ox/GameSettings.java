@@ -72,7 +72,7 @@ public class GameSettings {
         /**
          * This method returns object GameSettings
          */
-        public GameSettings build() {
+        public GameSettings build() throws IllegalStateException{
             if (unbrokenLine > boardSize) {
                 //TODO: add exception handling
                 throw new IllegalStateException("Unbroken number of sign cannot be greater then board size.");
@@ -113,13 +113,6 @@ public class GameSettings {
      */
     public int getNumberOfMatches() {
         return numberOfMatches;
-    }
-
-    /**
-     * This method reduce match number
-     */
-    public void reduceMatchNumber() {
-        this.numberOfMatches = numberOfMatches - 1;
     }
 
     /**

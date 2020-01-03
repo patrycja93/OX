@@ -39,7 +39,6 @@ class Match implements Observable {
         gameSettings.getUi().display(board);
         while (!endMatch) {
             turn();
-            gameSettings.getUi().display(board);
             playerChanger.changePlayer();
         }
         board.clean();
@@ -53,6 +52,7 @@ class Match implements Observable {
     private void turn() {
         getFieldNumber();
         inform(spectators);
+        gameSettings.getUi().display(board);
     }
 
     private void getFieldNumber() {
