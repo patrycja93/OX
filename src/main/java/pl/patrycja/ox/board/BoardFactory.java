@@ -5,14 +5,14 @@ import pl.patrycja.ox.winnerchecker.Spectator;
 import java.util.List;
 
 /**
- * A class BoardFactory create and return a new board.
+ * Create and return a new board.
  *
  * @author Patrycja Hyjek
  */
 
 public class BoardFactory {
     /**
-     * This method is called whenever we want to add a sign to the board.
+     * Called whenever we want to add a sign to the board.
      *
      * @param size is a board size.
      */

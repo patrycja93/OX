@@ -1,8 +1,5 @@
 package pl.patrycja.ox.gameflow;
 
-import pl.patrycja.ox.ui.UI;
-import pl.patrycja.ox.ui.UIFactory;
-
 /**
  * A class TicTacToe presents a main class.
  *
@@ -12,18 +9,19 @@ class TicTacToe {
 
     /**
      * This method is called whenever we start a new game.
+     *
      * @param args is string's array which are put on the beginning of game
      */
     public static void main(String[] args) {
 
+        Mode mode = new Mode();
         boolean ifDemo = checkIfDemo(args);
-        UI ui = UIFactory.set(ifDemo);
 
-        Game game = new Game(ui);
+        Game game = mode.setMode(args, ifDemo);
         game.play();
     }
 
     private static boolean checkIfDemo(String[] args) {
-        return args.length > 0 && args[0].equals("demo");
+        return args.length == 3;
     }
 }

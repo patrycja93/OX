@@ -15,8 +15,12 @@ public class InputChecker {
         this.boardSize = boardSize;
     }
 
+    public InputChecker() {
+    }
+
     /**
      * Returns number when it's type is an Integer from 1 to board size.
+     *
      * @return int number
      */
     public int getValidNumber() {
@@ -26,6 +30,17 @@ public class InputChecker {
             input = ui.read();
         }
         return Integer.parseInt(String.valueOf(input));
+    }
+
+    public boolean getValidNumberDemoMode(String boardSize, String unbrokenLine) {
+        try {
+            Integer.parseInt(String.valueOf(boardSize));
+            Integer.parseInt(String.valueOf(unbrokenLine));
+            return true;
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private boolean checkIfInteger(String number, UI ui) {
