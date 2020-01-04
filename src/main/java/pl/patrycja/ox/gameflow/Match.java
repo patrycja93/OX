@@ -17,7 +17,7 @@ class Match implements Observable {
     private PlayerChanger playerChanger;
     private boolean endMatch;
 
-    Match(Board board, List<Spectator> spectators, GameSettings gameSettings) {
+    private Match(Board board, List<Spectator> spectators, GameSettings gameSettings) {
         this.board = board;
         this.spectators = spectators;
         this.endMatch = false;

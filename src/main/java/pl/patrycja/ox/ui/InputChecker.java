@@ -28,13 +28,13 @@ public class InputChecker {
         return Integer.parseInt(String.valueOf(input));
     }
 
-    public void getValidNumberFromInputArray(String[] parameters) {
+    public void checkIfInputParametersAreValid(String[] parameters) {
         try {
             for (String p : parameters) {
                 Integer.parseInt(String.valueOf(p));
             }
         } catch (IllegalArgumentException e) {
-            ui.display("Entered wrong arguments. Please enter integer numbers and run the game again.");
+            ui.display("Entered wrong arguments. Please run the game again with correct integer numbers.");
             System.exit(0);
         }
     }

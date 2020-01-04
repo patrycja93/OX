@@ -4,10 +4,12 @@ import pl.patrycja.ox.ui.UI;
 
 /**
  * Holding all settings for particular game.
+ *
  * @author Patrycja Hyjek
  */
 public class GameSettings {
 
+    private static final int DEFAULT_VALUE = 3;
     private Sign firstPlayer;
     private int unbrokenLine;
     private int numberOfMatches;
@@ -20,9 +22,9 @@ public class GameSettings {
      * All variables has default values.
      */
     public static final class GameSettingsBuilder {
-        private int unbrokenLine = defaultValue();
-        private int matchNumber = defaultValue();
-        private int boardSize = defaultValue();
+        private int unbrokenLine = DEFAULT_VALUE;
+        private int matchNumber = DEFAULT_VALUE;
+        private int boardSize = DEFAULT_VALUE;
         private UI ui;
 
         /**
@@ -31,7 +33,7 @@ public class GameSettings {
          * @param unbrokenLine is number of unbroken line sf sign
          */
         public GameSettingsBuilder unbrokenLine(int unbrokenLine) {
-            this.unbrokenLine = unbrokenLine;
+            this.unbrokenLine = Math.max(unbrokenLine, DEFAULT_VALUE);
             return this;
         }
 
@@ -41,7 +43,7 @@ public class GameSettings {
          * @param matchesNumber is amount of matches
          */
         public GameSettingsBuilder matchesNumber(int matchesNumber) {
-            this.matchNumber = matchesNumber;
+            this.matchNumber = Math.max(matchesNumber, DEFAULT_VALUE);
             return this;
         }
 
@@ -51,7 +53,7 @@ public class GameSettings {
          * @param boardSize is size of the game's board
          */
         public GameSettingsBuilder boardSize(int boardSize) {
-            this.boardSize = boardSize;
+            this.boardSize = Math.max(boardSize, DEFAULT_VALUE);
             return this;
         }
 
@@ -69,16 +71,23 @@ public class GameSettings {
          * Returns object GameSettings
          */
         public GameSettings build() {
+            checkIfUnbrokenLineIsGreaterThanBoardSize();
+            GameSettings gameSettings = new GameSettings();
+            gameSettings.unbrokenLine = this.unbrokenLine;
+            gameSettings.numberOfMatches = this.matchNumber;
+            gameSettings.boardSize = this.boardSize;
+            gameSettings.ui = this.ui;
+            return gameSettings;
+        }
+
+        private void checkIfUnbrokenLineIsGreaterThanBoardSize() {
             if (unbrokenLine > boardSize) {
-                //TODO: add exception handling
-                throw new IllegalStateException("Unbroken number of sign cannot be greater then board size.");
-            } else {
-                GameSettings gameSettings = new GameSettings();
-                gameSettings.unbrokenLine = this.unbrokenLine;
-                gameSettings.numberOfMatches = this.matchNumber;
-                gameSettings.boardSize = this.boardSize;
-                gameSettings.ui = this.ui;
-                return gameSettings;
+                int maxBoardSize = Math.max(boardSize, unbrokenLine);
+                int minUnbrokenLine = Math.min(boardSize, unbrokenLine);
+                boardSize = maxBoardSize;
+                unbrokenLine = minUnbrokenLine;
+                ui.display("Unbroken number of sign cannot be greater then board size. Values was switched.\n" +
+                        "Board size is " + maxBoardSize + ", unbroken number of sign is " + minUnbrokenLine + ".");
             }
         }
     }
@@ -139,9 +148,5 @@ public class GameSettings {
             sign = ui.read();
         }
         return Sign.getSign(sign);
-    }
-
-    private static int defaultValue() {
-        return 3;
     }
 }

@@ -20,6 +20,7 @@ public class Sequence {
         this.towards = Integer.parseInt(towards);
     }
 
+    //TODO: generate draw sequence!!
     public void generateSequence() {
         switch (towards) {
             case 0: {

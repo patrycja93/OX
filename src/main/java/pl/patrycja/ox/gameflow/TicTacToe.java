@@ -9,6 +9,8 @@ import java.util.List;
  */
 class TicTacToe {
 
+    private static final int MAXIMUM_AMOUNT_OF_PARAMETERS = 3;
+
     /**
      * This method is called whenever we start a new game.
      *
@@ -16,14 +18,14 @@ class TicTacToe {
      */
     public static void main(String[] args) {
 
-        FactoryMode factoryMode = new FactoryMode(getLessThanFour(args));
-        Mode mode = factoryMode.setMode();
+        ModeFactory modeFactory = new ModeFactory(getLessThanFour(args));
+        Mode mode = modeFactory.setMode();
         mode.settings(args);
         List<Player> players = mode.createPlayers();
         mode.play(players);
     }
 
     private static int getLessThanFour(String[] args) {
-        return Math.min(args.length, 3);
+        return Math.min(args.length, MAXIMUM_AMOUNT_OF_PARAMETERS);
     }
 }

@@ -23,7 +23,7 @@ abstract class Mode {
 
         for (int i = 0; i < gameSettings.getNumberOfMatches(); i++) {
             List<Spectator> spectators = SpectatorsRoom.addSpectators(gameSettings);
-            //TODO: changes game setting on boardSize
+            //TODO: changes argument gameSetting to boardSize
             Match.init(gameSettings, spectators)
                     .addController(playerChanger)
                     .start();
@@ -34,8 +34,8 @@ abstract class Mode {
 
     abstract void settings(String[] inputArrayParameters);
 
-    protected void checkCorrectInputData(String[] inputArrayParameters) {
+    protected void checkIfCorrectInputData(String[] inputArrayParameters) {
         InputChecker inputChecker = new InputChecker(ui);
-        inputChecker.getValidNumberFromInputArray(inputArrayParameters);
+        inputChecker.checkIfInputParametersAreValid(inputArrayParameters);
     }
 }

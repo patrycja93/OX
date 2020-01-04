@@ -5,8 +5,26 @@ import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.BinaryOperator;
 
 class AutomaticTests extends Mode {
+
+    private final static int HORIZONTAL = 0;
+    private final static int VERTICAL = 1;
+    private final static int DIAGONAL_UP = 2;
+    private final static int DIAGONAL_DOWN = 3;
+    private final static int DEFAULT_NUMBER_FOR_TOWARD = 3;
+
+    private final BinaryOperator<Integer> verticalAndHorizontal = this::numberOfMatchesHorizontalAndVertical;
+    private final BinaryOperator<Integer> diagonals = this::numberOfMatchesDiagonals;
+
+    private final Map<Integer, BinaryOperator<Integer>> towardsMap = Map.of(
+            HORIZONTAL, verticalAndHorizontal,
+            VERTICAL, verticalAndHorizontal,
+            DIAGONAL_UP, diagonals,
+            DIAGONAL_DOWN, diagonals
+    );
 
     AutomaticTests(UI ui) {
         super(ui);
@@ -27,40 +45,30 @@ class AutomaticTests extends Mode {
     }
 
     private GameSettings setup(String[] inputArrayParameters) {
-        checkCorrectInputData(inputArrayParameters);
-        //TODO: generate draw sequence!!
+        checkIfCorrectInputData(inputArrayParameters);
         return updateValuesInSettings(inputArrayParameters);
     }
 
     private GameSettings updateValuesInSettings(String[] inputArrayParameters) {
-        GameSettings.GameSettingsBuilder gameSettings = GameSettings.builder();
-
         int boardSize = Integer.parseInt(inputArrayParameters[0]);
         int unbrokenLine = Integer.parseInt(inputArrayParameters[1]);
-        int maxBoardSize = Math.max(boardSize, unbrokenLine);
-        int minUnbrokenLine = Math.min(boardSize, unbrokenLine);
-        gameSettings.boardSize(maxBoardSize);
-        gameSettings.unbrokenLine(minUnbrokenLine);
-
         int towards = Integer.parseInt(inputArrayParameters[2]);
-        gameSettings.matchesNumber(resolveNumberOfMatches(maxBoardSize, minUnbrokenLine, towards));
 
-        return gameSettings.ui(ui).build();
+        int numberOfMatches = resolveNumberOfMatches(boardSize, unbrokenLine, towards);
+
+        return GameSettings.builder()
+                .boardSize(boardSize)
+                .unbrokenLine(unbrokenLine)
+                .matchesNumber(numberOfMatches)
+                .ui(ui)
+                .build();
     }
 
     private int resolveNumberOfMatches(int boardSize, int unbrokenLine, int towards) {
-        switch (towards) {
-            case 0:
-            case 1: {
-                return numberOfMatchesHorizontalAndVertical(boardSize, unbrokenLine);
-            }
-            case 2:
-            case 3: {
-                return numberOfMatchesDiagonals(boardSize, unbrokenLine);
-            }
-            default:
-                return 3;
-        }
+        int max = Math.max(boardSize, unbrokenLine);
+        int min = Math.min(boardSize, unbrokenLine);
+        int towardsLessThanFour = Math.min(DEFAULT_NUMBER_FOR_TOWARD, towards);
+        return towardsMap.get(towardsLessThanFour).apply(max, min);
     }
 
     private int numberOfMatchesDiagonals(int size, int line) {

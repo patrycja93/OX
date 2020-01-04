@@ -8,6 +8,9 @@ import java.util.List;
 
 class Game extends Mode {
 
+    private static final int DEFAULT_VALUE = 3;
+    private static final int MAXIMUM_AMOUNT_OF_PARAMETERS = 2;
+
     public Game(UI ui) {
         super(ui);
     }
@@ -27,20 +30,21 @@ class Game extends Mode {
     }
 
     private GameSettings setup(String[] inputArrayParameters) {
-        checkCorrectInputData(inputArrayParameters);
+        checkIfCorrectInputData(inputArrayParameters);
         return updateValuesForBoardAndUnbrokenLine(inputArrayParameters);
     }
 
     private GameSettings updateValuesForBoardAndUnbrokenLine(String[] inputArrayParameters) {
-        GameSettings.GameSettingsBuilder gameSettings = GameSettings.builder();
-        int firstParameter = Integer.parseInt(inputArrayParameters[0]);
-        if (inputArrayParameters.length == 1) {
-            gameSettings.boardSize(Math.max(firstParameter, 3));
-        } else {
-            int secondParameter = Integer.parseInt(inputArrayParameters[1]);
-            gameSettings.boardSize(Math.max(firstParameter, secondParameter));
-            gameSettings.unbrokenLine(Math.min(firstParameter, secondParameter));
+        int boardSize = Integer.parseInt(inputArrayParameters[0]);
+        int unbrokenLine = DEFAULT_VALUE;
+        if (inputArrayParameters.length == MAXIMUM_AMOUNT_OF_PARAMETERS) {
+            unbrokenLine = Integer.parseInt(inputArrayParameters[1]);
         }
-        return gameSettings.ui(ui).build();
+
+        return GameSettings.builder()
+                .boardSize(boardSize)
+                .unbrokenLine(unbrokenLine)
+                .ui(ui)
+                .build();
     }
 }

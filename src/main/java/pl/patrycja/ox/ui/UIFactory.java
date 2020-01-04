@@ -1,7 +1,7 @@
 package pl.patrycja.ox.ui;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 /**
  * A class UIFactory return a new object UI.
@@ -10,23 +10,22 @@ import java.util.Map;
  */
 public class UIFactory {
 
-    private Map<Integer, UI> kindsOfUi;
+    private static final int ZER0_PARAMETERS = 0;
+    private static final int ONE_PARAMETERS = 1;
+    private static final int TWO_PARAMETERS = 2;
+    private static final int THREE_PARAMETERS = 3;
 
-    public UIFactory() {
-        this.kindsOfUi = setUi();
-    }
+    private final Supplier<UI> console = ConsoleUI::new;
+    private final Supplier<UI> file = FileUI::new;
 
-    public UI getUiFor(int inputArraySize) {
-        UI ui = kindsOfUi.get(inputArraySize);
-        return ui;
-    }
+    private final Map<Integer, Supplier<UI>> kindsOfUI = Map.of(
+            ZER0_PARAMETERS, console,
+            ONE_PARAMETERS, console,
+            TWO_PARAMETERS, console,
+            THREE_PARAMETERS, file
+    );
 
-    private Map<Integer, UI> setUi() {
-        Map<Integer, UI> map = new HashMap<>();
-        map.put(0, new ConsoleUI());
-        map.put(1, new ConsoleUI());
-        map.put(2, new ConsoleUI());
-        map.put(3, new FileUI());
-        return map;
+    public UI getUIForMode(int amountOfParameters) {
+        return kindsOfUI.get(amountOfParameters).get();
     }
 }
