@@ -8,22 +8,18 @@ package pl.patrycja.ox.ui;
 public class InputChecker {
 
     private UI ui;
-    private int boardSize;
 
-    public InputChecker(UI ui, int boardSize) {
+    public InputChecker(UI ui) {
         this.ui = ui;
-        this.boardSize = boardSize;
-    }
-
-    public InputChecker() {
     }
 
     /**
      * Returns number when it's type is an Integer from 1 to board size.
      *
+     * @param boardSize
      * @return int number
      */
-    public int getValidNumber() {
+    public int getValidNumber(int boardSize) {
         String input = ui.read();
         while (!checkIfInteger(input, ui)
                 || !checkIfNumberIsInRange(input, boardSize, ui)) {
@@ -32,14 +28,14 @@ public class InputChecker {
         return Integer.parseInt(String.valueOf(input));
     }
 
-    public boolean getValidNumberDemoMode(String boardSize, String unbrokenLine) {
+    public void checkIfInputParametersAreValid(String[] parameters) {
         try {
-            Integer.parseInt(String.valueOf(boardSize));
-            Integer.parseInt(String.valueOf(unbrokenLine));
-            return true;
+            for (String p : parameters) {
+                Integer.parseInt(String.valueOf(p));
+            }
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            return false;
+            ui.display("Entered wrong arguments. Please run the game again with correct integer numbers.");
+            System.exit(0);
         }
     }
 

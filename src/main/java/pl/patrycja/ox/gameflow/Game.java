@@ -2,31 +2,49 @@ package pl.patrycja.ox.gameflow;
 
 import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Sign;
-import pl.patrycja.ox.winnerchecker.Spectator;
-import pl.patrycja.ox.winnerchecker.SpectatorsRoom;
+import pl.patrycja.ox.ui.UI;
 
 import java.util.List;
 
-class Game {
+class Game extends Mode {
 
-    private GameSettings gameSettings;
+    private static final int DEFAULT_VALUE = 3;
+    private static final int MAXIMUM_AMOUNT_OF_PARAMETERS = 2;
 
-    private Player firstPlayer = new Player("A", Sign.CROSS);
-    private Player secondPlayer = new Player("B", Sign.NAUGHT);
-
-    Game(GameSettings gameSettings) {
-        this.gameSettings = gameSettings;
+    public Game(UI ui) {
+        super(ui);
     }
 
-    void play() {
-        gameSettings.setPlayer();
-        PlayerChanger playerChanger = new PlayerChanger(List.of(firstPlayer, secondPlayer), gameSettings);
+    @Override
+    public List<Player> createPlayers() {
+        ui.display("Please enter name for first player.");
+        Player firstPlayer = new Player(ui.read(), Sign.CROSS);
+        ui.display("Please enter name for second player.");
+        Player secondPlayer = new Player(ui.read(), Sign.NAUGHT);
+        return List.of(firstPlayer, secondPlayer);
+    }
 
-        for (int i = 0; i < gameSettings.getNumberOfMatches(); i++) {
-            List<Spectator> spectators = SpectatorsRoom.addSpectators(gameSettings);
-            Match.init(gameSettings, spectators)
-                    .addController(playerChanger)
-                    .start();
+    @Override
+    public void settings(String[] inputArrayParameters) {
+        gameSettings = setup(inputArrayParameters);
+    }
+
+    private GameSettings setup(String[] inputArrayParameters) {
+        checkIfCorrectInputData(inputArrayParameters);
+        return updateValuesForBoardAndUnbrokenLine(inputArrayParameters);
+    }
+
+    private GameSettings updateValuesForBoardAndUnbrokenLine(String[] inputArrayParameters) {
+        int boardSize = Integer.parseInt(inputArrayParameters[0]);
+        int unbrokenLine = DEFAULT_VALUE;
+        if (inputArrayParameters.length == MAXIMUM_AMOUNT_OF_PARAMETERS) {
+            unbrokenLine = Integer.parseInt(inputArrayParameters[1]);
         }
+
+        return GameSettings.builder()
+                .boardSize(boardSize)
+                .unbrokenLine(unbrokenLine)
+                .ui(ui)
+                .build();
     }
 }

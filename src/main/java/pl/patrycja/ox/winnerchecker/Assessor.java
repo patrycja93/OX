@@ -17,6 +17,7 @@ public class Assessor implements Spectator {
     @Override
     public void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot) {
         Sign activePlayerSign = fields.get(lastShot);
+        //TODO: return also player name
         ui.display("Player " + activePlayerSign + " put sign on " + (lastShot + 1) + ".");
     }
 

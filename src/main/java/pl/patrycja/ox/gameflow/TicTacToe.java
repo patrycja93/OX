@@ -1,11 +1,15 @@
 package pl.patrycja.ox.gameflow;
 
+import java.util.List;
+
 /**
  * A class TicTacToe presents a main class.
  *
  * @author Patrycja Hyjek
  */
 class TicTacToe {
+
+    private static final int MAXIMUM_AMOUNT_OF_PARAMETERS = 3;
 
     /**
      * This method is called whenever we start a new game.
@@ -14,14 +18,14 @@ class TicTacToe {
      */
     public static void main(String[] args) {
 
-        Mode mode = new Mode();
-        boolean ifDemo = checkIfDemo(args);
-
-        Game game = mode.setMode(args, ifDemo);
-        game.play();
+        ModeFactory modeFactory = new ModeFactory(getLessThanFour(args));
+        Mode mode = modeFactory.setMode();
+        mode.settings(args);
+        List<Player> players = mode.createPlayers();
+        mode.play(players);
     }
 
-    private static boolean checkIfDemo(String[] args) {
-        return args.length == 3;
+    private static int getLessThanFour(String[] args) {
+        return Math.min(args.length, MAXIMUM_AMOUNT_OF_PARAMETERS);
     }
 }

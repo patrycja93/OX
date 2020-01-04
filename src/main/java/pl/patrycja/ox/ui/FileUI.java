@@ -26,6 +26,11 @@ class FileUI implements UI {
         writeToFile(input);
     }
 
+    @Override
+    public String read() {
+        return scanner.next();
+    }
+
     private void writeToFile(Object input) {
         try {
             bufferedWriter.write(input.toString());
@@ -34,10 +39,5 @@ class FileUI implements UI {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public String read() {
-        return scanner.next();
     }
 }

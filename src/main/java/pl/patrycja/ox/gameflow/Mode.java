@@ -2,77 +2,40 @@ package pl.patrycja.ox.gameflow;
 
 import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.ui.InputChecker;
-import pl.patrycja.ox.ui.Sequence;
-import pl.patrycja.ox.ui.UIFactory;
+import pl.patrycja.ox.ui.UI;
+import pl.patrycja.ox.winnerchecker.Spectator;
+import pl.patrycja.ox.winnerchecker.SpectatorsRoom;
 
-class Mode {
+import java.util.List;
 
-    Game setMode(String[] args, boolean ifDemo) {
-        GameSettings gameSettings;
-        if (ifDemo) {
-            Sequence sequence = new Sequence(args);
-            sequence.generateSequence();
-            gameSettings = getGameSettings(args);
-        } else {
-            gameSettings = GameSettings.builder()
-                    .ui(UIFactory.set(false))
-                    .build();
-        }
-        return new Game(gameSettings);
+abstract class Mode {
+
+    protected GameSettings gameSettings;
+    protected UI ui;
+
+    public Mode(UI ui) {
+        this.ui = ui;
     }
 
+    void play(List<Player> players) {
+        gameSettings.setPlayer();
+        PlayerChanger playerChanger = new PlayerChanger(players, gameSettings);
 
-    private GameSettings getGameSettings(String[] args) {
-        GameSettings.GameSettingsBuilder gameSettings = GameSettings.builder();
-
-        String boardSize = args[0];
-        String unbrokenLine = args[1];
-        String towards = args[2];
-
-        if (validateArguments(boardSize, unbrokenLine)) {
-            setBoardSizeAndUnbrokenLine(gameSettings, boardSize, unbrokenLine, towards);
-        }
-
-        return gameSettings
-                .ui(UIFactory.set(true))
-                .build();
-    }
-
-    private void setBoardSizeAndUnbrokenLine(GameSettings.GameSettingsBuilder gameSettings,
-                                             String boardSize, String unbrokenLine, String towards) {
-        int defaultBoardSize;
-        int defaultUnbrokenLine;
-        defaultBoardSize = Math.max(Integer.parseInt(boardSize), Integer.parseInt(unbrokenLine));
-        defaultUnbrokenLine = Math.min(Integer.parseInt(boardSize), Integer.parseInt(unbrokenLine));
-        gameSettings.boardSize(defaultBoardSize);
-        gameSettings.unbrokenLine(defaultUnbrokenLine);
-        if (towards != null) {
-            int matches = resolveNumberOfMatches(defaultBoardSize, defaultUnbrokenLine, Integer.parseInt(towards));
-            gameSettings.matchesNumber(matches);
+        for (int i = 0; i < gameSettings.getNumberOfMatches(); i++) {
+            List<Spectator> spectators = SpectatorsRoom.addSpectators(gameSettings);
+            //TODO: changes argument gameSetting to boardSize
+            Match.init(gameSettings, spectators)
+                    .addController(playerChanger)
+                    .start();
         }
     }
 
-    private boolean validateArguments(String boardSize, String unbrokenLine) {
-        InputChecker inputChecker = new InputChecker();
-        return inputChecker.getValidNumberDemoMode(boardSize, unbrokenLine);
-    }
+    abstract List<Player> createPlayers();
 
-    private int resolveNumberOfMatches(int size, int line, int towards) {
-        switch (towards) {
-            case 0:
-            case 1: {
-                return ((size - line) + 1) * size;
-            }
-            case 2:
-            case 3: {
-                int counter = (size - line) + 1;
-                for (int i = 1; i <= (size - line); i++) {
-                    counter += 2 * (((size - i) - line) + 1);
-                }
-                return counter;
-            }
-            default:
-                return 3;
-        }
+    abstract void settings(String[] inputArrayParameters);
+
+    protected void checkIfCorrectInputData(String[] inputArrayParameters) {
+        InputChecker inputChecker = new InputChecker(ui);
+        inputChecker.checkIfInputParametersAreValid(inputArrayParameters);
     }
 }

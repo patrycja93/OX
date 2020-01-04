@@ -17,7 +17,7 @@ class Match implements Observable {
     private PlayerChanger playerChanger;
     private boolean endMatch;
 
-    Match(Board board, List<Spectator> spectators, GameSettings gameSettings) {
+    private Match(Board board, List<Spectator> spectators, GameSettings gameSettings) {
         this.board = board;
         this.spectators = spectators;
         this.endMatch = false;
@@ -46,7 +46,7 @@ class Match implements Observable {
 
     @Override
     public void inform(List<Spectator> spectators) {
-         endMatch = spectators.stream().anyMatch(Spectator::isMatchOver);
+        endMatch = spectators.stream().anyMatch(Spectator::isMatchOver);
     }
 
     private void turn() {
@@ -56,12 +56,13 @@ class Match implements Observable {
     }
 
     private void getFieldNumber() {
-        InputChecker inputChecker = new InputChecker(gameSettings.getUi(), gameSettings.getBoardSize());
-        int fieldNumber = inputChecker.getValidNumber();
+        InputChecker inputChecker = new InputChecker(gameSettings.getUi());
+        int boardSize =  gameSettings.getBoardSize();
+        int fieldNumber = inputChecker.getValidNumber(boardSize);
 
         while (!board.putSignToBoard(fieldNumber, playerChanger.getActivePlayerSign())) {
             gameSettings.getUi().display("This place is already occupied. Try again.");
-            fieldNumber = inputChecker.getValidNumber();
+            fieldNumber = inputChecker.getValidNumber(boardSize);
         }
     }
 }

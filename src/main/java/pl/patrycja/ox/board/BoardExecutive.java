@@ -49,6 +49,8 @@ class BoardExecutive implements Board {
         } else {
             return false;
         }
+        //TODO: add condition fieldNumber is not in range and inform spectators
+        //TODO: success put sign to board or not
     }
 
     @Override

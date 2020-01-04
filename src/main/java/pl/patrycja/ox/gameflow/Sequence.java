@@ -1,4 +1,6 @@
-package pl.patrycja.ox.ui;
+package pl.patrycja.ox.gameflow;
+
+import pl.patrycja.ox.GameSettings;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,12 +14,13 @@ public class Sequence {
     private int unbrokenLine;
     private int towards;
 
-    public Sequence(String[] args) {
-        this.size = Integer.parseInt(args[0]);
-        this.unbrokenLine = Integer.parseInt(args[1]);
-        this.towards = Integer.parseInt(args[2]);
+    public Sequence(GameSettings gameSettings, String towards) {
+        this.size = gameSettings.getBoardSize();
+        this.unbrokenLine = gameSettings.getUnbrokenLine();
+        this.towards = Integer.parseInt(towards);
     }
 
+    //TODO: generate draw sequence!!
     public void generateSequence() {
         switch (towards) {
             case 0: {
