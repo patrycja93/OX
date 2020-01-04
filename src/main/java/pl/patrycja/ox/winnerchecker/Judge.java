@@ -21,11 +21,11 @@ class Judge implements Spectator {
     @Override
     public void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot) {
         if (isWinner(fields, lastShot)) {
-            isMatchOver(true, "Winner is " + fields.get(lastShot) + ".\n");
+            isMatchOver("Winner is " + fields.get(lastShot) + ".\n");
         } else {
             int boardSize = gameSettings.getBoardSize();
             if (fields.size() == boardSize * boardSize) {
-                isMatchOver(false, "Draw!\n");
+                isMatchOver("Draw!\n");
             }
         }
     }
@@ -44,8 +44,8 @@ class Judge implements Spectator {
         return false;
     }
 
-    private void isMatchOver(boolean ifFinished, String message) {
+    private void isMatchOver(String message) {
         gameSettings.getUi().display(message);
-        isMatchOver = ifFinished;
+        isMatchOver = true;
     }
 }

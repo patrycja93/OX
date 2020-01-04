@@ -1,5 +1,7 @@
 package pl.patrycja.ox.gameflow;
 
+import java.util.List;
+
 /**
  * A class TicTacToe presents a main class.
  *
@@ -14,14 +16,14 @@ class TicTacToe {
      */
     public static void main(String[] args) {
 
-        Mode mode = new Mode();
-        boolean ifDemo = checkIfDemo(args);
-
-        Game game = mode.setMode(args, ifDemo);
-        game.play();
+        FactoryMode factoryMode = new FactoryMode(getLessThanFour(args));
+        Mode mode = factoryMode.setMode();
+        mode.settings(args);
+        List<Player> players = mode.createPlayers();
+        mode.play(players);
     }
 
-    private static boolean checkIfDemo(String[] args) {
-        return args.length == 3;
+    private static int getLessThanFour(String[] args) {
+        return Math.min(args.length, 3);
     }
 }

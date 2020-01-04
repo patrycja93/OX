@@ -5,7 +5,6 @@ import org.testng.annotations.Test;
 import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.TestUI;
-import pl.patrycja.ox.ui.UIFactory;
 import pl.patrycja.ox.winnerchecker.Spectator;
 import pl.patrycja.ox.winnerchecker.SpectatorsRoom;
 
