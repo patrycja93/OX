@@ -6,6 +6,7 @@ import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 class Assessor implements Spectator {
@@ -51,7 +52,12 @@ class Assessor implements Spectator {
 
     @Override
     public void playerHasChanged(Player player) {
-        //TODO: implements this method
+        //TODO: implement this method
+    }
+
+    @Override
+    public void gameOver(List<Player> players) {
+        //TODO: implement this method
     }
 
     private String board() {

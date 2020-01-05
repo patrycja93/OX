@@ -5,10 +5,12 @@ import java.util.Objects;
 public class Player {
     private String name;
     private Sign sign;
+    private int points;
 
     public Player(String name, Sign sign) {
         this.name = name;
         this.sign = sign;
+        this.points = 0;
     }
 
     @Override
@@ -32,4 +34,18 @@ public class Player {
     public Sign getSign() {
         return sign;
     }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void addPoints(int howMuch) {
+        points += howMuch;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + "(" + this.sign + ")";
+    }
+
 }

@@ -37,7 +37,7 @@ class Match {
 
     void start(int numberOfMatch) {
         //TODO: ask about language
-        board.startMatch(spectators, numberOfMatch, activePlayer);
+        board.startMatch(numberOfMatch, activePlayer);
         while (!endMatch) {
             nextTurn();
         }
@@ -56,7 +56,7 @@ class Match {
     }
 
     public void checkIfMatchIsFinished(List<Spectator> spectators) {
-        endMatch = spectators.stream().anyMatch(Spectator::isMatchOver);
+       endMatch = spectators.stream().anyMatch(Spectator::isMatchOver);
     }
 
     private void getFieldNumber() {

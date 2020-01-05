@@ -2,10 +2,7 @@ package pl.patrycja.ox.winnerchecker;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pl.patrycja.ox.GameSettings;
-import pl.patrycja.ox.Player;
-import pl.patrycja.ox.Sign;
-import pl.patrycja.ox.TestUI;
+import pl.patrycja.ox.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -125,7 +122,7 @@ public class JudgeTest {
     public void testCheckingHorizontalUnbrokenLineAndReturnTrue(int size, Map<Integer, Player> fields) {
         //given
         GameSettings gameSettings = createGameSettings(size);
-        Judge judge = new Judge(gameSettings, new TestUI());
+        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard());
 
         //when
         fields.forEach(judge::putSignSuccess);
@@ -141,7 +138,7 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings, new TestUI());
+        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard());
 
         //when
         fields.forEach(judge::putSignSuccess);
@@ -157,7 +154,7 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings, new TestUI());
+        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard());
 
         //when
         fields.forEach(judge::putSignSuccess);
@@ -173,7 +170,7 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings, new TestUI());
+        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard());
 
         //when
         fields.forEach(judge::putSignSuccess);

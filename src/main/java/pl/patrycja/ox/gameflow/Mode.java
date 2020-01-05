@@ -2,6 +2,7 @@ package pl.patrycja.ox.gameflow;
 
 import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Player;
+import pl.patrycja.ox.ScoreBoard;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.InputChecker;
 import pl.patrycja.ox.ui.UI;
@@ -22,17 +23,19 @@ abstract class Mode {
 
     void play(List<Player> players) {
         Player initialPlayer = askWhichPlayerStarts(players);
-
+        Match match = Match.init(gameSettings.getBoardSize(), ui, spectatorsList);;
         for (int i = 1; i <= gameSettings.getNumberOfMatches(); i++) {
-            Match.init(gameSettings.getBoardSize(), ui, spectatorsList)
-                    .addPlayers(players, initialPlayer)
+            match = Match.init(gameSettings.getBoardSize(), ui, spectatorsList);
+            match.addPlayers(players, initialPlayer)
                     .start(i);
             initialPlayer = changeInitialPlayer(players, initialPlayer);
         }
+        spectatorsList.forEach(spectator -> spectator.gameOver(players));
     }
 
-    void createSpectators() {
-        Spectators spectators = new Spectators(gameSettings, ui);
+    void createSpectators(List<Player> players) {
+        ScoreBoard scoreBoard = new ScoreBoard(players);
+        Spectators spectators = new Spectators(gameSettings, ui, scoreBoard);
         spectatorsList = spectators.create();
     }
 

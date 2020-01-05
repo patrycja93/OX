@@ -24,15 +24,15 @@ class BoardExecutive implements Board {
         int reducedFieldNumber = fieldNumber - 1;
         int maximumFieldNumber = size * size;
         if (fieldNumber < 1 || fieldNumber > maximumFieldNumber) {
-            informAboutOverstepRange(spectators);
+            informAboutOverstepRange();
             return false;
         } else {
             if (!fields.containsKey(reducedFieldNumber)) {
                 fields.put(reducedFieldNumber, player.getSign());
-                informAboutPutSign(spectators, fieldNumber, player);
+                informAboutPutSign(fieldNumber, player);
                 return true;
             } else {
-                informAboutPlaceIsBusy(spectators);
+                informAboutPlaceIsBusy();
                 return false;
             }
         }
@@ -44,19 +44,19 @@ class BoardExecutive implements Board {
     }
 
     @Override
-    public void startMatch(List<Spectator> spectators, int number, Player player) {
+    public void startMatch(int number, Player player) {
         spectators.forEach(spectator -> spectator.newMatch(number, player));
     }
 
-    private void informAboutPutSign(List<Spectator> spectators, int field, Player player) {
+    private void informAboutPutSign(int field, Player player) {
         spectators.forEach(spectator -> spectator.putSignSuccess(field, player));
     }
 
-    private void informAboutOverstepRange(List<Spectator> spectators) {
+    private void informAboutOverstepRange() {
         spectators.forEach(Spectator::putSignFailureOverstepRange);
     }
 
-    private void informAboutPlaceIsBusy(List<Spectator> spectators) {
+    private void informAboutPlaceIsBusy() {
         spectators.forEach(Spectator::putSignFailurePlaceIsBusy);
     }
 }

@@ -3,6 +3,7 @@ package pl.patrycja.ox.winnerchecker;
 import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,4 +31,6 @@ public interface Spectator {
     void newMatch(int number, Player player);
 
     void playerHasChanged(Player player);
+
+    void gameOver(List<Player> players);
 }

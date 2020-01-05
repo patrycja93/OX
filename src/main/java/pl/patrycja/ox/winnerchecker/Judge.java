@@ -2,6 +2,7 @@ package pl.patrycja.ox.winnerchecker;
 
 import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Player;
+import pl.patrycja.ox.ScoreBoard;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 
@@ -11,35 +12,32 @@ import java.util.Map;
 
 class Judge implements Spectator {
 
-    private List<WinnerChecker> winnerCheckers;
-    private GameSettings gameSettings;
-    private boolean isMatchOver;
-    private UI ui;
-    private Map<Integer, Sign> moves;
+    private static final int POINTS_FOR_WIN = 3;
+    private final JudgeStatements judgeStatements = new JudgeStatements();
 
-    Judge(GameSettings gameSettings, UI ui) {
-        this.moves = new HashMap<>();
+    private GameSettings gameSettings;
+    private UI ui;
+    private ScoreBoard scoreBoard;
+    private List<WinnerChecker> winnerCheckers;
+    private boolean isMatchOver;
+    private Map<Integer, Sign> moves = new HashMap<>();
+
+    Judge(GameSettings gameSettings, UI ui, ScoreBoard scoreBoard) {
         this.ui = ui;
         this.gameSettings = gameSettings;
+        this.scoreBoard = scoreBoard;
         this.winnerCheckers = WinnerCheckerFactory.getWinnerCheckers(gameSettings);
     }
 
     @Override
     public void putSignSuccess(int field, Player player) {
-        String name = player.getName();
-        Sign sign = player.getSign();
         int reducedFieldNumber = field - 1;
+        moves.put(reducedFieldNumber, player.getSign());
 
-        completeMap(reducedFieldNumber, sign);
-        int size = gameSettings.getBoardSize();
         if (isWinner(moves, reducedFieldNumber)) {
-            state("Winner is " + name + "(" + sign + ").\n");
-            //TODO: add points
+            state(player);
         } else {
-            if (size * size == moves.size()) {
-                state("Draw!\n");
-                //TODO: add points
-            }
+            isDraw(gameSettings.getBoardSize());
         }
     }
 
@@ -54,10 +52,6 @@ class Judge implements Spectator {
         ui.display("This place is already occupied. Try again.\n");
     }
 
-    private void completeMap(int field, Sign sign) {
-        moves.put(field, sign);
-    }
-
     @Override
     public boolean isMatchOver() {
         return isMatchOver;
@@ -65,8 +59,7 @@ class Judge implements Spectator {
 
     @Override
     public void newMatch(int number, Player player) {
-        ui.display("Match number: " + number);
-        ui.display("Player's " + player.getName() + "(" + player.getSign() + ") starts.\n");
+        ui.display("Match number " + number + "\n" + "Player's " + player + " starts.\n");
         moves.clear();
         isMatchOver = false;
     }
@@ -74,8 +67,13 @@ class Judge implements Spectator {
     @Override
     public void playerHasChanged(Player player) {
         if (!isMatchOver) {
-            ui.display("Player's " + player.getName() + "(" + player.getSign() + ") move.\n");
+            ui.display("Player's " + player + " move.\n");
         }
+    }
+
+    @Override
+    public void gameOver(List<Player> players) {
+        ui.display(judgeStatements.showGameSummary(players));
     }
 
     private boolean isWinner(Map<Integer, Sign> fields, int lastShot) {
@@ -87,8 +85,26 @@ class Judge implements Spectator {
         return false;
     }
 
-    private void state(String message) {
+    private void state() {
+        scoreBoard.addDrawPoints();
+        showResult("Draw!\n");
+    }
+
+    private void state(Player player) {
+        scoreBoard.addWinnerPoints(player, POINTS_FOR_WIN);
+        showResult("Winner is " + player + ".\n");
+    }
+
+    private void showResult(String message) {
+        List<Player> scores = scoreBoard.getResults();
         ui.display(message);
+        scores.forEach(player -> ui.display("Player " + player + ": " + player.getPoints()));
         isMatchOver = true;
+    }
+
+    private void isDraw(int size) {
+        if (size * size == moves.size()) {
+            state();
+        }
     }
 }

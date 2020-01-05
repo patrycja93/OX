@@ -2,10 +2,7 @@ package pl.patrycja.ox.board;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
-import pl.patrycja.ox.GameSettings;
-import pl.patrycja.ox.Player;
-import pl.patrycja.ox.Sign;
-import pl.patrycja.ox.TestUI;
+import pl.patrycja.ox.*;
 import pl.patrycja.ox.winnerchecker.Spectator;
 import pl.patrycja.ox.winnerchecker.Spectators;
 
@@ -24,7 +21,7 @@ public class BoardExecutiveTest {
                 .builder()
                 .build();
 
-        Spectators spectator = new Spectators(gameSettings, new TestUI());
+        Spectators spectator = new Spectators(gameSettings, new TestUI(), new ScoreBoard());
         spectators = spectator.create();
     }
 
