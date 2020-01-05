@@ -1,5 +1,6 @@
 package pl.patrycja.ox.winnerchecker;
 
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 
 import java.util.Map;
@@ -15,7 +16,7 @@ public interface Spectator {
      * This method is called whenever the board state was changed.
      *
      */
-    void putSignSuccess(int field, Sign sign);
+    void putSignSuccess(int field, Player player);
 
     void putSignFailureOverstepRange();
 
@@ -26,5 +27,7 @@ public interface Spectator {
      */
     boolean isMatchOver();
 
-    void newMatch(int number, Sign sign);
+    void newMatch(int number, Player player);
+
+    void playerHasChanged(Player player);
 }

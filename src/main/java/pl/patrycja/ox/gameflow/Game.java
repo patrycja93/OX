@@ -1,6 +1,7 @@
 package pl.patrycja.ox.gameflow;
 
 import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 
@@ -19,8 +20,10 @@ class Game extends Mode {
     public List<Player> createPlayers() {
         ui.display("Please enter name for first player.");
         Player firstPlayer = new Player(ui.read(), Sign.X);
+        ui.display(firstPlayer.getName() + "(" + firstPlayer.getSign() + ").");
         ui.display("Please enter name for second player.");
         Player secondPlayer = new Player(ui.read(), Sign.O);
+        ui.display(secondPlayer.getName() + "(" + secondPlayer.getSign() + ").");
         return List.of(firstPlayer, secondPlayer);
     }
 

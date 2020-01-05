@@ -20,22 +20,7 @@ public class InputChecker {
         this.ui = ui;
     }
 
-    /**
-     * Returns number when it's type is an Integer from 1 to board size.
-     *
-     * @param boardSize
-     * @return int number
-     */
-    public int getValidNumber(int boardSize) {
-        String input = ui.read();
-        while (!checkIfInteger(input)
-                || !checkIfNumberIsInRange(input, boardSize, ui)) {
-            input = ui.read();
-        }
-        return Integer.parseInt(String.valueOf(input));
-    }
-
-    public void checkIfInputParametersAreInteger(String[] parameters) {
+    public void checkIfInputParametersAreValid(String[] parameters) {
         try {
             for (String p : parameters) {
                 Integer.parseInt(String.valueOf(p));
@@ -46,15 +31,15 @@ public class InputChecker {
         }
     }
 
-    public void checkIfUnbrokenLineIsMoreThanBoardSize(String[] parameters) {
+    public void checkIfUnbrokenLineIsGraterThanBoardSize(String[] parameters) {
         if (parameters.length > 1 && (Integer.parseInt(parameters[0]) < Integer.parseInt(parameters[1]))) {
             int defaultValue = 3;
-            String min = String.valueOf(Math.max(Integer.parseInt(parameters[0]), defaultValue));
-            String max = String.valueOf(Math.max(Integer.parseInt(parameters[1]), defaultValue));
-            parameters[0] = max;
-            parameters[1] = min;
+            String boardSize = String.valueOf(Math.max(Integer.parseInt(parameters[0]), defaultValue));
+            String unbrokenLine = String.valueOf(Math.max(Integer.parseInt(parameters[1]), defaultValue));
+            parameters[0] = unbrokenLine;
+            parameters[1] = boardSize;
             ui.display("Unbroken number of sign cannot be greater then board size and less than 3. Values was changed.\n" +
-                    "Board size is " + max + ", unbroken number of sign is " + min + ".");
+                    "Board size is " + unbrokenLine + ", unbroken number of sign is " + boardSize + ".");
         }
     }
 
@@ -67,21 +52,7 @@ public class InputChecker {
         }
     }
 
-    private boolean checkIfNumberIsInRange(String number, int boardSize, UI ui) {
-        try {
-            int input = Integer.parseInt(String.valueOf(number));
-            if (input > 0 && input <= boardSize * boardSize) {
-                return true;
-            } else {
-                ui.display("Argument has to be more than 0 and less than " + ((boardSize * boardSize) + 1) + ".");
-                return false;
-            }
-        } catch (IllegalArgumentException e) {
-            return false;
-        }
-    }
-
-    public Sign checkSignValidate(String sign) {
+    public Sign validateSign(String sign) {
         while (!Arrays.toString(Sign.values()).contains(sign)) {
             ui.display("Inappropriate sign, please choose O or X.");
             sign = ui.read();

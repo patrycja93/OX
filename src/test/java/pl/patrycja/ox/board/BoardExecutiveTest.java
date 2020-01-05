@@ -3,6 +3,7 @@ package pl.patrycja.ox.board;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.TestUI;
 import pl.patrycja.ox.winnerchecker.Spectator;
@@ -32,11 +33,11 @@ public class BoardExecutiveTest {
         //given
         int number = 1000;
         int fieldNumber = 4;
-        Sign sign = Sign.X;
+        Player player = new Player("A", Sign.X);
         BoardExecutive boardExecutive = new BoardExecutive(number, spectators);
 
         //when
-        boolean putSignToBoard = boardExecutive.putSign(fieldNumber, sign);
+        boolean putSignToBoard = boardExecutive.putSign(fieldNumber, player);
 
         //then
         assertTrue(putSignToBoard);
@@ -47,12 +48,12 @@ public class BoardExecutiveTest {
         //given
         int number = 1000;
         int fieldNumber = 4;
-        Sign sign = Sign.X;
+        Player player = new Player("A", Sign.X);
         BoardExecutive boardExecutive = new BoardExecutive(number, spectators);
 
         //when
-        boolean firstTry = boardExecutive.putSign(fieldNumber, sign);
-        boolean secondTry = boardExecutive.putSign(fieldNumber, sign);
+        boolean firstTry = boardExecutive.putSign(fieldNumber, player);
+        boolean secondTry = boardExecutive.putSign(fieldNumber, player);
 
         //then
         assertTrue(firstTry);

@@ -23,21 +23,12 @@ class ConsoleUI implements UI {
 
     @Override
     public int readNumber() {
-        String next = scanner.nextLine();
+        scanner.useDelimiter("\n");
+        String next = scanner.next();
         while (!inputChecker.checkIfInteger(next)) {
             display("Wrong argument. Please enter integer number.");
-            next = scanner.nextLine();
+            next = scanner.next();
         }
         return Integer.parseInt(next);
-    }
-
-    private boolean invalid(String next) {
-        try {
-            Integer.parseInt(next);
-            return true;
-        } catch (NumberFormatException e) {
-            display("Wrong argument. Please enter integer number.");
-            return false;
-        }
     }
 }

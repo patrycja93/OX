@@ -1,6 +1,7 @@
 package pl.patrycja.ox.gameflow;
 
 import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 

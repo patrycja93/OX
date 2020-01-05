@@ -1,6 +1,7 @@
 package pl.patrycja.ox.winnerchecker;
 
 import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 
@@ -24,16 +25,20 @@ class Judge implements Spectator {
     }
 
     @Override
-    public void putSignSuccess(int field, Sign sign) {
-        completeMap(field, sign);
+    public void putSignSuccess(int field, Player player) {
+        String name = player.getName();
+        Sign sign = player.getSign();
+        int reducedFieldNumber = field - 1;
+
+        completeMap(reducedFieldNumber, sign);
         int size = gameSettings.getBoardSize();
-        if (isWinner(moves, field)) {
-            state(true, "Winner is " + sign + ".\n");
+        if (isWinner(moves, reducedFieldNumber)) {
+            state("Winner is " + name + "(" + sign + ").\n");
+            //TODO: add points
         } else {
             if (size * size == moves.size()) {
-                state(true, "Draw!\n");
-            } else {
-                state(false, "Player's " + Sign.getNextSign(sign) + " move.\n");
+                state("Draw!\n");
+                //TODO: add points
             }
         }
     }
@@ -59,11 +64,18 @@ class Judge implements Spectator {
     }
 
     @Override
-    public void newMatch(int number, Sign sign) {
-        ui.display("Match number: " + number );
-        ui.display("Player's " + sign + " move.\n");
+    public void newMatch(int number, Player player) {
+        ui.display("Match number: " + number);
+        ui.display("Player's " + player.getName() + "(" + player.getSign() + ") starts.\n");
         moves.clear();
         isMatchOver = false;
+    }
+
+    @Override
+    public void playerHasChanged(Player player) {
+        if (!isMatchOver) {
+            ui.display("Player's " + player.getName() + "(" + player.getSign() + ") move.\n");
+        }
     }
 
     private boolean isWinner(Map<Integer, Sign> fields, int lastShot) {
@@ -75,8 +87,8 @@ class Judge implements Spectator {
         return false;
     }
 
-    private void state(boolean isOver, String message) {
+    private void state(String message) {
         ui.display(message);
-        isMatchOver = isOver;
+        isMatchOver = true;
     }
 }

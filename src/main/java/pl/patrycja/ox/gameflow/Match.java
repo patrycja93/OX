@@ -1,9 +1,8 @@
 package pl.patrycja.ox.gameflow;
 
-import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.board.Board;
 import pl.patrycja.ox.board.BoardFactory;
-import pl.patrycja.ox.ui.InputChecker;
 import pl.patrycja.ox.ui.UI;
 import pl.patrycja.ox.winnerchecker.Spectator;
 
@@ -38,13 +37,22 @@ class Match {
 
     void start(int numberOfMatch) {
         //TODO: ask about language
-        board.startMatch(spectators, numberOfMatch, activePlayer.getSign());
+        board.startMatch(spectators, numberOfMatch, activePlayer);
         while (!endMatch) {
-            getFieldNumber();
-            checkIfMatchIsFinished(spectators);
-            changePlayer();
+            nextTurn();
         }
         board.clean();
+    }
+
+    private void nextTurn() {
+        getFieldNumber();
+        checkIfMatchIsFinished(spectators);
+        changePlayer();
+        move(activePlayer);
+    }
+
+    private void move(Player activePlayer) {
+        spectators.forEach(spectator -> spectator.playerHasChanged(activePlayer));
     }
 
     public void checkIfMatchIsFinished(List<Spectator> spectators) {
@@ -53,7 +61,9 @@ class Match {
 
     private void getFieldNumber() {
         int field = ui.readNumber();
-        board.putSign(field, activePlayer.getSign());
+        while (!board.putSign(field, activePlayer)) {
+            field = ui.readNumber();
+        }
     }
 
     private void changePlayer() {

@@ -1,6 +1,7 @@
 package pl.patrycja.ox.gameflow;
 
 import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.InputChecker;
 import pl.patrycja.ox.ui.UI;
@@ -26,6 +27,7 @@ abstract class Mode {
             Match.init(gameSettings.getBoardSize(), ui, spectatorsList)
                     .addPlayers(players, initialPlayer)
                     .start(i);
+            initialPlayer = changeInitialPlayer(players, initialPlayer);
         }
     }
 
@@ -40,15 +42,24 @@ abstract class Mode {
 
     void checkIfCorrectInputData(String[] inputArrayParameters) {
         InputChecker inputChecker = new InputChecker(ui);
-        inputChecker.checkIfInputParametersAreInteger(inputArrayParameters);
-        inputChecker.checkIfUnbrokenLineIsMoreThanBoardSize(inputArrayParameters);
+        inputChecker.checkIfInputParametersAreValid(inputArrayParameters);
+        inputChecker.checkIfUnbrokenLineIsGraterThanBoardSize(inputArrayParameters);
     }
 
     Player askWhichPlayerStarts(List<Player> players) {
         InputChecker inputChecker = new InputChecker(ui);
-        ui.display("Which player should start: O or X ? ");
-        Sign sign = inputChecker.checkSignValidate(ui.read());
+        ui.display("Which player should start: O or X ?");
+        Sign sign = inputChecker.validateSign(ui.read());
         //noinspection OptionalGetWithoutIsPresent player always be there
         return players.stream().filter(player -> player.getSign().equals(sign)).findFirst().get();
+    }
+
+    private Player changeInitialPlayer(List<Player> players, Player initialPlayer) {
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).equals(initialPlayer)) {
+                return players.get((i + 1) % players.size());
+            }
+        }
+        return initialPlayer;
     }
 }

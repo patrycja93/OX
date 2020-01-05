@@ -28,8 +28,8 @@ public class Spectators {
 
     public List<Spectator> create() {
         return new ArrayList<>() {{
-            add(new Judge(gameSettings, ui));
             add(new Assessor(gameSettings, ui));
+            add(new Judge(gameSettings, ui));
         }};
     }
 }

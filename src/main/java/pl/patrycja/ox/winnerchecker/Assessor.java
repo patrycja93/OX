@@ -1,6 +1,7 @@
 package pl.patrycja.ox.winnerchecker;
 
 import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 
@@ -20,8 +21,10 @@ class Assessor implements Spectator {
     }
 
     @Override
-    public void putSignSuccess(int field, Sign sign) {
-        moves.put(field, sign);
+    public void putSignSuccess(int field, Player player) {
+        int reducedFieldNumber = field - 1;
+        moves.put(reducedFieldNumber, player.getSign());
+        ui.display("Player " + player.getName() + "(" + player.getSign() + ") put sign to " + field + ".");
         ui.display(board());
     }
 
@@ -41,9 +44,14 @@ class Assessor implements Spectator {
     }
 
     @Override
-    public void newMatch(int number, Sign sign) {
+    public void newMatch(int number, Player player) {
         moves.clear();
         ui.display(board());
+    }
+
+    @Override
+    public void playerHasChanged(Player player) {
+
     }
 
     private String board() {
