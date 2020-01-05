@@ -21,7 +21,8 @@ public class BoardExecutiveTest {
                 .builder()
                 .build();
 
-        Spectators spectator = new Spectators(gameSettings, new TestUI(), new ScoreBoard());
+        ScoreBoard scoreBoard = new ScoreBoard(getPlayers());
+        Spectators spectator = new Spectators(gameSettings, new TestUI(), scoreBoard);
         spectators = spectator.create();
     }
 
@@ -57,4 +58,7 @@ public class BoardExecutiveTest {
         assertFalse(secondTry);
     }
 
+    private List<Player> getPlayers() {
+        return List.of(new Player("A", Sign.X), new Player("B", Sign.O));
+    }
 }

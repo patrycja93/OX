@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import pl.patrycja.ox.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.testng.Assert.assertFalse;
@@ -122,7 +123,8 @@ public class JudgeTest {
     public void testCheckingHorizontalUnbrokenLineAndReturnTrue(int size, Map<Integer, Player> fields) {
         //given
         GameSettings gameSettings = createGameSettings(size);
-        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard());
+        ScoreBoard scoreBoard = new ScoreBoard(getPlayers());
+        Judge judge = new Judge(gameSettings, new TestUI(), scoreBoard);
 
         //when
         fields.forEach(judge::putSignSuccess);
@@ -138,7 +140,7 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard());
+        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard(getPlayers()));
 
         //when
         fields.forEach(judge::putSignSuccess);
@@ -154,7 +156,7 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard());
+        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard(getPlayers()));
 
         //when
         fields.forEach(judge::putSignSuccess);
@@ -170,7 +172,7 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard());
+        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard(getPlayers()));
 
         //when
         fields.forEach(judge::putSignSuccess);
@@ -188,5 +190,9 @@ public class JudgeTest {
                 .boardSize(size)
                 .ui(new TestUI())
                 .build();
+    }
+
+    private List<Player> getPlayers() {
+        return List.of(new Player("A", Sign.X), new Player("B", Sign.O));
     }
 }
