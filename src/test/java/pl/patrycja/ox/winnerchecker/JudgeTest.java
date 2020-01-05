@@ -18,41 +18,36 @@ public class JudgeTest {
     public Object[][] boardContainHorizontalUnbrokenLine() {
         return new Object[][]{{3,
                 new HashMap<>() {{
-                    put(4, Sign.CROSS);
-                    put(2, Sign.NAUGHT);
-                    put(3, Sign.CROSS);
-                    put(6, Sign.NAUGHT);
-                    put(5, Sign.CROSS);
+                    put(4, Sign.X);
+                    put(2, Sign.O);
+                    put(3, Sign.X);
+                    put(6, Sign.O);
                 }}}, {3,
                 new HashMap<>() {{
-                    put(3, Sign.CROSS);
-                    put(8, Sign.NAUGHT);
-                    put(4, Sign.CROSS);
-                    put(6, Sign.NAUGHT);
-                    put(5, Sign.CROSS);
+                    put(3, Sign.X);
+                    put(8, Sign.O);
+                    put(4, Sign.X);
+                    put(6, Sign.O);
                 }}}, {3,
                 new HashMap<>() {{
-                    put(3, Sign.CROSS);
-                    put(8, Sign.NAUGHT);
-                    put(4, Sign.CROSS);
-                    put(6, Sign.NAUGHT);
-                    put(5, Sign.CROSS);
+                    put(3, Sign.X);
+                    put(8, Sign.O);
+                    put(4, Sign.X);
+                    put(6, Sign.O);
                 }}}, {3,
                 new HashMap<>() {{
-                    put(4, Sign.CROSS);
-                    put(1, Sign.NAUGHT);
-                    put(3, Sign.CROSS);
-                    put(6, Sign.NAUGHT);
-                    put(5, Sign.CROSS);
+                    put(4, Sign.X);
+                    put(1, Sign.O);
+                    put(3, Sign.X);
+                    put(6, Sign.O);
                 }}}, {4,
                 new HashMap<>() {{
-                    put(4, Sign.CROSS);
-                    put(9, Sign.NAUGHT);
-                    put(7, Sign.CROSS);
-                    put(3, Sign.NAUGHT);
-                    put(6, Sign.CROSS);
-                    put(10, Sign.NAUGHT);
-                    put(5, Sign.CROSS);
+                    put(4, Sign.X);
+                    put(9, Sign.O);
+                    put(7, Sign.X);
+                    put(3, Sign.O);
+                    put(6, Sign.X);
+                    put(10, Sign.O);
                 }}}
         };
     }
@@ -61,41 +56,36 @@ public class JudgeTest {
     public Object[][] boardContainVerticalUnbrokenLine() {
         return new Object[][]{{3,
                 new HashMap<>() {{
-                    put(2, Sign.CROSS);
-                    put(7, Sign.NAUGHT);
-                    put(8, Sign.CROSS);
-                    put(1, Sign.NAUGHT);
-                    put(5, Sign.CROSS);
+                    put(2, Sign.X);
+                    put(7, Sign.O);
+                    put(8, Sign.X);
+                    put(1, Sign.O);
                 }}}, {3,
                 new HashMap<>() {{
-                    put(2, Sign.CROSS);
-                    put(4, Sign.NAUGHT);
-                    put(8, Sign.CROSS);
-                    put(6, Sign.NAUGHT);
-                    put(5, Sign.CROSS);
+                    put(2, Sign.X);
+                    put(4, Sign.O);
+                    put(8, Sign.X);
+                    put(6, Sign.O);
                 }}}, {3,
                 new HashMap<>() {{
-                    put(8, Sign.CROSS);
-                    put(7, Sign.NAUGHT);
-                    put(2, Sign.CROSS);
-                    put(4, Sign.NAUGHT);
-                    put(5, Sign.CROSS);
+                    put(8, Sign.X);
+                    put(7, Sign.O);
+                    put(2, Sign.X);
+                    put(4, Sign.O);
                 }}}, {3,
                 new HashMap<>() {{
-                    put(8, Sign.CROSS);
-                    put(1, Sign.NAUGHT);
-                    put(2, Sign.CROSS);
-                    put(6, Sign.NAUGHT);
-                    put(5, Sign.CROSS);
+                    put(8, Sign.X);
+                    put(1, Sign.O);
+                    put(2, Sign.X);
+                    put(6, Sign.O);
                 }}}, {4,
                 new HashMap<>() {{
-                    put(1, Sign.CROSS);
-                    put(8, Sign.NAUGHT);
-                    put(9, Sign.CROSS);
-                    put(15, Sign.NAUGHT);
-                    put(13, Sign.CROSS);
-                    put(7, Sign.NAUGHT);
-                    put(5, Sign.CROSS);
+                    put(1, Sign.X);
+                    put(8, Sign.O);
+                    put(9, Sign.X);
+                    put(15, Sign.O);
+                    put(13, Sign.X);
+                    put(7, Sign.O);
                 }}}
         };
     }
@@ -104,33 +94,28 @@ public class JudgeTest {
     public Object[][] boardNotContainUnbrokenLine() {
         return new Object[][]{{3,
                 new HashMap<>() {{
-                    put(0, Sign.CROSS);
-                    put(4, Sign.NAUGHT);
-                    put(2, Sign.CROSS);
+                    put(0, Sign.X);
+                    put(4, Sign.O);
                 }}}, {3,
                 new HashMap<>() {{
-                    put(3, Sign.CROSS);
-                    put(7, Sign.CROSS);
-                    put(2, Sign.CROSS);
+                    put(3, Sign.X);
+                    put(7, Sign.X);
                 }}}, {3,
                 new HashMap<>() {{
-                    put(0, Sign.CROSS);
-                    put(7, Sign.CROSS);
-                    put(2, Sign.CROSS);
+                    put(0, Sign.X);
+                    put(7, Sign.X);
                 }}}, {3,
                 new HashMap<>() {{
-                    put(0, Sign.NAUGHT);
-                    put(8, Sign.CROSS);
-                    put(2, Sign.NAUGHT);
+                    put(0, Sign.O);
+                    put(8, Sign.X);
                 }}}, {4,
                 new HashMap<>() {{
-                    put(0, Sign.NAUGHT);
-                    put(5, Sign.CROSS);
-                    put(10, Sign.NAUGHT);
-                    put(8, Sign.NAUGHT);
-                    put(7, Sign.CROSS);
-                    put(13, Sign.CROSS);
-                    put(2, Sign.NAUGHT);
+                    put(0, Sign.O);
+                    put(5, Sign.X);
+                    put(10, Sign.O);
+                    put(8, Sign.O);
+                    put(7, Sign.X);
+                    put(13, Sign.X);
                 }}}
         };
     }
@@ -139,12 +124,11 @@ public class JudgeTest {
     public void testCheckingHorizontalUnbrokenLineAndReturnTrue(int size, Map<Integer, Sign> fields) {
         //given
         GameSettings gameSettings = createGameSettings(size);
-
-        Judge judge = new Judge(gameSettings);
-        int lastShot = 5;
+        Judge judge = new Judge(gameSettings, new TestUI());
 
         //when
-        judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
+        fields.forEach(judge::putSignSuccess);
+        judge.putSignSuccess(5, Sign.X);
         boolean existsUnbrokenHorizontalLine = judge.isMatchOver();
 
         //then
@@ -156,11 +140,11 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings);
-        int lastShot = 2;
+        Judge judge = new Judge(gameSettings, new TestUI());
 
         //when
-        judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
+        fields.forEach(judge::putSignSuccess);
+        judge.putSignSuccess(2, Sign.X);
         boolean existsUnbrokenHorizontalLine = judge.isMatchOver();
 
         //then
@@ -172,11 +156,11 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings);
-        int lastShot = 5;
+        Judge judge = new Judge(gameSettings, new TestUI());
 
         //when
-        judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
+        fields.forEach(judge::putSignSuccess);
+        judge.putSignSuccess(5, Sign.X);
         boolean existsUnbrokenVerticalLine = judge.isMatchOver();
 
         //then
@@ -188,11 +172,11 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings);
-        int lastShot = 2;
+        Judge judge = new Judge(gameSettings, new TestUI());
 
         //when
-        judge.lookAtBoard(fields, gameSettings.getBoardSize(), lastShot);
+        fields.forEach(judge::putSignSuccess);
+        judge.putSignSuccess(2, Sign.X);
         boolean existsUnbrokenVerticalLine = judge.isMatchOver();
 
         //then

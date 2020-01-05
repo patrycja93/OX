@@ -10,7 +10,6 @@ import pl.patrycja.ox.ui.UI;
 public class GameSettings {
 
     private static final int DEFAULT_VALUE = 3;
-    private Sign firstPlayer;
     private int unbrokenLine;
     private int numberOfMatches;
     private int boardSize;
@@ -71,24 +70,12 @@ public class GameSettings {
          * Returns object GameSettings
          */
         public GameSettings build() {
-            checkIfUnbrokenLineIsGreaterThanBoardSize();
             GameSettings gameSettings = new GameSettings();
             gameSettings.unbrokenLine = this.unbrokenLine;
             gameSettings.numberOfMatches = this.matchNumber;
             gameSettings.boardSize = this.boardSize;
             gameSettings.ui = this.ui;
             return gameSettings;
-        }
-
-        private void checkIfUnbrokenLineIsGreaterThanBoardSize() {
-            if (unbrokenLine > boardSize) {
-                int maxBoardSize = Math.max(boardSize, unbrokenLine);
-                int minUnbrokenLine = Math.min(boardSize, unbrokenLine);
-                boardSize = maxBoardSize;
-                unbrokenLine = minUnbrokenLine;
-                ui.display("Unbroken number of sign cannot be greater then board size. Values was switched.\n" +
-                        "Board size is " + maxBoardSize + ", unbroken number of sign is " + minUnbrokenLine + ".");
-            }
         }
     }
 
@@ -97,13 +84,6 @@ public class GameSettings {
      */
     public static GameSettingsBuilder builder() {
         return new GameSettingsBuilder();
-    }
-
-    /**
-     * Set player which will be start a game
-     */
-    public void setPlayer() {
-        this.firstPlayer = askWhichPlayerStarts();
     }
 
     /**
@@ -128,25 +108,9 @@ public class GameSettings {
     }
 
     /**
-     * Return player who starts a game
-     */
-    public Sign getFirstPlayer() {
-        return firstPlayer;
-    }
-
-    /**
      * Returns UI
      */
     public UI getUi() {
         return ui;
-    }
-
-    private Sign askWhichPlayerStarts() {
-        ui.display("Which player should start: O or X ? ");
-        String sign = ui.read();
-        while (!sign.equals(Sign.CROSS.sign) && !sign.equals(Sign.NAUGHT.sign)) {
-            sign = ui.read();
-        }
-        return Sign.getSign(sign);
     }
 }

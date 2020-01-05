@@ -20,7 +20,9 @@ class TicTacToe {
 
         ModeFactory modeFactory = new ModeFactory(getLessThanFour(args));
         Mode mode = modeFactory.setMode();
+        mode.checkIfCorrectInputData(args);
         mode.settings(args);
+        mode.createSpectators();
         List<Player> players = mode.createPlayers();
         mode.play(players);
     }

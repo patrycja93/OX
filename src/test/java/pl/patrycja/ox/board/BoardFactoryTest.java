@@ -2,8 +2,9 @@ package pl.patrycja.ox.board;
 
 import org.testng.annotations.Test;
 import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.TestUI;
 import pl.patrycja.ox.winnerchecker.Spectator;
-import pl.patrycja.ox.winnerchecker.SpectatorsRoom;
+import pl.patrycja.ox.winnerchecker.Spectators;
 
 import java.util.List;
 
@@ -15,9 +16,9 @@ public class BoardFactoryTest {
     public void createBoardShouldCreateBoardExecutiveObject() {
         //given
         int size = 10;
-        List<Spectator> spectators;
         GameSettings gameSettings = GameSettings.builder().build();
-        spectators = SpectatorsRoom.addSpectators(gameSettings);
+        Spectators spectator = new Spectators(gameSettings, new TestUI());
+        List<Spectator> spectators = spectator.create();
 
         //when
         Board board = BoardFactory.createBoard(10, spectators);

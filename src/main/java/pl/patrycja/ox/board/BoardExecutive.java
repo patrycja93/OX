@@ -11,7 +11,6 @@ class BoardExecutive implements Board {
 
     private int size;
     private Map<Integer, Sign> fields = new HashMap<>();
-    private int lastShot;
     private List<Spectator> spectators;
 
     BoardExecutive(int size, List<Spectator> spectators) {
@@ -19,7 +18,7 @@ class BoardExecutive implements Board {
         this.spectators = spectators;
     }
 
-    @Override
+/*    @Override
     public String toString() {
         StringBuilder board = new StringBuilder();
         int fullSize = size * size;
@@ -37,20 +36,25 @@ class BoardExecutive implements Board {
             if ((i + 1) % Math.sqrt(fullSize) == 0) board.append("\n");
         }
         return board.toString();
-    }
+    }*/
 
     @Override
-    public boolean putSignToBoard(int fieldNumber, Sign sign) {
-        if (!fields.containsKey(fieldNumber - 1)) {
-            fields.put(fieldNumber - 1, sign);
-            lastShot = fieldNumber - 1;
-            inform(spectators);
-            return true;
-        } else {
+    public boolean putSign(int fieldNumber, Sign sign) {
+        int field = fieldNumber - 1;
+        int maximumFieldNumber = size * size;
+        if (field < 0 || field >= maximumFieldNumber) {
+            informAboutOverstepRange(spectators);
             return false;
+        } else {
+            if (!fields.containsKey(field)) {
+                fields.put(field, sign);
+                informAboutPutSign(spectators, field, sign);
+                return true;
+            } else {
+                informAboutPlaceIsBusy(spectators);
+                return false;
+            }
         }
-        //TODO: add condition fieldNumber is not in range and inform spectators
-        //TODO: success put sign to board or not
     }
 
     @Override
@@ -59,15 +63,30 @@ class BoardExecutive implements Board {
     }
 
     @Override
-    public void inform(List<Spectator> spectators) {
-        spectators.forEach(spectator -> spectator.lookAtBoard(fields, size, lastShot));
+    public void informAboutPutSign(List<Spectator> spectators, int field, Sign sign) {
+        spectators.forEach(spectator -> spectator.putSignSuccess(field, sign));
     }
 
-    private int getFieldNumberLength(Integer i) {
+    @Override
+    public void informAboutOverstepRange(List<Spectator> spectators) {
+        spectators.forEach(Spectator::putSignFailureOverstepRange);
+    }
+
+    @Override
+    public void informAboutPlaceIsBusy(List<Spectator> spectators) {
+        spectators.forEach(Spectator::putSignFailurePlaceIsBusy);
+    }
+
+    @Override
+    public void startMatch(List<Spectator> spectators, int number, Sign sign) {
+        spectators.forEach(spectator -> spectator.newMatch(number, sign));
+    }
+
+/*    private int getFieldNumberLength(Integer i) {
         return String.valueOf(i).length();
     }
 
     private void addSpace(Integer spaceNumber, StringBuilder board) {
         board.append(" ".repeat(Math.max(0, spaceNumber)));
-    }
+    }*/
 }

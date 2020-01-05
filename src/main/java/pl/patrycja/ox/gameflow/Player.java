@@ -5,8 +5,8 @@ import pl.patrycja.ox.Sign;
 import java.util.Objects;
 
 class Player {
-    String name;
-    Sign sign;
+    private String name;
+    private Sign sign;
 
     Player(String name, Sign sign) {
         this.name = name;
@@ -25,5 +25,13 @@ class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name, sign);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Sign getSign() {
+        return sign;
     }
 }
