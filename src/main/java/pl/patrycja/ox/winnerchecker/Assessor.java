@@ -51,7 +51,7 @@ class Assessor implements Spectator {
 
     @Override
     public void playerHasChanged(Player player) {
-
+        //TODO: implements this method
     }
 
     private String board() {
