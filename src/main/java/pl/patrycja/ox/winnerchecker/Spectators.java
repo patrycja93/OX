@@ -1,6 +1,7 @@
 package pl.patrycja.ox.winnerchecker;
 
 import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.ui.UI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +11,25 @@ import java.util.List;
  *
  * @author Patrycja Hyjek
  */
-public class SpectatorsRoom {
+public class Spectators {
 
     /**
      * This method adds and returns a list of spectators
      *
      * @param gameSettings is an object with game's settings.
      */
-    public static List<Spectator> addSpectators(GameSettings gameSettings) {
+    private GameSettings gameSettings;
+    private UI ui;
+
+    public Spectators(GameSettings gameSettings, UI ui) {
+        this.gameSettings = gameSettings;
+        this.ui = ui;
+    }
+
+    public List<Spectator> create() {
         return new ArrayList<>() {{
-            add(new Assessor(gameSettings));
-            add(new Judge(gameSettings));
+            add(new Assessor(gameSettings, ui));
+            add(new Judge(gameSettings, ui));
         }};
     }
 }

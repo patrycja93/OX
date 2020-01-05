@@ -1,5 +1,6 @@
 package pl.patrycja.ox.board;
 
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.winnerchecker.Spectator;
 
@@ -11,7 +12,6 @@ class BoardExecutive implements Board {
 
     private int size;
     private Map<Integer, Sign> fields = new HashMap<>();
-    private int lastShot;
     private List<Spectator> spectators;
 
     BoardExecutive(int size, List<Spectator> spectators) {
@@ -20,37 +20,22 @@ class BoardExecutive implements Board {
     }
 
     @Override
-    public String toString() {
-        StringBuilder board = new StringBuilder();
-        int fullSize = size * size;
-        int maxFieldNumberLength = getFieldNumberLength(fullSize);
-        for (int i = 0; i < fullSize; i++) {
-            if (!fields.containsKey(i)) {
-                addSpace(maxFieldNumberLength - getFieldNumberLength(i + 1), board);
-                int index = i + 1;
-                board.append(index).append(" ");
-            } else {
-                Sign sign = fields.get(i);
-                addSpace(maxFieldNumberLength - 1, board);
-                board.append(sign).append(" ");
-            }
-            if ((i + 1) % Math.sqrt(fullSize) == 0) board.append("\n");
-        }
-        return board.toString();
-    }
-
-    @Override
-    public boolean putSignToBoard(int fieldNumber, Sign sign) {
-        if (!fields.containsKey(fieldNumber - 1)) {
-            fields.put(fieldNumber - 1, sign);
-            lastShot = fieldNumber - 1;
-            inform(spectators);
-            return true;
-        } else {
+    public boolean putSign(int fieldNumber, Player player) {
+        int reducedFieldNumber = fieldNumber - 1;
+        int maximumFieldNumber = size * size;
+        if (fieldNumber < 1 || fieldNumber > maximumFieldNumber) {
+            informAboutOverstepRange(spectators);
             return false;
+        } else {
+            if (!fields.containsKey(reducedFieldNumber)) {
+                fields.put(reducedFieldNumber, player.getSign());
+                informAboutPutSign(spectators, fieldNumber, player);
+                return true;
+            } else {
+                informAboutPlaceIsBusy(spectators);
+                return false;
+            }
         }
-        //TODO: add condition fieldNumber is not in range and inform spectators
-        //TODO: success put sign to board or not
     }
 
     @Override
@@ -59,15 +44,19 @@ class BoardExecutive implements Board {
     }
 
     @Override
-    public void inform(List<Spectator> spectators) {
-        spectators.forEach(spectator -> spectator.lookAtBoard(fields, size, lastShot));
+    public void startMatch(List<Spectator> spectators, int number, Player player) {
+        spectators.forEach(spectator -> spectator.newMatch(number, player));
     }
 
-    private int getFieldNumberLength(Integer i) {
-        return String.valueOf(i).length();
+    private void informAboutPutSign(List<Spectator> spectators, int field, Player player) {
+        spectators.forEach(spectator -> spectator.putSignSuccess(field, player));
     }
 
-    private void addSpace(Integer spaceNumber, StringBuilder board) {
-        board.append(" ".repeat(Math.max(0, spaceNumber)));
+    private void informAboutOverstepRange(List<Spectator> spectators) {
+        spectators.forEach(Spectator::putSignFailureOverstepRange);
+    }
+
+    private void informAboutPlaceIsBusy(List<Spectator> spectators) {
+        spectators.forEach(Spectator::putSignFailurePlaceIsBusy);
     }
 }

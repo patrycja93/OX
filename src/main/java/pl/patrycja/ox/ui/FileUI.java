@@ -31,6 +31,11 @@ class FileUI implements UI {
         return scanner.next();
     }
 
+    @Override
+    public int readNumber() {
+        return scanner.nextInt();
+    }
+
     private void writeToFile(Object input) {
         try {
             bufferedWriter.write(input.toString());

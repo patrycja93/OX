@@ -18,4 +18,6 @@ public interface UI {
      * This method is called whenever read sth
      */
     String read();
+
+    int readNumber();
 }

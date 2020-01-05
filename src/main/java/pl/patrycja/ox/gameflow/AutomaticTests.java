@@ -1,6 +1,7 @@
 package pl.patrycja.ox.gameflow;
 
 import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 
@@ -32,8 +33,8 @@ class AutomaticTests extends Mode {
 
     @Override
     public List<Player> createPlayers() {
-        Player firstPlayer = new Player("Henio", Sign.CROSS);
-        Player secondPlayer = new Player("Olaf", Sign.NAUGHT);
+        Player firstPlayer = new Player("Henio", Sign.X);
+        Player secondPlayer = new Player("Olaf", Sign.O);
         return List.of(firstPlayer, secondPlayer);
     }
 
@@ -45,7 +46,6 @@ class AutomaticTests extends Mode {
     }
 
     private GameSettings setup(String[] inputArrayParameters) {
-        checkIfCorrectInputData(inputArrayParameters);
         return updateValuesInSettings(inputArrayParameters);
     }
 
@@ -65,10 +65,8 @@ class AutomaticTests extends Mode {
     }
 
     private int resolveNumberOfMatches(int boardSize, int unbrokenLine, int towards) {
-        int max = Math.max(boardSize, unbrokenLine);
-        int min = Math.min(boardSize, unbrokenLine);
         int towardsLessThanFour = Math.min(DEFAULT_NUMBER_FOR_TOWARD, towards);
-        return towardsMap.get(towardsLessThanFour).apply(max, min);
+        return towardsMap.get(towardsLessThanFour).apply(boardSize, unbrokenLine);
     }
 
     private int numberOfMatchesDiagonals(int size, int line) {

@@ -1,28 +1,28 @@
 package pl.patrycja.ox;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Enum Sign contains two sign - O and X.
- * */
+ */
 
 public enum Sign {
-    CROSS("X"), NAUGHT("O");
+    X("X"), O("O");
 
     String sign;
 
-    static Map<String, Sign> signMap = new HashMap<>() {{
-        put("O", NAUGHT);
-        put("X", CROSS);
-    }};
-
     /**
      * This method return Sign.
+     *
      * @param s is a key in hashmap
-     * */
-    public static Sign getSign(String s) {
-        return signMap.get(s);
+     */
+    public static Sign getNextSign(Sign s) {
+        Sign next = null;
+        for (int i = 0; i < values().length; i++) {
+            if (values()[i].equals(s)) {
+                next = values()[(i + 1) % values().length];
+                break;
+            }
+        }
+        return next;
     }
 
     Sign(String sign) {

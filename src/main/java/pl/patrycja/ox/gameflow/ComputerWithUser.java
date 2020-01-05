@@ -1,5 +1,6 @@
 package pl.patrycja.ox.gameflow;
 
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.ui.UI;
 
 import java.util.List;

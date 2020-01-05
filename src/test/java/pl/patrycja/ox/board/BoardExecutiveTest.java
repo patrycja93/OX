@@ -3,10 +3,11 @@ package pl.patrycja.ox.board;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.TestUI;
 import pl.patrycja.ox.winnerchecker.Spectator;
-import pl.patrycja.ox.winnerchecker.SpectatorsRoom;
+import pl.patrycja.ox.winnerchecker.Spectators;
 
 import java.util.List;
 
@@ -21,9 +22,10 @@ public class BoardExecutiveTest {
     public void createSpectators() {
         GameSettings gameSettings = GameSettings
                 .builder()
-                .ui(new TestUI())
                 .build();
-        spectators = SpectatorsRoom.addSpectators(gameSettings);
+
+        Spectators spectator = new Spectators(gameSettings, new TestUI());
+        spectators = spectator.create();
     }
 
     @Test
@@ -31,11 +33,11 @@ public class BoardExecutiveTest {
         //given
         int number = 1000;
         int fieldNumber = 4;
-        Sign sign = Sign.CROSS;
+        Player player = new Player("A", Sign.X);
         BoardExecutive boardExecutive = new BoardExecutive(number, spectators);
 
         //when
-        boolean putSignToBoard = boardExecutive.putSignToBoard(fieldNumber, sign);
+        boolean putSignToBoard = boardExecutive.putSign(fieldNumber, player);
 
         //then
         assertTrue(putSignToBoard);
@@ -46,12 +48,12 @@ public class BoardExecutiveTest {
         //given
         int number = 1000;
         int fieldNumber = 4;
-        Sign sign = Sign.CROSS;
+        Player player = new Player("A", Sign.X);
         BoardExecutive boardExecutive = new BoardExecutive(number, spectators);
 
         //when
-        boolean firstTry = boardExecutive.putSignToBoard(fieldNumber, sign);
-        boolean secondTry = boardExecutive.putSignToBoard(fieldNumber, sign);
+        boolean firstTry = boardExecutive.putSign(fieldNumber, player);
+        boolean secondTry = boardExecutive.putSign(fieldNumber, player);
 
         //then
         assertTrue(firstTry);

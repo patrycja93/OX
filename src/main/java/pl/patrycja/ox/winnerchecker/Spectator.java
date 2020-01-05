@@ -1,5 +1,6 @@
 package pl.patrycja.ox.winnerchecker;
 
+import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 
 import java.util.Map;
@@ -14,14 +15,19 @@ public interface Spectator {
     /**
      * This method is called whenever the board state was changed.
      *
-     * @param fields   is a list of fields which contains a sign
-     * @param size     is a size of the board
-     * @param lastShot is a field's number in the board where the last sign was put
      */
-    void lookAtBoard(Map<Integer, Sign> fields, int size, int lastShot);
+    void putSignSuccess(int field, Player player);
+
+    void putSignFailureOverstepRange();
+
+    void putSignFailurePlaceIsBusy();
 
     /**
      * Returns information if match is over.
      */
     boolean isMatchOver();
+
+    void newMatch(int number, Player player);
+
+    void playerHasChanged(Player player);
 }

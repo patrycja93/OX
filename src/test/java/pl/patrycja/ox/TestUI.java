@@ -14,4 +14,9 @@ public class TestUI implements UI {
         //not being used in tests
         return null;
     }
+
+    @Override
+    public int readNumber() {
+        return 0;
+    }
 }

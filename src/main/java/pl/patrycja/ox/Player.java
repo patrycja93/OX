@@ -1,14 +1,12 @@
-package pl.patrycja.ox.gameflow;
-
-import pl.patrycja.ox.Sign;
+package pl.patrycja.ox;
 
 import java.util.Objects;
 
-class Player {
-    String name;
-    Sign sign;
+public class Player {
+    private String name;
+    private Sign sign;
 
-    Player(String name, Sign sign) {
+    public Player(String name, Sign sign) {
         this.name = name;
         this.sign = sign;
     }
@@ -25,5 +23,13 @@ class Player {
     @Override
     public int hashCode() {
         return Objects.hash(name, sign);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Sign getSign() {
+        return sign;
     }
 }
