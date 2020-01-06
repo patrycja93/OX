@@ -1,5 +1,7 @@
 package pl.patrycja.ox.ui;
 
+import pl.patrycja.ox.Sign;
+
 /**
  * A class can implement the UI interface when it
  * wants to has interactions with user interface
@@ -37,4 +39,6 @@ public interface UI {
     int readNumber();
 
     void getLanguage();
+
+    Sign getSign();
 }

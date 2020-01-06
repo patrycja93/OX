@@ -1,7 +1,9 @@
 package pl.patrycja.ox.ui;
 
 import pl.patrycja.ox.Language;
+import pl.patrycja.ox.Sign;
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -16,7 +18,7 @@ class ConsoleUI implements UI {
     public ConsoleUI(String[] args) {
         this.args = args;
         scanner = new Scanner(System.in);
-        inputChecker = new InputChecker(this);
+        inputChecker = new InputChecker();
         checkInputParameters();
     }
 
@@ -62,8 +64,24 @@ class ConsoleUI implements UI {
     @Override
     public void getLanguage() {
         System.out.println("Choose language: en/pl ");
-        Language language = inputChecker.validateLanguageValue(read());
+        String readLanguage = read().toUpperCase();
+
+        while (!inputChecker.validateLanguageValue(readLanguage)){
+            System.out.println("Inappropriate language, please choose pl or en.");
+            readLanguage = read().toUpperCase();
+        }
+
         this.messages = ResourceBundle.getBundle("messages",
-                new Locale(language.name().toLowerCase(), language.getCountryCode()));
+                new Locale(readLanguage, Language.valueOf(readLanguage.toUpperCase()).getCountryCode()));
+    }
+
+    @Override
+    public Sign getSign() {
+        String sign = read();
+        while (!inputChecker.validateSign(sign)){
+            display("inappropriate_sign");
+            sign = read();
+        }
+        return Sign.valueOf(sign);
     }
 }

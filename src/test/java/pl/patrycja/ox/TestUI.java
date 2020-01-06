@@ -16,7 +16,7 @@ public class TestUI implements UI {
 
     @Override
     public void display(String message, Object... args) {
-
+        //empty for tests purposes
     }
 
     @Override
@@ -32,6 +32,11 @@ public class TestUI implements UI {
 
     @Override
     public void getLanguage() {
+        //empty for tests purposes
+    }
 
+    @Override
+    public Sign getSign() {
+        return null;
     }
 }

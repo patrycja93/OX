@@ -4,7 +4,6 @@ import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Player;
 import pl.patrycja.ox.ScoreBoard;
 import pl.patrycja.ox.Sign;
-import pl.patrycja.ox.ui.InputChecker;
 import pl.patrycja.ox.ui.UI;
 import pl.patrycja.ox.winnerchecker.Judge;
 
@@ -41,9 +40,8 @@ abstract class Mode {
     abstract void settings(String[] inputArrayParameters);
 
     Player askWhichPlayerStarts(List<Player> players) {
-        InputChecker inputChecker = new InputChecker(ui);
         ui.display("get_initial_sign");
-        Sign sign = inputChecker.validateSign(ui.read());
+        Sign sign = ui.getSign();
         //noinspection OptionalGetWithoutIsPresent player always be there
         return players.stream().filter(player -> player.getSign().equals(sign)).findFirst().get();
     }

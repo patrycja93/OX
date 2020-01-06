@@ -1,6 +1,7 @@
 package pl.patrycja.ox.ui;
 
 import pl.patrycja.ox.Language;
+import pl.patrycja.ox.Sign;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -78,6 +79,11 @@ class FileUI implements UI {
     public void getLanguage() {
         this.messages = ResourceBundle.getBundle("messages", new Locale(Language.EN.name().toLowerCase(),
                 Language.EN.getCountryCode()));
+    }
+
+    @Override
+    public Sign getSign() {
+        return Sign.valueOf(scanner.next());
     }
 
     private void writeToFile(Object input) {
