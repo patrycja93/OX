@@ -18,10 +18,10 @@ class Game extends Mode {
 
     @Override
     public List<Player> createPlayers() {
-        ui.display("Please enter name for first player.");
+        ui.display("put_first_player_name");
         Player firstPlayer = new Player(ui.read(), Sign.X);
         ui.display(firstPlayer);
-        ui.display("Please enter name for second player.");
+        ui.display("put_second_player_name");
         Player secondPlayer = new Player(ui.read(), Sign.O);
         ui.display(secondPlayer);
         return List.of(firstPlayer, secondPlayer);
@@ -29,6 +29,7 @@ class Game extends Mode {
 
     @Override
     public void settings(String[] inputArrayParameters) {
+        ui.getLanguage();
         gameSettings = setup(inputArrayParameters);
     }
 

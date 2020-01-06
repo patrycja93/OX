@@ -1,5 +1,6 @@
 package pl.patrycja.ox.ui;
 
+import pl.patrycja.ox.Language;
 import pl.patrycja.ox.Sign;
 
 import java.util.Arrays;
@@ -11,23 +12,14 @@ import java.util.Arrays;
  */
 public class InputChecker {
 
-    private UI ui;
-
-    public InputChecker() {
-    }
-
-    public InputChecker(UI ui) {
-        this.ui = ui;
-    }
-
-    public boolean checkIfInputParametersAreValid(String[] parameters) {
+    public boolean checkIfInputParametersAreNotValid(String[] parameters) {
         try {
             for (String p : parameters) {
                 Integer.parseInt(String.valueOf(p));
             }
-            return true;
-        } catch (IllegalArgumentException e) {
             return false;
+        } catch (IllegalArgumentException e) {
+            return true;
         }
     }
 
@@ -57,11 +49,11 @@ public class InputChecker {
         }
     }
 
-    public Sign validateSign(String sign) {
-        while (!Arrays.toString(Sign.values()).contains(sign)) {
-            ui.display("Inappropriate sign, please choose O or X.");
-            sign = ui.read();
-        }
-        return Sign.valueOf(sign);
+    public boolean validateSign(String sign) {
+        return Arrays.toString(Sign.values()).contains(sign);
+    }
+
+    public boolean validateLanguageValue(String language) {
+        return Arrays.toString(Language.values()).contains(language);
     }
 }

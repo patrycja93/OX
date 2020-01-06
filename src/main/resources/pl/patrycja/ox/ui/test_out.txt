@@ -1,53 +1,1217 @@
 Which player should start: O or X ?
-1 2 3 
-4 5 6 
-7 8 9 
+  1   2   3   4   5   6   7   8   9  10 
+ 11  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
 Match number 1
 Henio(X) starts.
-X 2 3 
-4 5 6 
-7 8 9 
+  X   2   3   4   5   6   7   8   9  10 
+ 11  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
 Olaf(O) move.
 
-X O 3 
-4 5 6 
-7 8 9 
+  X   O   3   4   5   6   7   8   9  10 
+ 11  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
 Henio(X) move.
 
-X O 3 
-X 5 6 
-7 8 9 
+  X   O   X   4   5   6   7   8   9  10 
+ 11  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
 Olaf(O) move.
 
-X O 3 
-X O 6 
-7 8 9 
+  X   O   X   O   5   6   7   8   9  10 
+ 11  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
 Henio(X) move.
 
-X O X 
-X O 6 
-7 8 9 
+  X   O   X   O   X   6   7   8   9  10 
+ 11  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
 Olaf(O) move.
 
-X O X 
-X O 6 
-O 8 9 
+  X   O   X   O   X   O   7   8   9  10 
+ 11  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
 Henio(X) move.
 
-X O X 
-X O 6 
-O X 9 
+  X   O   X   O   X   O   X   8   9  10 
+ 11  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
 Olaf(O) move.
 
-X O X 
-X O 6 
-O X O 
+  X   O   X   O   X   O   X   O   9  10 
+ 11  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
 Henio(X) move.
 
-X O X 
-X O X 
-O X O 
-Draw!
-Henio(X):1 Olaf(O):1 
+  X   O   X   O   X   O   X   O   X  10 
+ 11  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+ 11  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X  12  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O  13  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X  14  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O  15  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X  16  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O  17  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X  18  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O  19  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X  20 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 21  22  23  24  25  26  27  28  29  30 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 21  22  23  24  25  26  27  28  29   X 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 21  22  23  24  25  26  27  28   O   X 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 21  22  23  24  25  26  27   X   O   X 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 21  22  23  24  25  26   O   X   O   X 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 21  22  23  24  25   X   O   X   O   X 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 21  22  23  24   O   X   O   X   O   X 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 21  22  23   X   O   X   O   X   O   X 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 21  22   O   X   O   X   O   X   O   X 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 21   X   O   X   O   X   O   X   O   X 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 31  32  33  34  35  36  37  38  39  40 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 31  32  33  34  35  36  37  38  39   X 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 31  32  33  34  35  36  37  38   O   X 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 31  32  33  34  35  36  37   X   O   X 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 31  32  33  34  35  36   O   X   O   X 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 31  32  33  34  35   X   O   X   O   X 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 31  32  33  34   O   X   O   X   O   X 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 31  32  33   X   O   X   O   X   O   X 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 31  32   O   X   O   X   O   X   O   X 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 31   X   O   X   O   X   O   X   O   X 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+ 41  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X  42  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O  43  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X  44  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O  45  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X  46  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O  47  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X  48  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O  49  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X  50 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+ 51  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X  52  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O  53  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X  54  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O  55  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X  56  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O  57  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X  58  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O  59  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X  60 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 61  62  63  64  65  66  67  68  69  70 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 61  62  63  64  65  66  67  68  69   X 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 61  62  63  64  65  66  67  68   O   X 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 61  62  63  64  65  66  67   X   O   X 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 61  62  63  64  65  66   O   X   O   X 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 61  62  63  64  65   X   O   X   O   X 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 61  62  63  64   O   X   O   X   O   X 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 61  62  63   X   O   X   O   X   O   X 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 61  62   O   X   O   X   O   X   O   X 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+ 61   X   O   X   O   X   O   X   O   X 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 71  72  73  74  75  76  77  78  79  80 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 71  72  73  74  75  76  77  78  79   X 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 71  72  73  74  75  76  77  78   O   X 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 71  72  73  74  75  76  77   X   O   X 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 71  72  73  74  75  76   O   X   O   X 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 71  72  73  74  75   X   O   X   O   X 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 71  72  73  74   O   X   O   X   O   X 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 71  72  73   X   O   X   O   X   O   X 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 71  72   O   X   O   X   O   X   O   X 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+ 71   X   O   X   O   X   O   X   O   X 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+ 81  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X  82  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O  83  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X  84  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O  85  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X  86  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O  87  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X  88  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O  89  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X  90 
+ 91  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+ 91  92  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X  92  93  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O  93  94  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X  94  95  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O  95  96  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X  96  97  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O  97  98  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X  98  99 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O  99 100 
+Henio(X) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X 100 
+Olaf(O) move.
+
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+  O   X   O   X   O   X   O   X   O   X 
+  O   X   O   X   O   X   O   X   O   X 
+  X   O   X   O   X   O   X   O   X   O 
+  X   O   X   O   X   O   X   O   X   O 
+Draw
+Henio(X): 1 Olaf(O): 1 
+ 
 The game is over!
-Draw: Henio(X):1 Olaf(O):1 
+Draw
+[Henio(X) 1, Olaf(O) 1]

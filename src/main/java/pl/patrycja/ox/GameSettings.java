@@ -1,7 +1,5 @@
 package pl.patrycja.ox;
 
-import pl.patrycja.ox.ui.UI;
-
 /**
  * Holding all settings for particular game.
  *
@@ -26,6 +24,7 @@ public class GameSettings {
 
         /**
          * Set number of unbrokenLine
+         *
          * @param unbrokenLine is number of unbroken line sf sign
          */
         public GameSettingsBuilder unbrokenLine(int unbrokenLine) {
@@ -35,6 +34,7 @@ public class GameSettings {
 
         /**
          * Set how much matches will be in the game
+         *
          * @param matchesNumber is amount of matches
          */
         public GameSettingsBuilder matchesNumber(int matchesNumber) {
@@ -44,6 +44,7 @@ public class GameSettings {
 
         /**
          * Set how large will be board
+         *
          * @param boardSize is size of the game's board
          */
         public GameSettingsBuilder boardSize(int boardSize) {

@@ -18,7 +18,6 @@ class Sequence {
         this.towards = Integer.parseInt(args[2]);
     }
 
-    //TODO: generate draw sequence!
     void generateSequence() {
         switch (towards) {
             case 0: {

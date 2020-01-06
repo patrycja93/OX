@@ -43,6 +43,7 @@ class AutomaticTests extends Mode {
 
     @Override
     public void settings(String[] inputArrayParameters) {
+        ui.getLanguage();
         gameSettings = setup(inputArrayParameters);
     }
 
