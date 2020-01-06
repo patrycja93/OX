@@ -8,7 +8,11 @@
     <artifactId>ox</artifactId>
     <version>1.0.0</version>
     <name>OX</name>
-    <description>The game is created for two players at the moment. Maybe in the future will be more players. The gamers enter sign - O or X in turns. A player which as the first put demanding number of signs in a row is a winner!</description>
+    <url>https://github.com/patrycja93/OX</url>
+    <description>The game is created for two players at the moment. Maybe in the future will be more players.
+        The gamers enter sign - O or X in turns.
+        A player which as the first put demanding number of signs in a row is a winner!
+    </description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,7 +29,9 @@
         <dependency.testng>7.0.0</dependency.testng>
         <dependency.mockito>3.0.0</dependency.mockito>
         <version.plugin.maven.checkstyle>3.1.0</version.plugin.maven.checkstyle>
-
+        <maven-site-plugin.version>3.8.2</maven-site-plugin.version>
+        <maven-project-info-reports-plugin.version>3.0.0</maven-project-info-reports-plugin.version>
+        <maven-resources-plugin.version>3.1.0</maven-resources-plugin.version>
     </properties>
 
     <dependencies>
@@ -108,7 +114,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
+                <version>${maven-resources-plugin.version}</version>
                 <executions>
                     <execution>
                         <phase>test</phase>
@@ -121,27 +127,15 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>${maven-project-info-reports-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
-                <version>3.8.2</version>
+                <version>${maven-site-plugin.version}</version>
                 <configuration>
                     <locales>pl</locales>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>2.7</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-clean-plugin</artifactId>
-                <version>2.5</version>
-                <configuration>
-                    <filesets>
-                        <fileset>
-                            <directory>src/main/generated-groovy-stubs</directory>
-                        </fileset>
-                    </filesets>
                 </configuration>
             </plugin>
             <plugin>
