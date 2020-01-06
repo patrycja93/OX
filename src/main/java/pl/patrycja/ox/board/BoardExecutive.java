@@ -1,39 +1,39 @@
 package pl.patrycja.ox.board;
 
 import pl.patrycja.ox.Player;
+import pl.patrycja.ox.PutSignStatus;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.winnerchecker.Spectator;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class BoardExecutive implements Board {
+import static pl.patrycja.ox.PutSignStatus.*;
+
+public class BoardExecutive implements Board {
 
     private int size;
     private Map<Integer, Sign> fields = new HashMap<>();
-    private List<Spectator> spectators;
+    private List<Spectator> spectators = new ArrayList<>();
 
-    BoardExecutive(int size, List<Spectator> spectators) {
+    public BoardExecutive(int size) {
         this.size = size;
-        this.spectators = spectators;
     }
 
     @Override
-    public boolean putSign(int fieldNumber, Player player) {
+    public PutSignStatus putSign(int fieldNumber, Player player) {
         int reducedFieldNumber = fieldNumber - 1;
         int maximumFieldNumber = size * size;
         if (fieldNumber < 1 || fieldNumber > maximumFieldNumber) {
-            informAboutOverstepRange();
-            return false;
+            return FAILURE_RANGE_OVER;
         } else {
             if (!fields.containsKey(reducedFieldNumber)) {
                 fields.put(reducedFieldNumber, player.getSign());
-                informAboutPutSign(fieldNumber, player);
-                return true;
+                return SUCCESS;
             } else {
-                informAboutPlaceIsBusy();
-                return false;
+                return FAILURE_PLACE_OCCUPIED;
             }
         }
     }
@@ -44,19 +44,40 @@ class BoardExecutive implements Board {
     }
 
     @Override
-    public void startMatch(int number, Player player) {
-        spectators.forEach(spectator -> spectator.newMatch(number, player));
+    public void notifySpectators(int field, Player player) {
+        spectators.forEach(spectator -> spectator.signWasPut(field, player));
     }
 
-    private void informAboutPutSign(int field, Player player) {
-        spectators.forEach(spectator -> spectator.putSignSuccess(field, player));
+    @Override
+    public void subscribe(Spectator spectator) {
+        spectators.add(spectator);
     }
 
-    private void informAboutOverstepRange() {
-        spectators.forEach(Spectator::putSignFailureOverstepRange);
+    @Override
+    public String toString() {
+        StringBuilder board = new StringBuilder("\n");
+        int fullSize = size * size;
+        int maxFieldNumberLength = getFieldNumberLength(fullSize);
+        for (int i = 0; i < fullSize; i++) {
+            if (!fields.containsKey(i)) {
+                addSpace(maxFieldNumberLength - getFieldNumberLength(i + 1), board);
+                int index = i + 1;
+                board.append(index).append(" ");
+            } else {
+                Sign sign = fields.get(i);
+                addSpace(maxFieldNumberLength - 1, board);
+                board.append(sign).append(" ");
+            }
+            if ((i + 1) % Math.sqrt(fullSize) == 0) board.append("\n");
+        }
+        return board.toString();
     }
 
-    private void informAboutPlaceIsBusy() {
-        spectators.forEach(Spectator::putSignFailurePlaceIsBusy);
+    private int getFieldNumberLength(Integer i) {
+        return String.valueOf(i).length();
+    }
+
+    private void addSpace(Integer spaceNumber, StringBuilder board) {
+        board.append(" ".repeat(Math.max(0, spaceNumber)));
     }
 }

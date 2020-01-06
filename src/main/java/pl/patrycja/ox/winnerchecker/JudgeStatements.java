@@ -2,6 +2,7 @@ package pl.patrycja.ox.winnerchecker;
 
 import pl.patrycja.ox.Player;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +13,7 @@ public class JudgeStatements {
         final int maxAmountOfPoints = getMaxAmountOfPoints(players);
 
         List<Player> winners = checkWinners(players, maxAmountOfPoints);
-        List<Player> losers = checkLosers(players, maxAmountOfPoints);
+        List<Player> losers = winners.size() != players.size() ? checkLosers(players, maxAmountOfPoints) : new ArrayList<>();
 
         return buildStatement(players, winners, losers);
     }

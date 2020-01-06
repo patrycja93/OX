@@ -1,32 +1,34 @@
 package pl.patrycja.ox.gameflow;
 
 import pl.patrycja.ox.Player;
+import pl.patrycja.ox.PutSignStatus;
 import pl.patrycja.ox.board.Board;
-import pl.patrycja.ox.board.BoardFactory;
+import pl.patrycja.ox.board.BoardExecutive;
 import pl.patrycja.ox.ui.UI;
-import pl.patrycja.ox.winnerchecker.Spectator;
+import pl.patrycja.ox.winnerchecker.Judge;
 
 import java.util.List;
 
 class Match {
 
     private Board board;
-    private List<Spectator> spectators;
+    private Judge judge;
     private UI ui;
     private List<Player> players;
     private Player activePlayer;
     private boolean endMatch;
 
-    private Match(Board board, List<Spectator> spectators, UI ui) {
+    private Match(Board board, Judge judge, UI ui) {
         this.board = board;
-        this.spectators = spectators;
+        this.judge = judge;
         this.endMatch = false;
         this.ui = ui;
     }
 
-    static Match init(int size, UI ui, List<Spectator> spectators) {
-        Board board = BoardFactory.createBoard(size, spectators);
-        return new Match(board, spectators, ui);
+    static Match init(int size, UI ui, Judge judge) {
+        Board board = new BoardExecutive(size);
+        board.subscribe(judge);
+        return new Match(board, judge, ui);
     }
 
     public Match addPlayers(List<Player> players, Player activePlayer) {
@@ -37,7 +39,8 @@ class Match {
 
     void start(int numberOfMatch) {
         //TODO: ask about language
-        board.startMatch(numberOfMatch, activePlayer);
+        ui.displayBoard(board);
+        judge.newMatch(numberOfMatch, activePlayer);
         while (!endMatch) {
             nextTurn();
         }
@@ -45,25 +48,21 @@ class Match {
     }
 
     private void nextTurn() {
-        getFieldNumber();
-        checkIfMatchIsFinished(spectators);
+        putSign();
+        endMatch = judge.isMatchOver();
         changePlayer();
-        move(activePlayer);
+        judge.playerHasChanged(activePlayer);
     }
 
-    private void move(Player activePlayer) {
-        spectators.forEach(spectator -> spectator.playerHasChanged(activePlayer));
-    }
-
-    public void checkIfMatchIsFinished(List<Spectator> spectators) {
-       endMatch = spectators.stream().anyMatch(Spectator::isMatchOver);
-    }
-
-    private void getFieldNumber() {
+    private void putSign() {
         int field = ui.readNumber();
-        while (!board.putSign(field, activePlayer)) {
+        while (board.putSign(field, activePlayer) != PutSignStatus.SUCCESS) {
+            PutSignStatus putSignStatus = board.putSign(field, activePlayer);
+            ui.display(putSignStatus.getMessage());
             field = ui.readNumber();
         }
+        ui.displayBoard(board);
+        board.notifySpectators(field, activePlayer);
     }
 
     private void changePlayer() {

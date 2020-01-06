@@ -6,15 +6,16 @@ public class ScoreBoard {
 
     private List<Player> playerList;
     private static final int POINTS_FOR_DRAW = 1;
+    private static final int POINTS_FOR_WIN = 3;
 
     public ScoreBoard(List<Player> playerList) {
         this.playerList = playerList;
     }
 
-    public void addWinnerPoints(Player player, int howMuch) {
+    public void addWinnerPoints(Player player) {
         playerList.forEach(p -> {
             if (p.equals(player)) {
-                p.addPoints(howMuch);
+                p.addPoints(POINTS_FOR_WIN);
             }
         });
     }

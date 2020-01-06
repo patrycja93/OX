@@ -10,11 +10,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class Judge implements Spectator {
+public class Judge implements Spectator {
 
-    private static final int POINTS_FOR_WIN = 3;
     private final JudgeStatements judgeStatements = new JudgeStatements();
-
     private GameSettings gameSettings;
     private UI ui;
     private ScoreBoard scoreBoard;
@@ -22,7 +20,7 @@ class Judge implements Spectator {
     private boolean isMatchOver;
     private Map<Integer, Sign> moves = new HashMap<>();
 
-    Judge(GameSettings gameSettings, UI ui, ScoreBoard scoreBoard) {
+    public Judge(GameSettings gameSettings, UI ui, ScoreBoard scoreBoard) {
         this.ui = ui;
         this.gameSettings = gameSettings;
         this.scoreBoard = scoreBoard;
@@ -30,7 +28,7 @@ class Judge implements Spectator {
     }
 
     @Override
-    public void putSignSuccess(int field, Player player) {
+    public void signWasPut(int field, Player player) {
         int reducedFieldNumber = field - 1;
         moves.put(reducedFieldNumber, player.getSign());
 
@@ -41,37 +39,22 @@ class Judge implements Spectator {
         }
     }
 
-    @Override
-    public void putSignFailureOverstepRange() {
-        int boardSize = gameSettings.getBoardSize();
-        ui.display("Number is over range. Please select number between 1 to " + boardSize * boardSize + ".\n");
-    }
-
-    @Override
-    public void putSignFailurePlaceIsBusy() {
-        ui.display("This place is already occupied. Try again.\n");
-    }
-
-    @Override
     public boolean isMatchOver() {
         return isMatchOver;
     }
 
-    @Override
     public void newMatch(int number, Player player) {
-        ui.display("Match number " + number + "\n" + "Player's " + player + " starts.\n");
+        ui.display("Match number " + number + "\n" + player + " starts.\n");
         moves.clear();
         isMatchOver = false;
     }
 
-    @Override
     public void playerHasChanged(Player player) {
         if (!isMatchOver) {
-            ui.display("Player's " + player + " move.\n");
+            ui.display(player + " move.\n");
         }
     }
 
-    @Override
     public void gameOver(List<Player> players) {
         ui.display(judgeStatements.showGameSummary(players));
     }
@@ -91,14 +74,14 @@ class Judge implements Spectator {
     }
 
     private void state(Player player) {
-        scoreBoard.addWinnerPoints(player, POINTS_FOR_WIN);
+        scoreBoard.addWinnerPoints(player);
         showResult("Winner is " + player + ".\n");
     }
 
     private void showResult(String message) {
         List<Player> scores = scoreBoard.getResults();
         ui.display(message);
-        scores.forEach(player -> ui.display("Player " + player + ": " + player.getPoints()));
+        scores.forEach(player -> ui.display(player + ":" + player.getPoints() + " "));
         isMatchOver = true;
     }
 

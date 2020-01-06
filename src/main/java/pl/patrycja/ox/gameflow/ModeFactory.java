@@ -9,6 +9,8 @@ import java.util.function.Function;
 class ModeFactory {
 
     private int inputParametersSize;
+    private String[] args;
+
     private static final int ZER0_PARAMETERS = 0;
     private static final int ONE_PARAMETERS = 1;
     private static final int TWO_PARAMETERS = 2;
@@ -25,8 +27,9 @@ class ModeFactory {
             THREE_PARAMETERS, automaticTests
     );
 
-    ModeFactory(int inputParametersSize) {
+    ModeFactory(int inputParametersSize, String[] args) {
         this.inputParametersSize = inputParametersSize;
+        this.args = args;
     }
 
     Mode setMode() {
@@ -35,6 +38,6 @@ class ModeFactory {
 
     private UI getUi(int amountOfParameters) {
         UIFactory uiFactory = new UIFactory();
-        return uiFactory.getUIForMode(amountOfParameters);
+        return uiFactory.getUIForMode(amountOfParameters, args);
     }
 }

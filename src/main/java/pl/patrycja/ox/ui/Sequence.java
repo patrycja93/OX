@@ -1,27 +1,25 @@
-package pl.patrycja.ox.gameflow;
-
-import pl.patrycja.ox.GameSettings;
+package pl.patrycja.ox.ui;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Sequence {
+class Sequence {
 
     private String fileSequence = "src/main/resources/pl/patrycja/ox/ui/test_sequence.txt";
     private int size;
     private int unbrokenLine;
     private int towards;
 
-    public Sequence(GameSettings gameSettings, String towards) {
-        this.size = gameSettings.getBoardSize();
-        this.unbrokenLine = gameSettings.getUnbrokenLine();
-        this.towards = Integer.parseInt(towards);
+    Sequence(String[] args) {
+        this.size = Math.max(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+        this.unbrokenLine = Math.min(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+        this.towards = Integer.parseInt(args[2]);
     }
 
-    //TODO: generate draw sequence!!
-    public void generateSequence() {
+    //TODO: generate draw sequence!
+    void generateSequence() {
         switch (towards) {
             case 0: {
                 generateHorizontalSequence(size, unbrokenLine);

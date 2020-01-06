@@ -10,12 +10,31 @@ class FileUI implements UI {
 
     private Scanner scanner;
     private BufferedWriter bufferedWriter;
+    private String[] args;
+    private InputChecker inputChecker = new InputChecker();
 
-    public FileUI() {
+    public FileUI(String[] args) {
+        this.args = args;
+        validateInputParameters();
+        generateSequenceForAutomaticTests();
+        setScannerAndWriter();
+    }
+
+    private void validateInputParameters() {
+        if (!inputChecker.checkIfInputParametersAreValid(args)) {
+            displayError("Entered wrong arguments. Please run the game again with correct integer numbers.");
+        }
+    }
+
+    private void generateSequenceForAutomaticTests() {
+        Sequence sequence = new Sequence(args);
+        sequence.generateSequence();
+    }
+
+    private void setScannerAndWriter() {
         try {
-            this.scanner = new Scanner(new File("src/main/resources/pl/patrycja/ox/ui/test_sequence.txt"));
-            this.bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/pl/patrycja/ox/ui/test_out.txt"));
-            this.scanner.useDelimiter(" ");
+            scanner = new Scanner(new File("src/main/resources/pl/patrycja/ox/ui/test_sequence.txt"));
+            bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/pl/patrycja/ox/ui/test_out.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -27,19 +46,24 @@ class FileUI implements UI {
     }
 
     @Override
+    public void displayBoard(Object board) {
+        writeToFile(board);
+    }
+
+    @Override
     public String read() {
         return scanner.next();
     }
 
     @Override
     public int readNumber() {
-        return scanner.nextInt();
+        String next = scanner.next();
+        return Integer.parseInt(next);
     }
 
     private void writeToFile(Object input) {
         try {
             bufferedWriter.write(input.toString());
-            bufferedWriter.append("\n");
             bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();

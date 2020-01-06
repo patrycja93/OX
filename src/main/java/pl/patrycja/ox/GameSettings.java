@@ -13,12 +13,11 @@ public class GameSettings {
     private int unbrokenLine;
     private int numberOfMatches;
     private int boardSize;
-    private UI ui;
 
     /**
      * Creates and return object GameSettings consist of
-     * unbrokenLine, matchNumber, boardSize and ui.
-     * All variables has default values.
+     * unbrokenLine, matchNumber and boardSize.
+     * All variables have default values.
      */
     public static final class GameSettingsBuilder {
         private int unbrokenLine = DEFAULT_VALUE;
@@ -28,7 +27,6 @@ public class GameSettings {
 
         /**
          * Set number of unbrokenLine
-         *
          * @param unbrokenLine is number of unbroken line sf sign
          */
         public GameSettingsBuilder unbrokenLine(int unbrokenLine) {
@@ -38,7 +36,6 @@ public class GameSettings {
 
         /**
          * Set how much matches will be in the game
-         *
          * @param matchesNumber is amount of matches
          */
         public GameSettingsBuilder matchesNumber(int matchesNumber) {
@@ -48,21 +45,10 @@ public class GameSettings {
 
         /**
          * Set how large will be board
-         *
          * @param boardSize is size of the game's board
          */
         public GameSettingsBuilder boardSize(int boardSize) {
             this.boardSize = Math.max(boardSize, DEFAULT_VALUE);
-            return this;
-        }
-
-        /**
-         * Set kind of UI
-         *
-         * @param ui say from where get the input data and where to display messages
-         */
-        public GameSettingsBuilder ui(UI ui) {
-            this.ui = ui;
             return this;
         }
 
@@ -74,7 +60,6 @@ public class GameSettings {
             gameSettings.unbrokenLine = this.unbrokenLine;
             gameSettings.numberOfMatches = this.matchNumber;
             gameSettings.boardSize = this.boardSize;
-            gameSettings.ui = this.ui;
             return gameSettings;
         }
     }
@@ -94,7 +79,7 @@ public class GameSettings {
     }
 
     /**
-     * Return match number
+     * Return number of match
      */
     public int getNumberOfMatches() {
         return numberOfMatches;
@@ -105,12 +90,5 @@ public class GameSettings {
      */
     public int getBoardSize() {
         return boardSize;
-    }
-
-    /**
-     * Returns UI
-     */
-    public UI getUi() {
-        return ui;
     }
 }

@@ -20,12 +20,10 @@ class TicTacToe {
      */
     public static void main(String[] args) {
 
-        ModeFactory modeFactory = new ModeFactory(getLessThanFour(args));
+        ModeFactory modeFactory = new ModeFactory(getLessThanFour(args), args);
         Mode mode = modeFactory.setMode();
-        mode.checkIfCorrectInputData(args);
         mode.settings(args);
         List<Player> players = mode.createPlayers();
-        mode.createSpectators(players);
         mode.play(players);
     }
 
