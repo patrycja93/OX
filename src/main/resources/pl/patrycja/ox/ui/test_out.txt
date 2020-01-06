@@ -47,7 +47,9 @@ Henio(X) move.
 X O X 
 X O X 
 O X O 
-Draw!
-Henio(X):1 Olaf(O):1 
+Draw
+Henio(X): 1 Olaf(O): 1 
+ 
 The game is over!
-Draw: Henio(X):1 Olaf(O):1 
+Draw
+[Henio(X) 1, Olaf(O) 1]

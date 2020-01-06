@@ -38,7 +38,6 @@ class Match {
     }
 
     void start(int numberOfMatch) {
-        //TODO: ask about language
         ui.display(board);
         judge.newMatch(numberOfMatch, activePlayer);
         while (!endMatch) {
@@ -58,7 +57,7 @@ class Match {
         int field = ui.readNumber();
         while (board.putSign(field, activePlayer) != PutSignStatus.SUCCESS) {
             PutSignStatus putSignStatus = board.putSign(field, activePlayer);
-            ui.display(putSignStatus.getMessage());
+            ui.display(putSignStatus.name());
             field = ui.readNumber();
         }
         ui.display(board);

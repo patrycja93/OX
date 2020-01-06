@@ -9,6 +9,8 @@ import pl.patrycja.ox.ui.UI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 public class Judge implements Spectator {
 
@@ -44,19 +46,34 @@ public class Judge implements Spectator {
     }
 
     public void newMatch(int number, Player player) {
-        ui.display("Match number " + number + "\n" + player + " starts.");
+        ui.display("match_number", number, player);
         moves.clear();
         isMatchOver = false;
     }
 
     public void playerHasChanged(Player player) {
         if (!isMatchOver) {
-            ui.display(player + " move.\n");
+            ui.display("player_move", player);
         }
     }
 
     public void gameOver(List<Player> players) {
-        ui.display(judgeStatements.showGameSummary(players));
+        ui.display("game_over");
+        Statement winners = judgeStatements.checkWinners(players);
+        boolean isDraw = winners.getArguments().size() == players.size();
+
+        Function<List<Player>, List<String>> score = p -> p.stream()
+                .map(player -> player + " " + player.getPoints())
+                .collect(Collectors.toList());
+
+        if (isDraw) {
+            Statement draw = new Statement("end_draw", players);
+            ui.display(draw.getMessage(), score.apply(draw.getArguments()));
+        } else {
+            Statement losers = judgeStatements.checkLosers(players);
+            ui.display(winners.getMessage(), score.apply(winners.getArguments()));
+            ui.display(losers.getMessage(), score.apply(losers.getArguments()));
+        }
     }
 
     private boolean isWinner(Map<Integer, Sign> fields, int lastShot) {
@@ -70,18 +87,18 @@ public class Judge implements Spectator {
 
     private void state() {
         scoreBoard.addDrawPoints();
-        showResult("Draw!\n");
+        showResult("draw");
     }
 
     private void state(Player player) {
         scoreBoard.addWinnerPoints(player);
-        showResult("Winner is " + player + ".\n");
+        showResult("winner_is", player);
     }
 
-    private void showResult(String message) {
+    private void showResult(String message, Object... args) {
         List<Player> scores = scoreBoard.getResults();
-        ui.display(message);
-        scores.forEach(player -> ui.display(player + ":" + player.getPoints() + " "));
+        ui.display(message, args);
+        scores.forEach(player -> ui.display("score", player, player.getPoints()));
         isMatchOver = true;
     }
 

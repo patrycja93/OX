@@ -42,7 +42,7 @@ abstract class Mode {
 
     Player askWhichPlayerStarts(List<Player> players) {
         InputChecker inputChecker = new InputChecker(ui);
-        ui.display("Which player should start: O or X ?");
+        ui.display("get_initial_sign");
         Sign sign = inputChecker.validateSign(ui.read());
         //noinspection OptionalGetWithoutIsPresent player always be there
         return players.stream().filter(player -> player.getSign().equals(sign)).findFirst().get();

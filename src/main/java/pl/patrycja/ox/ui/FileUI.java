@@ -1,9 +1,13 @@
 package pl.patrycja.ox.ui;
 
+import pl.patrycja.ox.Language;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 class FileUI implements UI {
@@ -12,6 +16,7 @@ class FileUI implements UI {
     private BufferedWriter bufferedWriter;
     private String[] args;
     private InputChecker inputChecker = new InputChecker();
+    private ResourceBundle messages;
 
     public FileUI(String[] args) {
         this.args = args;
@@ -21,7 +26,7 @@ class FileUI implements UI {
     }
 
     private void validateInputParameters() {
-        if (!inputChecker.checkIfInputParametersAreValid(args)) {
+        if (inputChecker.checkIfInputParametersAreNotValid(args)) {
             displayError("Entered wrong arguments. Please run the game again with correct integer numbers.");
         }
         if (inputChecker.checkIfUnbrokenLineIsGraterThanBoardSize(args)) {
@@ -44,8 +49,18 @@ class FileUI implements UI {
     }
 
     @Override
+    public void display(String input) {
+        writeToFile(messages.getString(input));
+    }
+
+    @Override
     public void display(Object input) {
         writeToFile(input);
+    }
+
+    @Override
+    public void display(String message, Object... args) {
+        writeToFile(String.format(messages.getString(message), args));
     }
 
     @Override
@@ -57,6 +72,12 @@ class FileUI implements UI {
     public int readNumber() {
         String next = scanner.next();
         return Integer.parseInt(next);
+    }
+
+    @Override
+    public void getLanguage() {
+        this.messages = ResourceBundle.getBundle("messages", new Locale(Language.EN.name().toLowerCase(),
+                Language.EN.getCountryCode()));
     }
 
     private void writeToFile(Object input) {
