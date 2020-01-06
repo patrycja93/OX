@@ -1,6 +1,7 @@
 package pl.patrycja.ox.gameflow;
 
 import pl.patrycja.ox.Player;
+import pl.patrycja.ox.ui.UIFactory;
 
 import java.util.List;
 
@@ -11,8 +12,6 @@ import java.util.List;
  */
 class TicTacToe {
 
-    private static final int MAXIMUM_AMOUNT_OF_PARAMETERS = 3;
-
     /**
      * This method is called whenever we start a new game.
      *
@@ -20,16 +19,10 @@ class TicTacToe {
      */
     public static void main(String[] args) {
 
-        ModeFactory modeFactory = new ModeFactory(getLessThanFour(args));
+        ModeFactory modeFactory = new ModeFactory(args);
         Mode mode = modeFactory.setMode();
-        mode.checkIfCorrectInputData(args);
         mode.settings(args);
-        mode.createSpectators();
         List<Player> players = mode.createPlayers();
         mode.play(players);
-    }
-
-    private static int getLessThanFour(String[] args) {
-        return Math.min(args.length, MAXIMUM_AMOUNT_OF_PARAMETERS);
     }
 }

@@ -20,27 +20,32 @@ public class InputChecker {
         this.ui = ui;
     }
 
-    public void checkIfInputParametersAreValid(String[] parameters) {
+    public boolean checkIfInputParametersAreValid(String[] parameters) {
         try {
             for (String p : parameters) {
                 Integer.parseInt(String.valueOf(p));
             }
+            return true;
         } catch (IllegalArgumentException e) {
-            ui.display("Entered wrong arguments. Please run the game again with correct integer numbers.");
-            System.exit(0);
+            return false;
         }
     }
 
-    public void checkIfUnbrokenLineIsGraterThanBoardSize(String[] parameters) {
-        if (parameters.length > 1 && (Integer.parseInt(parameters[0]) < Integer.parseInt(parameters[1]))) {
+    public boolean checkIfUnbrokenLineIsGraterThanBoardSize(String[] parameters) {
+        if (parameters.length > 1) {
             int defaultValue = 3;
             String boardSize = String.valueOf(Math.max(Integer.parseInt(parameters[0]), defaultValue));
             String unbrokenLine = String.valueOf(Math.max(Integer.parseInt(parameters[1]), defaultValue));
-            parameters[0] = unbrokenLine;
-            parameters[1] = boardSize;
-            ui.display("Unbroken number of sign cannot be greater then board size and less than 3. Values was changed.\n" +
-                    "Board size is " + unbrokenLine + ", unbroken number of sign is " + boardSize + ".");
+            parameters[0] = boardSize;
+            parameters[1] = unbrokenLine;
+
+            if ((Integer.parseInt(parameters[0]) < Integer.parseInt(parameters[1]))) {
+                parameters[0] = unbrokenLine;
+                parameters[1] = boardSize;
+                return true;
+            }
         }
+        return false;
     }
 
     public boolean checkIfInteger(String number) {

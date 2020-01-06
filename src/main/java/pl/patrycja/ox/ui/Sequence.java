@@ -1,27 +1,25 @@
-package pl.patrycja.ox.gameflow;
-
-import pl.patrycja.ox.GameSettings;
+package pl.patrycja.ox.ui;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Sequence {
+class Sequence {
 
     private String fileSequence = "src/main/resources/pl/patrycja/ox/ui/test_sequence.txt";
     private int size;
     private int unbrokenLine;
     private int towards;
 
-    public Sequence(GameSettings gameSettings, String towards) {
-        this.size = gameSettings.getBoardSize();
-        this.unbrokenLine = gameSettings.getUnbrokenLine();
-        this.towards = Integer.parseInt(towards);
+    Sequence(String[] args) {
+        this.size = Integer.parseInt(args[0]);
+        this.unbrokenLine = Integer.parseInt(args[1]);
+        this.towards = Integer.parseInt(args[2]);
     }
 
-    //TODO: generate draw sequence!!
-    public void generateSequence() {
+    //TODO: generate draw sequence!
+    void generateSequence() {
         switch (towards) {
             case 0: {
                 generateHorizontalSequence(size, unbrokenLine);
@@ -89,22 +87,26 @@ public class Sequence {
     private void generateDiagonalUp(int size, int unbrokenLine) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("X ");
-        for (int i = unbrokenLine - 1; i <= ((size - unbrokenLine) + 1) * size; i++) {
-            int column = i % size;
-            if (column < unbrokenLine - 1) {
-                continue;
-            }
-            for (int j = 0; j < unbrokenLine; j++) {
-                int k = i + (j * (size - 1));
-                stringBuilder.append(k + 1).append(" ");
-                if (j != unbrokenLine - 1) {
-                    if ((k % size) == size - 1) {
-                        stringBuilder.append(k).append(" ");
-                    } else {
-                        stringBuilder.append(k + 1 + 1).append(" ");
+        int run = size == unbrokenLine ? 3 : 1;
+        while (run > 0) {
+            for (int i = unbrokenLine - 1; i <= ((size - unbrokenLine) + 1) * size; i++) {
+                int column = i % size;
+                if (column < unbrokenLine - 1) {
+                    continue;
+                }
+                for (int j = 0; j < unbrokenLine; j++) {
+                    int k = i + (j * (size - 1));
+                    stringBuilder.append(k + 1).append(" ");
+                    if (j != unbrokenLine - 1) {
+                        if ((k % size) == size - 1) {
+                            stringBuilder.append(k).append(" ");
+                        } else {
+                            stringBuilder.append(k + 1 + 1).append(" ");
+                        }
                     }
                 }
             }
+            run--;
         }
         writeToFile(stringBuilder, fileSequence);
     }
@@ -112,22 +114,26 @@ public class Sequence {
     private void generateDiagonalDown(int size, int unbrokenLine) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("X ");
-        for (int i = 0; i <= (((size - unbrokenLine) + 1) * size) - unbrokenLine; i++) {
-            int column = i % size;
-            if (column > size - unbrokenLine) {
-                continue;
-            }
-            for (int j = 0; j < unbrokenLine; j++) {
-                int k = i + (j * (size + 1));
-                stringBuilder.append(k + 1).append(" ");
-                if (j != unbrokenLine - 1) {
-                    if ((k % size) == size - 1) {
-                        stringBuilder.append(k).append(" ");
-                    } else {
-                        stringBuilder.append(k + 1 + 1).append(" ");
+        int run = size == unbrokenLine ? 3 : 1;
+        while (run > 0) {
+            for (int i = 0; i <= (((size - unbrokenLine) + 1) * size) - unbrokenLine; i++) {
+                int column = i % size;
+                if (column > size - unbrokenLine) {
+                    continue;
+                }
+                for (int j = 0; j < unbrokenLine; j++) {
+                    int k = i + (j * (size + 1));
+                    stringBuilder.append(k + 1).append(" ");
+                    if (j != unbrokenLine - 1) {
+                        if ((k % size) == size - 1) {
+                            stringBuilder.append(k).append(" ");
+                        } else {
+                            stringBuilder.append(k + 1 + 1).append(" ");
+                        }
                     }
                 }
             }
+            run--;
         }
         writeToFile(stringBuilder, fileSequence);
     }
@@ -136,8 +142,7 @@ public class Sequence {
         File file = new File(pathToFile);
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-            bufferedWriter.write(input.toString());
-            bufferedWriter.append("\n");
+            bufferedWriter.write(input.toString().trim());
             bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();

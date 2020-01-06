@@ -20,10 +20,10 @@ class Game extends Mode {
     public List<Player> createPlayers() {
         ui.display("Please enter name for first player.");
         Player firstPlayer = new Player(ui.read(), Sign.X);
-        ui.display(firstPlayer.getName() + "(" + firstPlayer.getSign() + ").");
+        ui.display(firstPlayer);
         ui.display("Please enter name for second player.");
         Player secondPlayer = new Player(ui.read(), Sign.O);
-        ui.display(secondPlayer.getName() + "(" + secondPlayer.getSign() + ").");
+        ui.display(secondPlayer);
         return List.of(firstPlayer, secondPlayer);
     }
 
@@ -46,7 +46,6 @@ class Game extends Mode {
         return GameSettings.builder()
                 .boardSize(boardSize)
                 .unbrokenLine(unbrokenLine)
-                .ui(ui)
                 .build();
     }
 }

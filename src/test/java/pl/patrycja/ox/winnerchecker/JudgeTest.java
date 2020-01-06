@@ -2,12 +2,10 @@ package pl.patrycja.ox.winnerchecker;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import pl.patrycja.ox.GameSettings;
-import pl.patrycja.ox.Player;
-import pl.patrycja.ox.Sign;
-import pl.patrycja.ox.TestUI;
+import pl.patrycja.ox.*;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.testng.Assert.assertFalse;
@@ -125,11 +123,12 @@ public class JudgeTest {
     public void testCheckingHorizontalUnbrokenLineAndReturnTrue(int size, Map<Integer, Player> fields) {
         //given
         GameSettings gameSettings = createGameSettings(size);
-        Judge judge = new Judge(gameSettings, new TestUI());
+        ScoreBoard scoreBoard = new ScoreBoard(getPlayers());
+        Judge judge = new Judge(gameSettings, new TestUI(), scoreBoard);
 
         //when
-        fields.forEach(judge::putSignSuccess);
-        judge.putSignSuccess(6, new Player("A", Sign.X));
+        fields.forEach(judge::signWasPut);
+        judge.signWasPut(6, new Player("A", Sign.X));
         boolean existsUnbrokenHorizontalLine = judge.isMatchOver();
 
         //then
@@ -141,11 +140,11 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings, new TestUI());
+        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard(getPlayers()));
 
         //when
-        fields.forEach(judge::putSignSuccess);
-        judge.putSignSuccess(3, new Player("A", Sign.X));
+        fields.forEach(judge::signWasPut);
+        judge.signWasPut(3, new Player("A", Sign.X));
         boolean existsUnbrokenHorizontalLine = judge.isMatchOver();
 
         //then
@@ -157,11 +156,11 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings, new TestUI());
+        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard(getPlayers()));
 
         //when
-        fields.forEach(judge::putSignSuccess);
-        judge.putSignSuccess(6, new Player("A", Sign.X));
+        fields.forEach(judge::signWasPut);
+        judge.signWasPut(6, new Player("A", Sign.X));
         boolean existsUnbrokenVerticalLine = judge.isMatchOver();
 
         //then
@@ -173,11 +172,11 @@ public class JudgeTest {
         //given
         GameSettings gameSettings = createGameSettings(size);
 
-        Judge judge = new Judge(gameSettings, new TestUI());
+        Judge judge = new Judge(gameSettings, new TestUI(), new ScoreBoard(getPlayers()));
 
         //when
-        fields.forEach(judge::putSignSuccess);
-        judge.putSignSuccess(3, new Player("A", Sign.X));
+        fields.forEach(judge::signWasPut);
+        judge.signWasPut(3, new Player("A", Sign.X));
         boolean existsUnbrokenVerticalLine = judge.isMatchOver();
 
         //then
@@ -189,7 +188,10 @@ public class JudgeTest {
                 .unbrokenLine(3)
                 .matchesNumber(3)
                 .boardSize(size)
-                .ui(new TestUI())
                 .build();
+    }
+
+    private List<Player> getPlayers() {
+        return List.of(new Player("A", Sign.X), new Player("B", Sign.O));
     }
 }

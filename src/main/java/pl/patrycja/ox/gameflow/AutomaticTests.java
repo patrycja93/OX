@@ -41,8 +41,6 @@ class AutomaticTests extends Mode {
     @Override
     public void settings(String[] inputArrayParameters) {
         gameSettings = setup(inputArrayParameters);
-        Sequence sequence = new Sequence(gameSettings, inputArrayParameters[2]);
-        sequence.generateSequence();
     }
 
     private GameSettings setup(String[] inputArrayParameters) {
@@ -60,7 +58,6 @@ class AutomaticTests extends Mode {
                 .boardSize(boardSize)
                 .unbrokenLine(unbrokenLine)
                 .matchesNumber(numberOfMatches)
-                .ui(ui)
                 .build();
     }
 

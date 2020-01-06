@@ -2,6 +2,7 @@ package pl.patrycja.ox.winnerchecker;
 
 import pl.patrycja.ox.GameSettings;
 import pl.patrycja.ox.Player;
+import pl.patrycja.ox.ScoreBoard;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 
@@ -9,73 +10,53 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-class Judge implements Spectator {
+public class Judge implements Spectator {
 
-    private List<WinnerChecker> winnerCheckers;
+    private final JudgeStatements judgeStatements = new JudgeStatements();
     private GameSettings gameSettings;
-    private boolean isMatchOver;
     private UI ui;
-    private Map<Integer, Sign> moves;
+    private ScoreBoard scoreBoard;
+    private List<WinnerChecker> winnerCheckers;
+    private boolean isMatchOver;
+    private Map<Integer, Sign> moves = new HashMap<>();
 
-    Judge(GameSettings gameSettings, UI ui) {
-        this.moves = new HashMap<>();
+    public Judge(GameSettings gameSettings, UI ui, ScoreBoard scoreBoard) {
         this.ui = ui;
         this.gameSettings = gameSettings;
+        this.scoreBoard = scoreBoard;
         this.winnerCheckers = WinnerCheckerFactory.getWinnerCheckers(gameSettings);
     }
 
     @Override
-    public void putSignSuccess(int field, Player player) {
-        String name = player.getName();
-        Sign sign = player.getSign();
+    public void signWasPut(int field, Player player) {
         int reducedFieldNumber = field - 1;
+        moves.put(reducedFieldNumber, player.getSign());
 
-        completeMap(reducedFieldNumber, sign);
-        int size = gameSettings.getBoardSize();
         if (isWinner(moves, reducedFieldNumber)) {
-            state("Winner is " + name + "(" + sign + ").\n");
-            //TODO: add points
+            state(player);
         } else {
-            if (size * size == moves.size()) {
-                state("Draw!\n");
-                //TODO: add points
-            }
+            isDraw(gameSettings.getBoardSize());
         }
     }
 
-    @Override
-    public void putSignFailureOverstepRange() {
-        int boardSize = gameSettings.getBoardSize();
-        ui.display("Number is over range. Please select number between 1 to " + boardSize * boardSize + ".\n");
-    }
-
-    @Override
-    public void putSignFailurePlaceIsBusy() {
-        ui.display("This place is already occupied. Try again.\n");
-    }
-
-    private void completeMap(int field, Sign sign) {
-        moves.put(field, sign);
-    }
-
-    @Override
     public boolean isMatchOver() {
         return isMatchOver;
     }
 
-    @Override
     public void newMatch(int number, Player player) {
-        ui.display("Match number: " + number);
-        ui.display("Player's " + player.getName() + "(" + player.getSign() + ") starts.\n");
+        ui.display("Match number " + number + "\n" + player + " starts.");
         moves.clear();
         isMatchOver = false;
     }
 
-    @Override
     public void playerHasChanged(Player player) {
         if (!isMatchOver) {
-            ui.display("Player's " + player.getName() + "(" + player.getSign() + ") move.\n");
+            ui.display(player + " move.\n");
         }
+    }
+
+    public void gameOver(List<Player> players) {
+        ui.display(judgeStatements.showGameSummary(players));
     }
 
     private boolean isWinner(Map<Integer, Sign> fields, int lastShot) {
@@ -87,8 +68,26 @@ class Judge implements Spectator {
         return false;
     }
 
-    private void state(String message) {
+    private void state() {
+        scoreBoard.addDrawPoints();
+        showResult("Draw!\n");
+    }
+
+    private void state(Player player) {
+        scoreBoard.addWinnerPoints(player);
+        showResult("Winner is " + player + ".\n");
+    }
+
+    private void showResult(String message) {
+        List<Player> scores = scoreBoard.getResults();
         ui.display(message);
+        scores.forEach(player -> ui.display(player + ":" + player.getPoints() + " "));
         isMatchOver = true;
+    }
+
+    private void isDraw(int size) {
+        if (size * size == moves.size()) {
+            state();
+        }
     }
 }
