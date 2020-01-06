@@ -1,151 +1,94 @@
 Which player should start: O or X ?
- 1  2  3  4 
- 5  6  7  8 
- 9 10 11 12 
-13 14 15 16 
+1 2 3 
+4 5 6 
+7 8 9 
 Match number 1
 Henio(X) starts.
-
- 1  2  X  4 
- 5  6  7  8 
- 9 10 11 12 
-13 14 15 16 
+1 2 X 
+4 5 6 
+7 8 9 
 Olaf(O) move.
 
- 1  2  X  O 
- 5  6  7  8 
- 9 10 11 12 
-13 14 15 16 
+1 O X 
+4 5 6 
+7 8 9 
 Henio(X) move.
 
- 1  2  X  O 
- 5  X  7  8 
- 9 10 11 12 
-13 14 15 16 
+1 O X 
+4 X 6 
+7 8 9 
 Olaf(O) move.
 
- 1  2  X  O 
- 5  X  O  8 
- 9 10 11 12 
-13 14 15 16 
+1 O X 
+4 X O 
+7 8 9 
 Henio(X) move.
 
- 1  2  X  O 
- 5  X  O  8 
- X 10 11 12 
-13 14 15 16 
+1 O X 
+4 X O 
+X 8 9 
 Winner is Henio(X).
 Henio(X):3 Olaf(O):0 
- 1  2  3  4 
- 5  6  7  8 
- 9 10 11 12 
-13 14 15 16 
+1 2 3 
+4 5 6 
+7 8 9 
 Match number 2
 Olaf(O) starts.
-
- 1  2  3  O 
- 5  6  7  8 
- 9 10 11 12 
-13 14 15 16 
+1 2 O 
+4 5 6 
+7 8 9 
 Henio(X) move.
 
- 1  2  X  O 
- 5  6  7  8 
- 9 10 11 12 
-13 14 15 16 
+1 X O 
+4 5 6 
+7 8 9 
 Olaf(O) move.
 
- 1  2  X  O 
- 5  6  O  8 
- 9 10 11 12 
-13 14 15 16 
+1 X O 
+4 O 6 
+7 8 9 
 Henio(X) move.
 
- 1  2  X  O 
- 5  6  O  X 
- 9 10 11 12 
-13 14 15 16 
+1 X O 
+4 O X 
+7 8 9 
 Olaf(O) move.
 
- 1  2  X  O 
- 5  6  O  X 
- 9  O 11 12 
-13 14 15 16 
+1 X O 
+4 O X 
+O 8 9 
 Winner is Olaf(O).
 Henio(X):3 Olaf(O):3 
- 1  2  3  4 
- 5  6  7  8 
- 9 10 11 12 
-13 14 15 16 
+1 2 3 
+4 5 6 
+7 8 9 
 Match number 3
 Henio(X) starts.
-
- 1  2  3  4 
- 5  6  X  8 
- 9 10 11 12 
-13 14 15 16 
+1 2 X 
+4 5 6 
+7 8 9 
 Olaf(O) move.
 
- 1  2  3  4 
- 5  6  X  O 
- 9 10 11 12 
-13 14 15 16 
+1 O X 
+4 5 6 
+7 8 9 
 Henio(X) move.
 
- 1  2  3  4 
- 5  6  X  O 
- 9  X 11 12 
-13 14 15 16 
+1 O X 
+4 X 6 
+7 8 9 
 Olaf(O) move.
 
- 1  2  3  4 
- 5  6  X  O 
- 9  X  O 12 
-13 14 15 16 
+1 O X 
+4 X O 
+7 8 9 
 Henio(X) move.
 
- 1  2  3  4 
- 5  6  X  O 
- 9  X  O 12 
- X 14 15 16 
+1 O X 
+4 X O 
+X 8 9 
 Winner is Henio(X).
 Henio(X):6 Olaf(O):3 
- 1  2  3  4 
- 5  6  7  8 
- 9 10 11 12 
-13 14 15 16 
-Match number 4
-Olaf(O) starts.
-
- 1  2  3  4 
- 5  6  7  O 
- 9 10 11 12 
-13 14 15 16 
-Henio(X) move.
-
- 1  2  3  4 
- 5  6  X  O 
- 9 10 11 12 
-13 14 15 16 
-Olaf(O) move.
-
- 1  2  3  4 
- 5  6  X  O 
- 9 10  O 12 
-13 14 15 16 
-Henio(X) move.
-
- 1  2  3  4 
- 5  6  X  O 
- 9 10  O  X 
-13 14 15 16 
-Olaf(O) move.
-
- 1  2  3  4 
- 5  6  X  O 
- 9 10  O  X 
-13  O 15 16 
-Winner is Olaf(O).
-Henio(X):6 Olaf(O):6 
 The game is over!
-Draw: Henio(X):6 Olaf(O):6 
+The winner is: Henio(X):6 
+The loser is: Olaf(O):3 

@@ -27,19 +27,23 @@ public class InputChecker {
             }
             return true;
         } catch (IllegalArgumentException e) {
-            System.exit(0);
             return false;
         }
     }
 
     public boolean checkIfUnbrokenLineIsGraterThanBoardSize(String[] parameters) {
-        if (parameters.length > 1 && (Integer.parseInt(parameters[0]) < Integer.parseInt(parameters[1]))) {
+        if (parameters.length > 1) {
             int defaultValue = 3;
             String boardSize = String.valueOf(Math.max(Integer.parseInt(parameters[0]), defaultValue));
             String unbrokenLine = String.valueOf(Math.max(Integer.parseInt(parameters[1]), defaultValue));
-            parameters[0] = unbrokenLine;
-            parameters[1] = boardSize;
-            return true;
+            parameters[0] = boardSize;
+            parameters[1] = unbrokenLine;
+
+            if ((Integer.parseInt(parameters[0]) < Integer.parseInt(parameters[1]))) {
+                parameters[0] = unbrokenLine;
+                parameters[1] = boardSize;
+                return true;
+            }
         }
         return false;
     }

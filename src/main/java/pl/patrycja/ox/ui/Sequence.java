@@ -13,8 +13,8 @@ class Sequence {
     private int towards;
 
     Sequence(String[] args) {
-        this.size = Math.max(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
-        this.unbrokenLine = Math.min(Integer.parseInt(args[0]), Integer.parseInt(args[1]));
+        this.size = Integer.parseInt(args[0]);
+        this.unbrokenLine = Integer.parseInt(args[1]);
         this.towards = Integer.parseInt(args[2]);
     }
 
@@ -87,22 +87,26 @@ class Sequence {
     private void generateDiagonalUp(int size, int unbrokenLine) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("X ");
-        for (int i = unbrokenLine - 1; i <= ((size - unbrokenLine) + 1) * size; i++) {
-            int column = i % size;
-            if (column < unbrokenLine - 1) {
-                continue;
-            }
-            for (int j = 0; j < unbrokenLine; j++) {
-                int k = i + (j * (size - 1));
-                stringBuilder.append(k + 1).append(" ");
-                if (j != unbrokenLine - 1) {
-                    if ((k % size) == size - 1) {
-                        stringBuilder.append(k).append(" ");
-                    } else {
-                        stringBuilder.append(k + 1 + 1).append(" ");
+        int run = size == unbrokenLine ? 3 : 1;
+        while (run > 0) {
+            for (int i = unbrokenLine - 1; i <= ((size - unbrokenLine) + 1) * size; i++) {
+                int column = i % size;
+                if (column < unbrokenLine - 1) {
+                    continue;
+                }
+                for (int j = 0; j < unbrokenLine; j++) {
+                    int k = i + (j * (size - 1));
+                    stringBuilder.append(k + 1).append(" ");
+                    if (j != unbrokenLine - 1) {
+                        if ((k % size) == size - 1) {
+                            stringBuilder.append(k).append(" ");
+                        } else {
+                            stringBuilder.append(k + 1 + 1).append(" ");
+                        }
                     }
                 }
             }
+            run--;
         }
         writeToFile(stringBuilder, fileSequence);
     }
@@ -110,22 +114,26 @@ class Sequence {
     private void generateDiagonalDown(int size, int unbrokenLine) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("X ");
-        for (int i = 0; i <= (((size - unbrokenLine) + 1) * size) - unbrokenLine; i++) {
-            int column = i % size;
-            if (column > size - unbrokenLine) {
-                continue;
-            }
-            for (int j = 0; j < unbrokenLine; j++) {
-                int k = i + (j * (size + 1));
-                stringBuilder.append(k + 1).append(" ");
-                if (j != unbrokenLine - 1) {
-                    if ((k % size) == size - 1) {
-                        stringBuilder.append(k).append(" ");
-                    } else {
-                        stringBuilder.append(k + 1 + 1).append(" ");
+        int run = size == unbrokenLine ? 3 : 1;
+        while (run > 0) {
+            for (int i = 0; i <= (((size - unbrokenLine) + 1) * size) - unbrokenLine; i++) {
+                int column = i % size;
+                if (column > size - unbrokenLine) {
+                    continue;
+                }
+                for (int j = 0; j < unbrokenLine; j++) {
+                    int k = i + (j * (size + 1));
+                    stringBuilder.append(k + 1).append(" ");
+                    if (j != unbrokenLine - 1) {
+                        if ((k % size) == size - 1) {
+                            stringBuilder.append(k).append(" ");
+                        } else {
+                            stringBuilder.append(k + 1 + 1).append(" ");
+                        }
                     }
                 }
             }
+            run--;
         }
         writeToFile(stringBuilder, fileSequence);
     }
@@ -134,8 +142,7 @@ class Sequence {
         File file = new File(pathToFile);
         try {
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
-            bufferedWriter.write(input.toString());
-            bufferedWriter.append("\n");
+            bufferedWriter.write(input.toString().trim());
             bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();

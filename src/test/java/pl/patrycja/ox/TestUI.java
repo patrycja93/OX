@@ -10,11 +10,6 @@ public class TestUI implements UI {
     }
 
     @Override
-    public void displayBoard(Object board) {
-        //empty for tests purposes
-    }
-
-    @Override
     public String read() {
         //not being used in tests
         return null;

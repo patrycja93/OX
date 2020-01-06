@@ -16,11 +16,14 @@ public interface UI {
 
     void display(Object input);
 
-    default void displayError(Object message){
+    default void displayError(Object message) {
         System.err.println(message);
+        System.exit(0);
     }
 
-    void displayBoard(Object board);
+    default void displayWarning(Object message) {
+        System.out.println("[WARNING] " + message);
+    }
 
     /**
      * This method is called whenever read sth

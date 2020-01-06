@@ -24,6 +24,9 @@ class FileUI implements UI {
         if (!inputChecker.checkIfInputParametersAreValid(args)) {
             displayError("Entered wrong arguments. Please run the game again with correct integer numbers.");
         }
+        if (inputChecker.checkIfUnbrokenLineIsGraterThanBoardSize(args)) {
+            displayWarning("Unbroken number of signs cannot be greater then board size and less than 3. Values was changed.\n");
+        }
     }
 
     private void generateSequenceForAutomaticTests() {
@@ -43,11 +46,6 @@ class FileUI implements UI {
     @Override
     public void display(Object input) {
         writeToFile(input);
-    }
-
-    @Override
-    public void displayBoard(Object board) {
-        writeToFile(board);
     }
 
     @Override

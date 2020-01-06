@@ -44,7 +44,7 @@ public class Judge implements Spectator {
     }
 
     public void newMatch(int number, Player player) {
-        ui.display("Match number " + number + "\n" + player + " starts.\n");
+        ui.display("Match number " + number + "\n" + player + " starts.");
         moves.clear();
         isMatchOver = false;
     }

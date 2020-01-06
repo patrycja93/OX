@@ -1,5 +1,52 @@
 = Estimates
 
+== *06.01.2020*
+
+*Pessimistic*
+
+* Add draw condition to sequences for automated tests.
+
+*Realistic*
+
+* Add languages.
+* Add tests.
+
+*Optimistic*
+
+* Add documentations.
+* Code refactor.
+* Add mode - computer with player.
+
+== *05.01.2020*
+
+*Pessimistic*
+
+* Add scoring.
+* Code refactor.
+
+*Realistic*
+
+* Add tests.
+
+*Optimistic*
+
+* Add draw condition to sequences for automated tests.
+
+== *04.01.2020*
+
+*Pessimistic*
+
+* Add scoring.
+
+*Realistic*
+
+* Add tests.
+* Code refactor.
+
+*Optimistic*
+
+* Add draw condition to sequences for automated tests.
+
 == *31.12.2019*
 
 *Pessimistic*

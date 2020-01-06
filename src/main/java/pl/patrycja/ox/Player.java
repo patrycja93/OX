@@ -27,10 +27,6 @@ public class Player {
         return Objects.hash(name, sign);
     }
 
-    public String getName() {
-        return name;
-    }
-
     public Sign getSign() {
         return sign;
     }

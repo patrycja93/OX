@@ -8,9 +8,7 @@ import java.util.function.Function;
 
 class ModeFactory {
 
-    private int inputParametersSize;
-    private String[] args;
-
+    private static final int MAXIMUM_AMOUNT_OF_PARAMETERS = 3;
     private static final int ZER0_PARAMETERS = 0;
     private static final int ONE_PARAMETERS = 1;
     private static final int TWO_PARAMETERS = 2;
@@ -20,6 +18,8 @@ class ModeFactory {
     private final Function<Integer, Mode> game = amountOfParameters -> new Game(getUi(amountOfParameters));
     private final Function<Integer, Mode> automaticTests = amountOfParameters -> new AutomaticTests(getUi(amountOfParameters));
 
+    private String[] args;
+
     private final Map<Integer, Function<Integer, Mode>> modesMap = Map.of(
             ZER0_PARAMETERS, computerWithPlayer,
             ONE_PARAMETERS, game,
@@ -27,13 +27,14 @@ class ModeFactory {
             THREE_PARAMETERS, automaticTests
     );
 
-    ModeFactory(int inputParametersSize, String[] args) {
-        this.inputParametersSize = inputParametersSize;
+    ModeFactory(String[] args) {
         this.args = args;
     }
 
     Mode setMode() {
-        return modesMap.get(inputParametersSize).apply(inputParametersSize);
+        int atMostMaximum = Math.min(args.length, MAXIMUM_AMOUNT_OF_PARAMETERS);
+        return modesMap.get(atMostMaximum)
+                .apply(atMostMaximum);
     }
 
     private UI getUi(int amountOfParameters) {

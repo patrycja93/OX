@@ -39,7 +39,7 @@ class Match {
 
     void start(int numberOfMatch) {
         //TODO: ask about language
-        ui.displayBoard(board);
+        ui.display(board);
         judge.newMatch(numberOfMatch, activePlayer);
         while (!endMatch) {
             nextTurn();
@@ -61,7 +61,7 @@ class Match {
             ui.display(putSignStatus.getMessage());
             field = ui.readNumber();
         }
-        ui.displayBoard(board);
+        ui.display(board);
         board.notifySpectators(field, activePlayer);
     }
 

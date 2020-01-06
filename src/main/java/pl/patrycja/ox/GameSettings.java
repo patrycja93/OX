@@ -23,7 +23,6 @@ public class GameSettings {
         private int unbrokenLine = DEFAULT_VALUE;
         private int matchNumber = DEFAULT_VALUE;
         private int boardSize = DEFAULT_VALUE;
-        private UI ui;
 
         /**
          * Set number of unbrokenLine
@@ -79,7 +78,7 @@ public class GameSettings {
     }
 
     /**
-     * Return number of match
+     * Return number of matches
      */
     public int getNumberOfMatches() {
         return numberOfMatches;
