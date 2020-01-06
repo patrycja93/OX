@@ -38,7 +38,7 @@ public class GameSettings {
          * @param matchesNumber is amount of matches
          */
         public GameSettingsBuilder matchesNumber(int matchesNumber) {
-            this.matchNumber = Math.max(matchesNumber, DEFAULT_VALUE);
+            this.matchNumber = matchesNumber;
             return this;
         }
 

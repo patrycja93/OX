@@ -37,6 +37,10 @@ class Sequence {
                 generateDiagonalDown(size, unbrokenLine);
                 break;
             }
+            case 4: {
+                generateDraw(size);
+                break;
+            }
         }
     }
 
@@ -137,6 +141,41 @@ class Sequence {
         }
         writeToFile(stringBuilder, fileSequence);
     }
+
+    private void generateDraw(int size) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("X ");
+        int nextTwoRows = 0;
+        int max = size % 2 == 0 ? size : size - 1;
+        if (max == size) {
+            for (int i = 0; i <= size * (size - 1); i = i + size) {
+                for (int j = 0; j < max; j++) {
+                    if ((nextTwoRows / 2) % 2 == 0) {
+                        stringBuilder.append(j + i + 1).append(" ");
+                    } else {
+                        stringBuilder.append(i + max - 1 - j + 1).append(" ");
+                    }
+                }
+                nextTwoRows++;
+            }
+        } else {
+            for (int i = 0; i <= size * (size - 1); i = i + size) {
+                if ((i / size) % 2 == 0 && i != 0) {
+                    stringBuilder.append(i - size - 1 + 1).append(" ");
+                }
+                for (int j = 0; j < max; j++) {
+                    stringBuilder.append(j + i + 1).append(" ");
+                }
+            }
+            stringBuilder.append(size * size).append(" ");
+
+            for (int i = size * (size - 1); i > size; i = i - 2 * size) {
+                stringBuilder.append(i).append(" ");
+            }
+        }
+        writeToFile(stringBuilder, fileSequence);
+    }
+
 
     private void writeToFile(Object input, String pathToFile) {
         File file = new File(pathToFile);

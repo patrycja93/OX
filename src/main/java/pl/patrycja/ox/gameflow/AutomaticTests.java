@@ -15,16 +15,19 @@ class AutomaticTests extends Mode {
     private final static int VERTICAL = 1;
     private final static int DIAGONAL_UP = 2;
     private final static int DIAGONAL_DOWN = 3;
-    private final static int DEFAULT_NUMBER_FOR_TOWARD = 3;
+    private final static int DRAW = 4;
+    private final static int DEFAULT_NUMBER_FOR_TOWARD = 4;
 
     private final BinaryOperator<Integer> verticalAndHorizontal = this::numberOfMatchesHorizontalAndVertical;
     private final BinaryOperator<Integer> diagonals = this::numberOfMatchesDiagonals;
+    private final BinaryOperator<Integer> draw = (a, b) -> 1;
 
     private final Map<Integer, BinaryOperator<Integer>> towardsMap = Map.of(
             HORIZONTAL, verticalAndHorizontal,
             VERTICAL, verticalAndHorizontal,
             DIAGONAL_UP, diagonals,
-            DIAGONAL_DOWN, diagonals
+            DIAGONAL_DOWN, diagonals,
+            DRAW, draw
     );
 
     AutomaticTests(UI ui) {
