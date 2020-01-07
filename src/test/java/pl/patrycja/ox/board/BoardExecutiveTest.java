@@ -1,6 +1,7 @@
 package pl.patrycja.ox.board;
 
 import org.mockito.Mockito;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.patrycja.ox.Player;
 import pl.patrycja.ox.PutSignStatus;
@@ -12,10 +13,15 @@ import static org.testng.Assert.assertEquals;
 
 public class BoardExecutiveTest {
 
-    private final Judge judge = Mockito.mock(Judge.class);
+    private Judge judge;
     private final Player player = new Player("A", Sign.X);
     private final int size = 10;
     private final int fieldNumber = 4;
+
+    @BeforeMethod
+    public void createMock() {
+        judge = Mockito.mock(Judge.class);
+    }
 
     @Test
     public void putSignToBoardShouldReturnSuccess() {
