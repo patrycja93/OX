@@ -30,16 +30,16 @@ abstract class Mode {
         judge.gameOver(players);
     }
 
+    abstract List<Player> createPlayers();
+
+    abstract void settings(String[] inputArrayParameters);
+
     private Judge createJudge(List<Player> players) {
         ScoreBoard scoreBoard = new ScoreBoard(players);
         return new Judge(gameSettings, ui, scoreBoard);
     }
 
-    abstract List<Player> createPlayers();
-
-    abstract void settings(String[] inputArrayParameters);
-
-    Player askWhichPlayerStarts(List<Player> players) {
+    private Player askWhichPlayerStarts(List<Player> players) {
         ui.display("get_initial_sign");
         Sign sign = ui.getSign();
         //noinspection OptionalGetWithoutIsPresent player always be there
