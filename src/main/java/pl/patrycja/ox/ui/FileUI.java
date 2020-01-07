@@ -28,10 +28,12 @@ class FileUI implements UI {
 
     private void validateInputParameters() {
         if (inputChecker.checkIfInputParametersAreNotValid(args)) {
-            displayError("Entered wrong arguments. Please run the game again with correct integer numbers.");
+            displayError("Entered wrong arguments. " +
+                    "Please run the game again with correct integer numbers.");
         }
         if (inputChecker.checkIfUnbrokenLineIsGraterThanBoardSize(args)) {
-            displayWarning("Unbroken number of signs cannot be greater then board size and less than 3. Values was changed.\n");
+            displayWarning("Unbroken number of signs cannot be greater " +
+                    "then board size and less than 3. Values was changed.\n");
         }
     }
 
@@ -42,8 +44,10 @@ class FileUI implements UI {
 
     private void setScannerAndWriter() {
         try {
-            scanner = new Scanner(new File("src/main/resources/pl/patrycja/ox/ui/test_sequence.txt"));
-            bufferedWriter = new BufferedWriter(new FileWriter("src/main/resources/pl/patrycja/ox/ui/test_out.txt"));
+            scanner = new Scanner(new File(
+                    "src/main/resources/pl/patrycja/ox/ui/test_sequence.txt"));
+            bufferedWriter = new BufferedWriter(new FileWriter(
+                    "src/main/resources/pl/patrycja/ox/ui/test_out.txt"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,7 +81,8 @@ class FileUI implements UI {
 
     @Override
     public void getLanguage() {
-        this.messages = ResourceBundle.getBundle("messages", new Locale(Language.EN.name().toLowerCase(),
+        this.messages = ResourceBundle.getBundle("messages",
+                new Locale(Language.EN.name().toLowerCase(),
                 Language.EN.getCountryCode()));
     }
 

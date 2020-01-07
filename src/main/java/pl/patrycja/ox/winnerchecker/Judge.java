@@ -12,6 +12,12 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+/**
+ * Observe the Board class.
+ * Make an operation after changes on the board.
+ *
+ * @author Patrycja
+ */
 public class Judge implements Spectator {
 
     private final JudgeStatements judgeStatements = new JudgeStatements();
@@ -22,6 +28,14 @@ public class Judge implements Spectator {
     private boolean isMatchOver;
     private Map<Integer, Sign> moves = new HashMap<>();
 
+    /**
+     * Create Judge object.
+     * Create the winner checkers.
+     *
+     * @param gameSettings the game settings
+     * @param ui           kind of user interface
+     * @param scoreBoard   the board with points of players
+     */
     public Judge(GameSettings gameSettings, UI ui, ScoreBoard scoreBoard) {
         this.ui = ui;
         this.gameSettings = gameSettings;
@@ -41,22 +55,42 @@ public class Judge implements Spectator {
         }
     }
 
+    /**
+     * Return information about the match is over.
+     */
     public boolean isMatchOver() {
         return isMatchOver;
     }
 
+    /**
+     * Start new match.
+     * Clear map of moves.
+     *
+     * @param number number of match
+     * @param player player who has a move
+     */
     public void newMatch(int number, Player player) {
         ui.display("match_number", number, player);
         moves.clear();
         isMatchOver = false;
     }
 
+    /**
+     * Display information about player has changed.
+     *
+     * @param player player who has a move
+     */
     public void playerHasChanged(Player player) {
         if (!isMatchOver) {
             ui.display("player_move", player);
         }
     }
 
+    /**
+     * Return information about the game is over.
+     *
+     * @param players list of players
+     */
     public void gameOver(List<Player> players) {
         ui.display("game_over");
         Statement winners = judgeStatements.checkWinners(players);
@@ -78,9 +112,11 @@ public class Judge implements Spectator {
 
     private boolean isWinner(Map<Integer, Sign> fields, int lastShot) {
         int playersNumber = 2;
-        int minimumNumberOfSignsWhenWinnerCanExists = (gameSettings.getUnbrokenLine() * playersNumber) - 1;
+        int minimumNumberOfSignsWhenWinnerCanExists =
+                (gameSettings.getUnbrokenLine() * playersNumber) - 1;
         if (fields.size() >= minimumNumberOfSignsWhenWinnerCanExists) {
-            return winnerCheckers.stream().anyMatch(winnerChecker -> winnerChecker.checkingWinnerCondition(fields, lastShot));
+            return winnerCheckers.stream().anyMatch(winnerChecker ->
+                    winnerChecker.checkingWinnerCondition(fields, lastShot));
         }
         return false;
     }

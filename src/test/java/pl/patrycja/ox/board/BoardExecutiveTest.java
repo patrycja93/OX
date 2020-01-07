@@ -5,8 +5,6 @@ import pl.patrycja.ox.Player;
 import pl.patrycja.ox.PutSignStatus;
 import pl.patrycja.ox.Sign;
 
-import java.util.List;
-
 import static org.testng.Assert.assertEquals;
 
 public class BoardExecutiveTest {

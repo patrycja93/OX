@@ -17,14 +17,15 @@ class WinnerCheckerVertical implements WinnerChecker {
     @Override
     public boolean checkingWinnerCondition(Map<Integer, Sign> fields, int lastShot) {
         int counter = 1;
-        Sign sing = fields.get(lastShot);
+        Sign sign = fields.get(lastShot);
         int boardSize = gameSettings.getBoardSize();
         int fieldUp = lastShot - boardSize;
         int fieldDown = lastShot + boardSize;
         int min = 0;
         int max = (boardSize * boardSize) - 1;
 
-        Predicate<Integer> predicate = i -> fields.containsKey(i) && (fields.get(i) == sing);
+        Predicate<Integer> predicate = i ->
+                fields.containsKey(i) && (fields.get(i) == sign);
 
         counter = checkVertical(predicate, boardSize, counter, -fieldUp, min);
         counter = checkVertical(predicate, boardSize, counter, fieldDown, max);
@@ -32,7 +33,8 @@ class WinnerCheckerVertical implements WinnerChecker {
         return counter >= gameSettings.getUnbrokenLine();
     }
 
-    private int checkVertical(Predicate<Integer> predicate, int boardSize, int counter, int nextField, int max) {
+    private int checkVertical(Predicate<Integer> predicate, int boardSize,
+                              int counter, int nextField, int max) {
         for (int i = nextField; i <= max; i = i + boardSize) {
             if (predicate.test(Math.abs(i))) {
                 counter = counter + 1;

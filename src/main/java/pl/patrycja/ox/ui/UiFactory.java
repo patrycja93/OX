@@ -9,7 +9,7 @@ import java.util.function.Supplier;
  *
  * @author Patrycja Hyjek
  */
-public class UIFactory {
+public class UiFactory {
 
     private static final int ZER0_PARAMETERS = 0;
     private static final int ONE_PARAMETERS = 1;
@@ -26,7 +26,7 @@ public class UIFactory {
             THREE_PARAMETERS, file
     );
 
-    public UI getUIForMode(int amountOfParameters, String[] args) {
+    public UI getUiForMode(int amountOfParameters, String[] args) {
         return kindsOfUI.get(amountOfParameters).apply(args);
     }
 }

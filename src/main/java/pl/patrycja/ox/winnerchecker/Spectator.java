@@ -10,7 +10,10 @@ import pl.patrycja.ox.Player;
 
 public interface Spectator {
     /**
-     * //TODO: add doc
+     * Information about sign was put to board.
+     *
+     * @param field  field in board where sign was put
+     * @param player which player put the sign
      */
     void signWasPut(int field, Player player);
 }

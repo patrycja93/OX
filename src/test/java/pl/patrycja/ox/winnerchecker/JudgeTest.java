@@ -3,6 +3,7 @@ package pl.patrycja.ox.winnerchecker;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import pl.patrycja.ox.*;
+import pl.patrycja.ox.Player;
 
 import java.util.HashMap;
 import java.util.List;

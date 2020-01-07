@@ -12,6 +12,7 @@ import java.util.Map;
 
 import static pl.patrycja.ox.PutSignStatus.*;
 
+
 public class BoardExecutive implements Board {
 
     private int size;
@@ -68,7 +69,9 @@ public class BoardExecutive implements Board {
                 addSpace(maxFieldNumberLength - 1, board);
                 board.append(sign).append(" ");
             }
-            if ((i + 1) % Math.sqrt(fullSize) == 0) board.append("\n");
+            if ((i + 1) % Math.sqrt(fullSize) == 0) {
+                board.append("\n");
+            }
         }
         return board.toString();
     }
