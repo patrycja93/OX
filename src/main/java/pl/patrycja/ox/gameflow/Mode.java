@@ -30,11 +30,6 @@ abstract class Mode {
         judge.gameOver(players);
     }
 
-    private Judge createJudge(List<Player> players) {
-        ScoreBoard scoreBoard = new ScoreBoard(players);
-        return new Judge(gameSettings, ui, scoreBoard);
-    }
-
     abstract List<Player> createPlayers();
 
     abstract void settings(String[] inputArrayParameters);
@@ -53,5 +48,10 @@ abstract class Mode {
             }
         }
         return initialPlayer;
+    }
+
+    private Judge createJudge(List<Player> players) {
+        ScoreBoard scoreBoard = new ScoreBoard(players);
+        return new Judge(gameSettings, ui, scoreBoard);
     }
 }
