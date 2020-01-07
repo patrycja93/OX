@@ -1,20 +1,27 @@
 package pl.patrycja.ox.gameflow;
 
 import org.mockito.Mockito;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pl.patrycja.ox.Player;
-import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 
 import java.util.List;
 
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotEquals;
 
 public class ComputerWithUserTest {
 
-    private final UI ui = Mockito.mock(UI.class);
+    private UI ui;
+
+    @BeforeMethod
+    public void createMock() {
+        ui = Mockito.mock(UI.class);
+    }
 
     @Test
     public void createPlayersShouldCreatedTwoPlayersWithDifferentSign() {
@@ -43,5 +50,18 @@ public class ComputerWithUserTest {
 
         //then
         verify(ui).getLanguage();
+    }
+
+    @Test
+    public void createPlayersShouldDisplayErrorMessage() {
+        //given
+        String message = "This feature is under construction ;-)";
+        ComputerWithUser mode = new ComputerWithUser(ui);
+
+        //when
+        mode.createPlayers();
+
+        //then
+        verify(ui).displayError(message);
     }
 }

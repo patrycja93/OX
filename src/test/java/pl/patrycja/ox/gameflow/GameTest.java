@@ -1,6 +1,7 @@
 package pl.patrycja.ox.gameflow;
 
 import org.mockito.Mockito;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
@@ -13,15 +14,21 @@ import static org.testng.Assert.assertEquals;
 
 public class GameTest {
 
-    private final UI ui = Mockito.mock(UI.class);
     private final String boardSize = "5";
     private final String unbrokenLine = "4";
     private final String[] args = {boardSize, unbrokenLine};
     private final String[] argsWithOneParameter = {boardSize};
-    private final Game game = new Game(ui);
     private final Sign signO = Sign.O;
     private final Sign signX = Sign.X;
     private final String name = "A";
+    private Game game;
+    private UI ui;
+
+    @BeforeMethod
+    public void createMock() {
+        ui = Mockito.mock(UI.class);
+        game = new Game(ui);
+    }
 
     @Test
     public void settingsShouldSetBoardSizeToFive() {
