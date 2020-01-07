@@ -33,19 +33,6 @@ public class ComputerWithUserTest {
     }
 
     @Test
-    public void createPlayersShouldShowError() {
-        //given
-        ComputerWithUser mode = new ComputerWithUser(ui);
-        String message = "This feature is under construction ;-)";
-
-        //when
-        mode.createPlayers();
-
-        //then
-        verify(ui).displayError(message);
-    }
-
-    @Test
     public void settingsShouldCallLanguage() {
         //given
         ComputerWithUser mode = new ComputerWithUser(ui);
