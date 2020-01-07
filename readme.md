@@ -2,43 +2,53 @@
 
 Author: Patrycja Hyjek
 
+### Information about project
+
+Prerequisites: 
+* java version 11
+* minimum maven version 3.6.0
+
 ### Launching
 
-1. Prerequisites: JDK 11, Maven 3
-2. Setup: nothing aside from prerequisites
-3. Launch game:
+The game has 3 modes. 
+1. Normal game with 2 players.
+2. Automatic tests.
+3. Computer with player(under construction).
 
-Game launches with default values it means: board size - 3x3 and unbroken line - 3.
-* `mvn clean package`
-* `java -jar ./target/ox-1.0.0.jar`
+##### Ad. 1
+There are two arguments. Number of matches are always 3.
+* board size - default 3
+* unbroken line - default 3
 
-4. Demo mode: 
+`mvn clean package`
 
-In demo mode you have possibility to put three arguments:
+`java -jar ./target/ox-1.0.0.jar board_size unbroken_line`
 
-* arg1 - board size
+##### Ad. 2
 
-* arg2 - unbroken line
-
-* arg3 - checking towards (0-horizontal, 1-vertical, 2-diagonal up, 3-diagonal down)
-
-* `mvn clean package`
-*  `java -jar ./target/ox-1.0.0.jar arg1 arg2 arg3`
-
-For example `java -jar ./target/ox-1.0.0.jar 5 4 0`
-Results from demo will be saved in: main/resources/pl/patrycja/ox/ui/test_out.txt
-
-### Tips:
-
-1. If you put the second argument greater than first in demo mode, the game won't generate sequences.
-2. If amount of arguments will be different than three, game will launch in normal mode.
-
-### Future
-
-In the future the user will have possibility to put two arguments:
-
+There are three arguments. Number of matches are calculate based on the possibility of winning.
+Number of matches for draw are set on default value equals 1.
 * arg1 - board size
 * arg2 - unbroken line
+* arg3 - checking towards (0-horizontal, 1-vertical, 2-diagonal up, 3-diagonal down, 4 - draw)
+
+`mvn clean package`
+
+`java -jar ./target/ox-1.0.0.jar arg1 arg2 arg3`
+
+Results from demo will be saved in: src/main/resources/pl/patrycja/ox/ui/test_out.txt
+
+
+##### Ad. 3
+
+There is also developed mode the game with computer. But now you can only choose the language and enter the player name.
+The board size, unbroken line and number of matches are set on default value equals 3.
+
+`mvn clean package`
+
+`java -jar ./target/ox-1.0.0.jar`
+
+###### TIPS: If your boar size will be lower than unbroken line the values will be switched. If your board size or unbroken line will be lower than 3 the values will be set on default value equals 3.
                                                     
                                                     
 

@@ -5,14 +5,9 @@ import pl.patrycja.ox.Sign;
 
 import java.util.Arrays;
 
-/**
- * A class InputChecker is responsible for checking input from user.
- *
- * @author Patrycja Hyjek
- */
-public class InputChecker {
+class InputChecker {
 
-    public boolean checkIfInputParametersAreNotValid(String[] parameters) {
+    boolean checkIfInputParametersAreNotValid(String[] parameters) {
         try {
             for (String p : parameters) {
                 Integer.parseInt(String.valueOf(p));
@@ -23,11 +18,13 @@ public class InputChecker {
         }
     }
 
-    public boolean checkIfUnbrokenLineIsGraterThanBoardSize(String[] parameters) {
+    boolean checkIfUnbrokenLineIsGraterThanBoardSize(String[] parameters) {
         if (parameters.length > 1) {
             int defaultValue = 3;
-            String boardSize = String.valueOf(Math.max(Integer.parseInt(parameters[0]), defaultValue));
-            String unbrokenLine = String.valueOf(Math.max(Integer.parseInt(parameters[1]), defaultValue));
+            String boardSize = String.valueOf(
+                    Math.max(Integer.parseInt(parameters[0]), defaultValue));
+            String unbrokenLine = String.valueOf(
+                    Math.max(Integer.parseInt(parameters[1]), defaultValue));
             parameters[0] = boardSize;
             parameters[1] = unbrokenLine;
 
@@ -40,7 +37,7 @@ public class InputChecker {
         return false;
     }
 
-    public boolean checkIfInteger(String number) {
+    boolean checkIfInteger(String number) {
         try {
             Integer.parseInt(String.valueOf(number));
             return true;
@@ -49,11 +46,11 @@ public class InputChecker {
         }
     }
 
-    public boolean validateSign(String sign) {
+    boolean validateSign(String sign) {
         return Arrays.toString(Sign.values()).contains(sign);
     }
 
-    public boolean validateLanguageValue(String language) {
+    boolean validateLanguageValue(String language) {
         return Arrays.toString(Language.values()).contains(language);
     }
 }

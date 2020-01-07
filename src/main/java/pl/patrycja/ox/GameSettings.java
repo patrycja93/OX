@@ -23,7 +23,7 @@ public class GameSettings {
         private int boardSize = DEFAULT_VALUE;
 
         /**
-         * Set number of unbrokenLine
+         * Set length of unbroken line.
          *
          * @param unbrokenLine is number of unbroken line sf sign
          */
@@ -33,7 +33,7 @@ public class GameSettings {
         }
 
         /**
-         * Set how much matches will be in the game
+         * Set number of matches.
          *
          * @param matchesNumber is amount of matches
          */
@@ -43,7 +43,7 @@ public class GameSettings {
         }
 
         /**
-         * Set how large will be board
+         * Set the board size.
          *
          * @param boardSize is size of the game's board
          */
@@ -53,7 +53,7 @@ public class GameSettings {
         }
 
         /**
-         * Returns object GameSettings
+         * Returns GameSettings object.
          */
         public GameSettings build() {
             GameSettings gameSettings = new GameSettings();
@@ -65,28 +65,28 @@ public class GameSettings {
     }
 
     /**
-     * Returns object GameSettingsBuilder
+     * Returns  GameSettingsBuilder object.
      */
     public static GameSettingsBuilder builder() {
         return new GameSettingsBuilder();
     }
 
     /**
-     * Return number of unbroken line
+     * Return length of unbroken line.
      */
     public int getUnbrokenLine() {
         return unbrokenLine;
     }
 
     /**
-     * Return number of matches
+     * Return number of matches.
      */
     public int getNumberOfMatches() {
         return numberOfMatches;
     }
 
     /**
-     * Return board size
+     * Return board size.
      */
     public int getBoardSize() {
         return boardSize;

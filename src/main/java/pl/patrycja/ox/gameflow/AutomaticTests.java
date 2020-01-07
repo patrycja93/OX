@@ -11,14 +11,15 @@ import java.util.function.BinaryOperator;
 
 class AutomaticTests extends Mode {
 
-    private final static int HORIZONTAL = 0;
-    private final static int VERTICAL = 1;
-    private final static int DIAGONAL_UP = 2;
-    private final static int DIAGONAL_DOWN = 3;
-    private final static int DRAW = 4;
-    private final static int DEFAULT_NUMBER_FOR_TOWARD = 4;
+    private static final int HORIZONTAL = 0;
+    private static final int VERTICAL = 1;
+    private static final int DIAGONAL_UP = 2;
+    private static final int DIAGONAL_DOWN = 3;
+    private static final int DRAW = 4;
+    private static final int DEFAULT_NUMBER_FOR_TOWARD = 4;
 
-    private final BinaryOperator<Integer> verticalAndHorizontal = this::numberOfMatchesHorizontalAndVertical;
+    private final BinaryOperator<Integer> verticalAndHorizontal =
+            this::numberOfMatchesHorizontalAndVertical;
     private final BinaryOperator<Integer> diagonals = this::numberOfMatchesDiagonals;
     private final BinaryOperator<Integer> draw = (a, b) -> 1;
 

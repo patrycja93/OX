@@ -40,6 +40,9 @@ class Sequence {
                 generateDraw(size);
                 break;
             }
+            default: {
+                generateHorizontalSequence(size, unbrokenLine);
+            }
         }
     }
 
@@ -174,7 +177,6 @@ class Sequence {
         }
         writeToFile(stringBuilder, fileSequence);
     }
-
 
     private void writeToFile(Object input, String pathToFile) {
         File file = new File(pathToFile);

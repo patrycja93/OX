@@ -1,7 +1,7 @@
 package pl.patrycja.ox.gameflow;
 
 import pl.patrycja.ox.ui.UI;
-import pl.patrycja.ox.ui.UIFactory;
+import pl.patrycja.ox.ui.UiFactory;
 
 import java.util.Map;
 import java.util.function.Function;
@@ -14,9 +14,12 @@ class ModeFactory {
     private static final int TWO_PARAMETERS = 2;
     private static final int THREE_PARAMETERS = 3;
 
-    private final Function<Integer, Mode> computerWithPlayer = amountOfParameters -> new ComputerWithUser(getUi(amountOfParameters));
-    private final Function<Integer, Mode> game = amountOfParameters -> new Game(getUi(amountOfParameters));
-    private final Function<Integer, Mode> automaticTests = amountOfParameters -> new AutomaticTests(getUi(amountOfParameters));
+    private final Function<Integer, Mode> computerWithPlayer =
+            amountOfParameters -> new ComputerWithUser(getUi(amountOfParameters));
+    private final Function<Integer, Mode> game =
+            amountOfParameters -> new Game(getUi(amountOfParameters));
+    private final Function<Integer, Mode> automaticTests =
+            amountOfParameters -> new AutomaticTests(getUi(amountOfParameters));
 
     private String[] args;
 
@@ -38,7 +41,7 @@ class ModeFactory {
     }
 
     private UI getUi(int amountOfParameters) {
-        UIFactory uiFactory = new UIFactory();
-        return uiFactory.getUIForMode(amountOfParameters, args);
+        UiFactory uiFactory = new UiFactory();
+        return uiFactory.getUiForMode(amountOfParameters, args);
     }
 }

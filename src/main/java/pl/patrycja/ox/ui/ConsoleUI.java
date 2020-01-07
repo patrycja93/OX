@@ -3,7 +3,6 @@ package pl.patrycja.ox.ui;
 import pl.patrycja.ox.Language;
 import pl.patrycja.ox.Sign;
 
-import java.util.Arrays;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -24,10 +23,12 @@ class ConsoleUI implements UI {
 
     private void checkInputParameters() {
         if (inputChecker.checkIfInputParametersAreNotValid(args)) {
-            displayError("Entered wrong arguments. Please run the game again with correct integer numbers.");
+            displayError("Entered wrong arguments. " +
+                    "Please run the game again with correct integer numbers.");
         }
         if (inputChecker.checkIfUnbrokenLineIsGraterThanBoardSize(args)) {
-            displayWarning("Unbroken number of signs cannot be greater then board size and less than 3. Values was changed.\n");
+            displayWarning("Unbroken number of signs cannot be greater " +
+                    "then board size and less than 3. Values was changed.\n");
         }
     }
 
@@ -66,19 +67,23 @@ class ConsoleUI implements UI {
         System.out.println("Choose language: en/pl ");
         String readLanguage = read().toUpperCase();
 
-        while (!inputChecker.validateLanguageValue(readLanguage)){
-            System.out.println("Inappropriate language, please choose pl or en.");
+        while (!inputChecker.validateLanguageValue(readLanguage)) {
+            System.out.println("Inappropriate language, " +
+                    "please choose pl or en.");
             readLanguage = read().toUpperCase();
         }
 
         this.messages = ResourceBundle.getBundle("messages",
-                new Locale(readLanguage, Language.valueOf(readLanguage.toUpperCase()).getCountryCode()));
+                new Locale(readLanguage,
+                        Language.valueOf(readLanguage
+                                .toUpperCase())
+                                .getCountryCode()));
     }
 
     @Override
     public Sign getSign() {
         String sign = read();
-        while (!inputChecker.validateSign(sign)){
+        while (!inputChecker.validateSign(sign)) {
             display("inappropriate_sign");
             sign = read();
         }
