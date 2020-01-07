@@ -23,12 +23,12 @@ class ConsoleUI implements UI {
 
     private void checkInputParameters() {
         if (inputChecker.checkIfInputParametersAreNotValid(args)) {
-            displayError("Entered wrong arguments. " +
-                    "Please run the game again with correct integer numbers.");
+            displayError("Entered wrong arguments. "
+                    + "Please run the game again with correct integer numbers.");
         }
         if (inputChecker.checkIfUnbrokenLineIsGraterThanBoardSize(args)) {
-            displayWarning("Unbroken number of signs cannot be greater " +
-                    "then board size and less than 3. Values was changed.\n");
+            displayWarning("Unbroken number of signs cannot be greater "
+                    + "then board size and less than 3. Values was changed.\n");
         }
     }
 
@@ -68,8 +68,8 @@ class ConsoleUI implements UI {
         String readLanguage = read().toUpperCase();
 
         while (!inputChecker.validateLanguageValue(readLanguage)) {
-            System.out.println("Inappropriate language, " +
-                    "please choose pl or en.");
+            System.out.println("Inappropriate language, "
+                    + "please choose pl or en.");
             readLanguage = read().toUpperCase();
         }
 
