@@ -83,4 +83,8 @@ public class BoardExecutive implements Board {
     private void addSpace(Integer spaceNumber, StringBuilder board) {
         board.append(" ".repeat(Math.max(0, spaceNumber)));
     }
+
+    List<Spectator> getSpectators() {
+        return spectators;
+    }
 }
