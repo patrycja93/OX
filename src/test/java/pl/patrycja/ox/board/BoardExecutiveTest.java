@@ -12,15 +12,15 @@ import static org.testng.Assert.assertEquals;
 
 public class BoardExecutiveTest {
 
-    Judge judge = Mockito.mock(Judge.class);
+    private final Judge judge = Mockito.mock(Judge.class);
+    private final Player player = new Player("A", Sign.X);
+    private final int size = 10;
+    private final int fieldNumber = 4;
 
     @Test
     public void putSignToBoardShouldReturnSuccess() {
         //given
-        int number = 1000;
-        int fieldNumber = 4;
-        Player player = new Player("A", Sign.X);
-        BoardExecutive boardExecutive = new BoardExecutive(number);
+        BoardExecutive boardExecutive = new BoardExecutive(size);
 
         //when
         PutSignStatus putSignToBoard = boardExecutive.putSign(fieldNumber, player);
@@ -32,9 +32,6 @@ public class BoardExecutiveTest {
     @Test
     public void putSignToBoardShouldReturnSuccessWhenFirstTryAndFailurePlaceOccupiedWhenSecondTry() {
         //given
-        int size = 10;
-        int fieldNumber = 4;
-        Player player = new Player("A", Sign.X);
         BoardExecutive boardExecutive = new BoardExecutive(size);
 
         //when
@@ -49,60 +46,53 @@ public class BoardExecutiveTest {
     @Test
     public void putSignToBoardShouldReturnFailureRangeOver() {
         //given
-        int size = 10;
-        int fieldNumber = 102;
-        Player player = new Player("A", Sign.X);
+        int tooMuchFieldNumber = 123;
         BoardExecutive boardExecutive = new BoardExecutive(size);
 
         //when
-        PutSignStatus secondTry = boardExecutive.putSign(fieldNumber, player);
+        PutSignStatus putSignStatus = boardExecutive.putSign(tooMuchFieldNumber, player);
 
         //then
-        assertEquals(PutSignStatus.FAILURE_RANGE_OVER, secondTry);
+        assertEquals(PutSignStatus.FAILURE_RANGE_OVER, putSignStatus);
     }
 
     @Test
     public void subscribeShouldAddNewSubscriberToList() {
         //given
-        int size = 10;
+        int expectedNumberOfSpectators = 1;
         BoardExecutive boardExecutive = new BoardExecutive(size);
 
         //when
         boardExecutive.subscribe(judge);
 
         //then
-        assertEquals(1, boardExecutive.getSpectators().size());
+        assertEquals(boardExecutive.getSpectators().size(), expectedNumberOfSpectators);
     }
 
     @Test
     public void notifySpectatorsShouldRunMethodOnSpectators() {
         //given
-        int size = 10;
-        int field = 5;
-        Player player = new Player("A", Sign.X);
         BoardExecutive boardExecutive = new BoardExecutive(size);
 
         //when
         boardExecutive.subscribe(judge);
-        boardExecutive.notifySpectators(field, player);
+        boardExecutive.notifySpectators(fieldNumber, player);
 
         //then
-        verify(judge).signWasPut(field, player);
+        verify(judge).signWasPut(fieldNumber, player);
     }
 
     @Test
     public void cleanShouldDeleteAllFields() {
         //given
-        int size = 10;
-        int field = 5;
-        Player player = new Player("A", Sign.X);
+        int expectedFieldsSize = 0;
         BoardExecutive boardExecutive = new BoardExecutive(size);
 
         //when
-        boardExecutive.putSign(field, player);
+        boardExecutive.putSign(fieldNumber, player);
         boardExecutive.clean();
 
         //then
-        assertEquals(0, boardExecutive.getFields().size());
+        assertEquals(boardExecutive.getFields().size(), expectedFieldsSize);
     }
 }

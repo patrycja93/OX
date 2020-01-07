@@ -11,82 +11,91 @@ import static org.testng.Assert.assertEquals;
 
 public class AutomaticTestsTest {
 
-    UI ui = Mockito.mock(UI.class);
+    private final UI ui = Mockito.mock(UI.class);
+    private final String boardSize = "5";
+    private final String unbrokenLine = "4";
+    private final String towardsHorizontal = "0";
+    private final String towardsDiagonalDown = "3";
+    private final String towardsDraw = "4";
+    private final String[] inputArrayWithTowardsHorizontal = {boardSize, unbrokenLine, towardsHorizontal};
+    private final String[] inputArrayWithTowardDiagonalDown = {boardSize, unbrokenLine, towardsDiagonalDown};
+    private final String[] inputArrayWithTowardDraw = {boardSize, unbrokenLine, towardsDraw};
 
     @Test
     public void settingsShouldSetBoardSizeToFive() {
         //given
-        String[] args = {"5", "4", "0"};
+        int expectedBoardSize = 5;
         Mode mode = new AutomaticTests(ui);
 
         //when
-        mode.settings(args);
+        mode.settings(inputArrayWithTowardsHorizontal);
 
         //then
-        assertEquals(mode.gameSettings.getBoardSize(), 5);
+        assertEquals(mode.gameSettings.getBoardSize(), expectedBoardSize);
     }
 
     @Test
     public void settingsShouldSetUnbrokenLineToFour() {
         //given
-        String[] args = {"5", "4", "0"};
+        int expectedUnbrokenLineLength = 4;
         Mode mode = new AutomaticTests(ui);
 
         //when
-        mode.settings(args);
+        mode.settings(inputArrayWithTowardsHorizontal);
 
         //then
-        assertEquals(mode.gameSettings.getUnbrokenLine(), 4);
+        assertEquals(mode.gameSettings.getUnbrokenLine(), expectedUnbrokenLineLength);
     }
 
     @Test
     public void settingsShouldSetNumberOfMatches() {
         //given
-        String[] args = {"5", "4", "0"};
+        int expectedNumberOfMatchesForHorizontal = 10;
         Mode mode = new AutomaticTests(ui);
 
         //when
-        mode.settings(args);
+        mode.settings(inputArrayWithTowardsHorizontal);
 
         //then
-        assertEquals(mode.gameSettings.getNumberOfMatches(), 10);
+        assertEquals(mode.gameSettings.getNumberOfMatches(), expectedNumberOfMatchesForHorizontal);
     }
 
     @Test
     public void settingsShouldSetNumberOfMatchesDiagonals() {
         //given
-        String[] args = {"5", "4", "3"};
+        int expectedNumberOfMatchesForDiagonal = 4;
         Mode mode = new AutomaticTests(ui);
 
         //when
-        mode.settings(args);
+        mode.settings(inputArrayWithTowardDiagonalDown);
 
         //then
-        assertEquals(mode.gameSettings.getNumberOfMatches(), 4);
+        assertEquals(mode.gameSettings.getNumberOfMatches(), expectedNumberOfMatchesForDiagonal);
     }
 
     @Test
     public void settingsShouldSetNumberOfMatchesDraw() {
         //given
-        String[] args = {"5", "4", "4"};
+        int expectedNumberOfMatchesForDraw = 1;
         Mode mode = new AutomaticTests(ui);
 
         //when
-        mode.settings(args);
+        mode.settings(inputArrayWithTowardDraw);
 
         //then
-        assertEquals(mode.gameSettings.getNumberOfMatches(), 1);
+        assertEquals(mode.gameSettings.getNumberOfMatches(), expectedNumberOfMatchesForDraw);
     }
 
     @Test
     public void createPlayersShouldReturnListOfPlayersEqualsTwo() {
         //given
+        int expectedNumberOfPlayers = 2;
         Mode mode = new AutomaticTests(ui);
 
         //when
         List<Player> players = mode.createPlayers();
 
         //then
-        assertEquals(players.size(), 2);
+        assertEquals(players.size(), expectedNumberOfPlayers);
     }
 }

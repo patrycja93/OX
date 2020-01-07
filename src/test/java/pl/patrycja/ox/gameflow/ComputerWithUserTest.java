@@ -14,28 +14,28 @@ import static org.testng.Assert.*;
 
 public class ComputerWithUserTest {
 
-    UI ui = Mockito.mock(UI.class);
+    private final UI ui = Mockito.mock(UI.class);
 
     @Test
     public void createPlayersShouldCreatedTwoPlayersWithDifferentSign() {
         //given
-        Mode mode = new Game(ui);
         String name = "A";
-        Sign signO = Sign.O;
+        int expectedNumberOfPlayers = 2;
+        ComputerWithUser mode = new ComputerWithUser(ui);
 
         //when
-        List<Player> players = mode.createPlayers();
         when(ui.read()).thenReturn(name);
+        List<Player> players = mode.createPlayers();
 
         //then
         assertNotEquals(players.get(0).getSign(), players.get(1).getSign());
-        assertEquals(players.size(), 2);
+        assertEquals(players.size(), expectedNumberOfPlayers);
     }
 
     @Test
     public void createPlayersShouldShowError() {
         //given
-        Mode mode = new ComputerWithUser(ui);
+        ComputerWithUser mode = new ComputerWithUser(ui);
         String message = "This feature is under construction ;-)";
 
         //when
@@ -46,9 +46,9 @@ public class ComputerWithUserTest {
     }
 
     @Test
-    public void settings() {
+    public void settingsShouldCallLanguage() {
         //given
-        Mode mode = new ComputerWithUser(ui);
+        ComputerWithUser mode = new ComputerWithUser(ui);
         String[] args = {};
 
         //when

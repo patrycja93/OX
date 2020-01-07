@@ -34,7 +34,12 @@ abstract class Mode {
 
     abstract void settings(String[] inputArrayParameters);
 
-    Player askWhichPlayerStarts(List<Player> players) {
+    private Judge createJudge(List<Player> players) {
+        ScoreBoard scoreBoard = new ScoreBoard(players);
+        return new Judge(gameSettings, ui, scoreBoard);
+    }
+
+    private Player askWhichPlayerStarts(List<Player> players) {
         ui.display("get_initial_sign");
         Sign sign = ui.getSign();
         //noinspection OptionalGetWithoutIsPresent player always be there
@@ -48,10 +53,5 @@ abstract class Mode {
             }
         }
         return initialPlayer;
-    }
-
-    private Judge createJudge(List<Player> players) {
-        ScoreBoard scoreBoard = new ScoreBoard(players);
-        return new Judge(gameSettings, ui, scoreBoard);
     }
 }

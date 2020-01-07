@@ -6,11 +6,17 @@ import static org.testng.Assert.assertTrue;
 
 public class ModeFactoryTest {
 
+    private final String boardSize = "5";
+    private final String unbrokenLine = "4";
+    private final String towardsDiagonalUp = "2";
+    private final String[] argsWithZeroParameters = {};
+    private final String[] argsWithTwoParameters = {boardSize, unbrokenLine};
+    private final String[] argsWithThreeParameters = {boardSize, unbrokenLine, towardsDiagonalUp};
+
     @Test
-    public void setModeCreateGame() {
+    public void setModeCreateGameMode() {
         //given
-        String[] args = {"5", "4"};
-        ModeFactory modeFactory = new ModeFactory(args);
+        ModeFactory modeFactory = new ModeFactory(argsWithTwoParameters);
 
         //when
         Mode mode = modeFactory.setMode();
@@ -20,10 +26,9 @@ public class ModeFactoryTest {
     }
 
     @Test
-    public void setModeCreateAutomaticTests() {
+    public void setModeCreateComputerWithUserMode() {
         //given
-        String[] args = {};
-        ModeFactory modeFactory = new ModeFactory(args);
+        ModeFactory modeFactory = new ModeFactory(argsWithZeroParameters);
 
         //when
         Mode mode = modeFactory.setMode();
@@ -33,10 +38,9 @@ public class ModeFactoryTest {
     }
 
     @Test
-    public void setModeCreateComputerWithUser() {
+    public void setModeCreateAutomaticTestsMode() {
         //given
-        String[] args = {"5", "4", "2"};
-        ModeFactory modeFactory = new ModeFactory(args);
+        ModeFactory modeFactory = new ModeFactory(argsWithThreeParameters);
 
         //when
         Mode mode = modeFactory.setMode();

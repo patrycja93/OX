@@ -9,94 +9,93 @@ import pl.patrycja.ox.ui.UI;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
-import static org.testng.Assert.*;
+import static org.testng.Assert.assertEquals;
 
 public class GameTest {
 
-    UI ui = Mockito.mock(UI.class);
+    private final UI ui = Mockito.mock(UI.class);
+    private final String boardSize = "5";
+    private final String unbrokenLine = "4";
+    private final String[] args = {boardSize, unbrokenLine};
+    private final String[] argsWithOneParameter = {boardSize};
+    private final Game game = new Game(ui);
+    private final Sign signO = Sign.O;
+    private final Sign signX = Sign.X;
+    private final String name = "A";
 
     @Test
     public void settingsShouldSetBoardSizeToFive() {
         //given
-        String[] args = {"5", "4"};
-        Mode mode = new Game(ui);
+        int expectedBoardSize = 5;
 
         //when
-        mode.settings(args);
+        game.settings(args);
 
         //then
-        assertEquals(mode.gameSettings.getBoardSize(), 5);
+        assertEquals(game.gameSettings.getBoardSize(), expectedBoardSize);
     }
 
     @Test
     public void settingsShouldSetUnbrokenLineToFour() {
         //given
-        String[] args = {"5", "4"};
-        Mode mode = new Game(ui);
+        int expectedUnbrokenLine = 4;
 
         //when
-        mode.settings(args);
+        game.settings(args);
 
         //then
-        assertEquals(mode.gameSettings.getUnbrokenLine(), 4);
+        assertEquals(game.gameSettings.getUnbrokenLine(), expectedUnbrokenLine);
     }
 
     @Test
     public void settingsShouldSetNumberOfMatches() {
         //given
-        String[] args = {"5", "4"};
-        Mode mode = new Game(ui);
+        int expectedNumberOfMatches = 3;
 
         //when
-        mode.settings(args);
+        game.settings(args);
 
         //then
-        assertEquals(mode.gameSettings.getNumberOfMatches(), 3);
+        assertEquals(game.gameSettings.getNumberOfMatches(), expectedNumberOfMatches);
     }
 
     @Test
     public void settingsShouldSetNumberOfUnbrokenLineToThree() {
         //given
-        String[] args = {"5"};
-        Mode mode = new Game(ui);
+        int expectedNumberOfMatches = 3;
 
         //when
-        mode.settings(args);
+        game.settings(argsWithOneParameter);
 
         //then
-        assertEquals(mode.gameSettings.getNumberOfMatches(), 3);
+        assertEquals(game.gameSettings.getNumberOfMatches(), expectedNumberOfMatches);
     }
 
     @Test
     public void createPlayersShouldCreatedTwoPlayersWithDifferentSign() {
         //given
-        Mode mode = new Game(ui);
-        String name = "A";
-        Sign signO = Sign.O;
-        Sign signX = Sign.X;
+        int expectedNumberOfPlayers = 2;
 
         //when
-        List<Player> players = mode.createPlayers();
+        List<Player> players = game.createPlayers();
         when(ui.read()).thenReturn(name);
 
         //then
         assertEquals(players.get(0).getSign(), signX);
         assertEquals(players.get(1).getSign(), signO);
-        assertEquals(players.size(), 2);
+        assertEquals(players.size(), expectedNumberOfPlayers);
     }
 
     @Test
     public void createPlayersShouldReturnListOfPlayersEqualsTwo() {
         //given
-        Mode mode = new Game(ui);
-        String name = "A";
+        int expectedNumberOfPlayers = 2;
 
         //when
-        List<Player> players = mode.createPlayers();
+        List<Player> players = game.createPlayers();
         when(ui.read()).thenReturn(name);
 
         //then
-        assertEquals(players.size(), 2);
+        assertEquals(players.size(), expectedNumberOfPlayers);
     }
-
 }
