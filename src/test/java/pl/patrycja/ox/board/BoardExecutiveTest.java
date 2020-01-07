@@ -89,4 +89,20 @@ public class BoardExecutiveTest {
         //then
         verify(judge).signWasPut(field, player);
     }
+
+    @Test
+    public void cleanShouldDeleteAllFields() {
+        //given
+        int size = 10;
+        int field = 5;
+        Player player = new Player("A", Sign.X);
+        BoardExecutive boardExecutive = new BoardExecutive(size);
+
+        //when
+        boardExecutive.putSign(field, player);
+        boardExecutive.clean();
+
+        //then
+        assertEquals(0, boardExecutive.getFields().size());
+    }
 }

@@ -87,4 +87,8 @@ public class BoardExecutive implements Board {
     List<Spectator> getSpectators() {
         return spectators;
     }
+
+    Map<Integer, Sign> getFields() {
+        return fields;
+    }
 }
