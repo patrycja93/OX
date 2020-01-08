@@ -17,6 +17,11 @@ class ComputerWithUser extends Mode {
     }
 
     @Override
+    void play(List<Player> players) {
+        // in progress building...
+    }
+
+    @Override
     public List<Player> createPlayers() {
         Player firstPlayer = new Player("Henio", Sign.X);
         ui.display(firstPlayer);

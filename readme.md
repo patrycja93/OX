@@ -27,14 +27,16 @@ There are two arguments. Number of matches are always 3.
 ##### Ad. 2
 
 There are three arguments. Number of matches are calculate based on the possibility of winning.
-Number of matches for draw are set on default value equals 1.
+Number of matches for draw are set on default value equals 1. Default sign is X and language English.
 * arg1 - board size
 * arg2 - unbroken line
 * arg3 - checking towards (0-horizontal, 1-vertical, 2-diagonal up, 3-diagonal down, 4 - draw)
+* arg4 - sign: O or X
+* arg5 - language: PL or EN
 
 `mvn clean package`
 
-`java -jar ./target/ox-1.0.0.jar arg1 arg2 arg3`
+`java -jar ./target/ox-1.0.0.jar arg1 arg2 arg3 arg4 arg5`
 
 Results from demo will be saved in: src/main/resources/pl/patrycja/ox/ui/test_out.txt
 
@@ -46,7 +48,7 @@ The board size, unbroken line and number of matches are set on default value equ
 
 `mvn clean package`
 
-`java -jar ./target/ox-1.0.0.jar`
+`java -jar ./target/ox-1.0.0.jar `
 
 ###### TIPS: If your boar size will be lower than unbroken line the values will be switched. If your board size or unbroken line will be lower than 3 the values will be set on default value equals 3.
                                                     

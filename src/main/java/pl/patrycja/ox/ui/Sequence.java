@@ -1,9 +1,7 @@
 package pl.patrycja.ox.ui;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.net.URL;
 
 class Sequence {
 
@@ -48,7 +46,7 @@ class Sequence {
 
     private void generateHorizontalSequence(int size, int unbrokenLine) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("X ");
+       // stringBuilder.append("X ");
         for (int i = 0; i < size * size; i++) {
             int row = i / size;
             if (i + unbrokenLine > (size * (row + 1))) {
@@ -70,7 +68,7 @@ class Sequence {
 
     private void generateVerticalSequence(int size, int unbrokenLine) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("X ");
+        //stringBuilder.append("X ");
         for (int i = 0; i < size * size; i++) {
             int column = i % size;
             if ((i + (unbrokenLine - 1) * size) > (size * size) - (size - column)) {
@@ -92,7 +90,7 @@ class Sequence {
 
     private void generateDiagonalUp(int size, int unbrokenLine) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("X ");
+        //stringBuilder.append("X ");
         int run = size == unbrokenLine ? 3 : 1;
         while (run > 0) {
             for (int i = unbrokenLine - 1; i <= ((size - unbrokenLine) + 1) * size; i++) {
@@ -119,7 +117,7 @@ class Sequence {
 
     private void generateDiagonalDown(int size, int unbrokenLine) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("X ");
+        //stringBuilder.append("X ");
         int run = size == unbrokenLine ? 3 : 1;
         while (run > 0) {
             for (int i = 0; i <= (((size - unbrokenLine) + 1) * size) - unbrokenLine; i++) {
@@ -146,7 +144,7 @@ class Sequence {
 
     private void generateDraw(int size) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("X ");
+        //stringBuilder.append("X ");
         int nextTwoRows = 0;
         int max = size % 2 == 0 ? size : size - 1;
         if (max == size) {
