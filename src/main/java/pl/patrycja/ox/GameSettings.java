@@ -8,9 +8,13 @@ package pl.patrycja.ox;
 public class GameSettings {
 
     private static final int DEFAULT_VALUE = 3;
+    private static final Sign DEFAULT_SIGN = Sign.X;
+    private static final Language DEFAULT_LANGUAGE = Language.EN;
     private int unbrokenLine;
     private int numberOfMatches;
     private int boardSize;
+    private Sign sign;
+    private Language language;
 
     /**
      * Creates and return object GameSettings consist of
@@ -21,6 +25,8 @@ public class GameSettings {
         private int unbrokenLine = DEFAULT_VALUE;
         private int matchNumber = DEFAULT_VALUE;
         private int boardSize = DEFAULT_VALUE;
+        private Sign sign = DEFAULT_SIGN;
+        private Language language = DEFAULT_LANGUAGE;
 
         /**
          * Set length of unbroken line.
@@ -53,6 +59,26 @@ public class GameSettings {
         }
 
         /**
+         * Set the sign.
+         *
+         * @param sign sign which will start the game
+         */
+        public GameSettingsBuilder sign(Sign sign) {
+            this.sign = sign;
+            return this;
+        }
+
+        /**
+         * Set the language.
+         *
+         * @param language language in the game
+         */
+        public GameSettingsBuilder language(Language language) {
+            this.language = language;
+            return this;
+        }
+
+        /**
          * Returns GameSettings object.
          */
         public GameSettings build() {
@@ -60,6 +86,8 @@ public class GameSettings {
             gameSettings.unbrokenLine = this.unbrokenLine;
             gameSettings.numberOfMatches = this.matchNumber;
             gameSettings.boardSize = this.boardSize;
+            gameSettings.sign = this.sign;
+            gameSettings.language = this.language;
             return gameSettings;
         }
     }
@@ -90,5 +118,12 @@ public class GameSettings {
      */
     public int getBoardSize() {
         return boardSize;
+    }
+
+    /**
+     * Return sign.
+     */
+    public Sign getSign() {
+        return sign;
     }
 }

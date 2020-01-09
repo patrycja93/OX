@@ -8,9 +8,11 @@ import java.util.Arrays;
 class InputChecker {
 
     boolean checkIfInputParametersAreNotValid(String[] parameters) {
+        int NUMBER_PARAMETERS = 3;
+        int numberParameters = parameters.length >= 4 ? NUMBER_PARAMETERS : parameters.length;
         try {
-            for (String p : parameters) {
-                Integer.parseInt(String.valueOf(p));
+            for (int i = 0; i < numberParameters; i++) {
+                Integer.parseInt(parameters[i]);
             }
             return false;
         } catch (IllegalArgumentException e) {

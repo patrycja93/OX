@@ -1,9 +1,11 @@
 package pl.patrycja.ox.gameflow;
 
 import pl.patrycja.ox.GameSettings;
+import pl.patrycja.ox.Language;
 import pl.patrycja.ox.Player;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
+import pl.patrycja.ox.winnerchecker.Judge;
 
 import java.util.List;
 import java.util.Map;
@@ -17,6 +19,9 @@ class AutomaticTests extends Mode {
     private static final int DIAGONAL_DOWN = 3;
     private static final int DRAW = 4;
     private static final int DEFAULT_NUMBER_FOR_TOWARD = 4;
+    private static final int MAXIMUM_AMOUNT_OF_PARAMETERS = 5;
+    private static final Sign DEFAULT_SIGN = Sign.X;
+    private static final Language DEFAULT_LANGUAGE = Language.EN;
 
     private final BinaryOperator<Integer> verticalAndHorizontal =
             this::numberOfMatchesHorizontalAndVertical;
@@ -33,6 +38,18 @@ class AutomaticTests extends Mode {
 
     AutomaticTests(UI ui) {
         super(ui);
+    }
+
+    @Override
+    void play(List<Player> players) {
+        Judge judge = createJudge(players);
+        Player initialPlayer = askWhichPlayerStarts(players);
+        for (int i = 1; i <= gameSettings.getNumberOfMatches(); i++) {
+            Match.init(gameSettings.getBoardSize(), ui, judge)
+                    .addPlayers(players, initialPlayer)
+                    .start(i);
+        }
+        judge.gameOver(players);
     }
 
     @Override
@@ -56,6 +73,14 @@ class AutomaticTests extends Mode {
         int boardSize = Integer.parseInt(inputArrayParameters[0]);
         int unbrokenLine = Integer.parseInt(inputArrayParameters[1]);
         int towards = Integer.parseInt(inputArrayParameters[2]);
+        Sign sign = DEFAULT_SIGN;
+        Language language = DEFAULT_LANGUAGE;
+        if (inputArrayParameters.length == MAXIMUM_AMOUNT_OF_PARAMETERS - 1) {
+            sign = Sign.valueOf(inputArrayParameters[3]);
+        }
+        if (inputArrayParameters.length == MAXIMUM_AMOUNT_OF_PARAMETERS) {
+            language = Language.valueOf(inputArrayParameters[4]);
+        }
 
         int numberOfMatches = resolveNumberOfMatches(boardSize, unbrokenLine, towards);
 
@@ -63,6 +88,8 @@ class AutomaticTests extends Mode {
                 .boardSize(boardSize)
                 .unbrokenLine(unbrokenLine)
                 .matchesNumber(numberOfMatches)
+                .sign(sign)
+                .language(language)
                 .build();
     }
 

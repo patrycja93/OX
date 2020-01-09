@@ -3,10 +3,8 @@ package pl.patrycja.ox.ui;
 import pl.patrycja.ox.Language;
 import pl.patrycja.ox.Sign;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
@@ -34,6 +32,16 @@ class FileUI implements UI {
         if (inputChecker.checkIfUnbrokenLineIsGraterThanBoardSize(args)) {
             displayWarning("Unbroken number of signs cannot be greater " +
                     "then board size and less than 3. Values was changed.\n");
+        }
+        if (args.length == 4 && !inputChecker.validateSign(args[3])) {
+            args[3] = Sign.X.name();
+            displayWarning("Unsupported sign. " +
+                    "Sign was set to X.\n");
+        }
+        if (args.length >= 5 && !inputChecker.validateLanguageValue(args[4])) {
+            args[4] = Language.EN.name();
+            displayWarning("Unsupported language. " +
+                    "Language was set to EN(English).\n");
         }
     }
 
@@ -81,19 +89,21 @@ class FileUI implements UI {
 
     @Override
     public void getLanguage() {
+        Language language = args.length == 5 ?
+                Language.valueOf(args[4]) : Language.EN;
         this.messages = ResourceBundle.getBundle("messages",
-                new Locale(Language.EN.name().toLowerCase(),
-                Language.EN.getCountryCode()));
+                new Locale(language.name().toLowerCase(),
+                        language.getCountryCode()));
     }
 
     @Override
     public Sign getSign() {
-        return Sign.valueOf(scanner.next());
+        return args.length >= 4 ? Sign.valueOf(args[3]) : Sign.X;
     }
 
     private void writeToFile(Object input) {
         try {
-            bufferedWriter.write(input.toString());
+            bufferedWriter.append(input.toString()).append("\n");
             bufferedWriter.flush();
         } catch (IOException e) {
             e.printStackTrace();

@@ -13,6 +13,7 @@ class ModeFactory {
     private static final int ONE_PARAMETERS = 1;
     private static final int TWO_PARAMETERS = 2;
     private static final int THREE_PARAMETERS = 3;
+    private static final int NUMBER_OF_PARAMETERS_FOR_AUTOMATIC_TESTS = 4;
 
     private final Function<Integer, Mode> computerWithPlayer =
             amountOfParameters -> new ComputerWithUser(getUi(amountOfParameters));
@@ -27,7 +28,8 @@ class ModeFactory {
             ZER0_PARAMETERS, computerWithPlayer,
             ONE_PARAMETERS, game,
             TWO_PARAMETERS, game,
-            THREE_PARAMETERS, automaticTests
+            THREE_PARAMETERS, automaticTests,
+            NUMBER_OF_PARAMETERS_FOR_AUTOMATIC_TESTS, automaticTests
     );
 
     ModeFactory(String[] args) {

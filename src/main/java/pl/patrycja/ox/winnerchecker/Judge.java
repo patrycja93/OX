@@ -6,6 +6,7 @@ import pl.patrycja.ox.ScoreBoard;
 import pl.patrycja.ox.Sign;
 import pl.patrycja.ox.ui.UI;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -97,16 +98,18 @@ public class Judge implements Spectator {
         boolean isDraw = winners.getArguments().size() == players.size();
 
         Function<List<Player>, List<String>> score = p -> p.stream()
-                .map(player -> player + " " + player.getPoints())
+                .map(player -> player + ": " + player.getPoints())
                 .collect(Collectors.toList());
 
         if (isDraw) {
             Statement draw = new Statement("end_draw", players);
-            ui.display(draw.getMessage(), score.apply(draw.getArguments()));
+            List<String> apply = score.apply(draw.getArguments());
+            String str = String.join(" ", apply);
+            ui.display(draw.getMessage(), str);
         } else {
             Statement losers = judgeStatements.checkLosers(players);
-            ui.display(winners.getMessage(), score.apply(winners.getArguments()));
-            ui.display(losers.getMessage(), score.apply(losers.getArguments()));
+            ui.display(winners.getMessage(), String.join(" " , score.apply(winners.getArguments())));
+            ui.display(losers.getMessage(), String.join(" " , score.apply(losers.getArguments())));
         }
     }
 
