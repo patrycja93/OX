@@ -15,6 +15,10 @@ import static pl.patrycja.ox.PutSignStatus.*;
 
 public class BoardExecutive implements Board {
 
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+
     private int size;
     private Map<Integer, Sign> fields = new HashMap<>();
     private List<Spectator> spectators = new ArrayList<>();
@@ -56,6 +60,7 @@ public class BoardExecutive implements Board {
 
     @Override
     public String toString() {
+
         StringBuilder board = new StringBuilder("\n");
         int fullSize = size * size;
         int maxFieldNumberLength = getFieldNumberLength(fullSize);
@@ -67,7 +72,10 @@ public class BoardExecutive implements Board {
             } else {
                 Sign sign = fields.get(i);
                 addSpace(maxFieldNumberLength - 1, board);
-                board.append(sign).append(" ");
+                if (sign == Sign.X)
+                    board.append(ANSI_CYAN).append(sign).append(ANSI_RESET).append(" ");
+                else
+                    board.append(ANSI_YELLOW).append(sign).append(ANSI_RESET).append(" ");
             }
             if ((i + 1) % Math.sqrt(fullSize) == 0) {
                 board.append("\n");

@@ -48,6 +48,7 @@ class AutomaticTests extends Mode {
             Match.init(gameSettings.getBoardSize(), ui, judge)
                     .addPlayers(players, initialPlayer)
                     .start(i);
+            initialPlayer = changeInitialPlayer(players, initialPlayer);
         }
         judge.gameOver(players);
     }
@@ -113,5 +114,14 @@ class AutomaticTests extends Mode {
         int move = 1;
         int space = size - line;
         return (space + move) * size;
+    }
+
+    private Player changeInitialPlayer(List<Player> players, Player initialPlayer) {
+        for (int i = 0; i < players.size(); i++) {
+            if (players.get(i).equals(initialPlayer)) {
+                return players.get((i + 1) % players.size());
+            }
+        }
+        return initialPlayer;
     }
 }
