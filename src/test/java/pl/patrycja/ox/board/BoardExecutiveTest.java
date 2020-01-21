@@ -32,7 +32,7 @@ public class BoardExecutiveTest {
         PutSignStatus putSignToBoard = boardExecutive.putSign(fieldNumber, player);
 
         //then
-        assertEquals(putSignToBoard, PutSignStatus.SUCCESS);
+        assertEquals(putSignToBoard, PutSignStatus.FAILURE_PLACE_OCCUPIED);
     }
 
     @Test

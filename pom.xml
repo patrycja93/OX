@@ -89,8 +89,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <addClasspath>true</addClasspath>
-                            <mainClass>pl.patrycja.ox.gameflow</mainClass>
+                            <mainClass>pl.patrycja.ox.gameflow.TicTacToe</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

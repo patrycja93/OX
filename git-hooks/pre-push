@@ -24,6 +24,7 @@ exec 1>&2
 # Cross platform projects tend to avoid non-ASCII filenames; prevent
 # them from being added to the repository. We exploit the fact that the
 # printable range starts at the space character and ends with tilde.
+
 if [ "$allownonascii" != "true" ] &&
 	# Note that the use of brackets around a tr range is ok here, (it's
 	# even required, for portability to Solaris 10's /usr/bin/tr), since
@@ -46,12 +47,13 @@ EOF
 fi
 
 # Prevent git commit if mvn package fail
-echo "Building project..."
-if mvn clean package -q
+echo "Running tests..."
+
+if  mvn clean test -q
 then
-	echo "Build succeed"
+	echo "Tests passed."
 else
-	echo "Build failed"
+	echo "Tests failed"
 	exit 1
 fi
 
