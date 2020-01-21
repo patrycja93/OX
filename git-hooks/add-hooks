@@ -1,0 +1,4 @@
+#!/bin/sh
+echo "Granting permissions for the git hooks and copying them to .git/hooks directory..."
+chmod +x pre-commit | cp pre-commit ../.git/hooks
+echo "Operation has been completed successfully"
