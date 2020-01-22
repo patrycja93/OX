@@ -134,7 +134,7 @@
                         <goals>
                             <goal>check</goal>
                         </goals>
-                        <phase>test</phase>
+                        <phase>verify</phase>
                         <configuration>
                             <rules>
                                 <rule>
