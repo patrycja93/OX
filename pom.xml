@@ -141,7 +141,7 @@
                                     <limits>
                                         <limit>
                                             <counter>LINE</counter>
-                                            <minimum>80%</minimum>
+                                            <minimum>40%</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
@@ -149,7 +149,7 @@
                                     <limits>
                                         <limit>
                                             <counter>BRANCH</counter>
-                                            <minimum>80%</minimum>
+                                            <minimum>40%</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
