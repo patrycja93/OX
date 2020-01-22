@@ -2,7 +2,6 @@ package pl.patrycja.ox.gameflow;
 
 import org.mockito.Mockito;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pl.patrycja.ox.Player;
 import pl.patrycja.ox.ui.UI;

@@ -53,11 +53,11 @@ done
 # Check if tests passing
 echo "Running tests..."
 
-if  mvn clean test -q
+if  mvn clean test -q || jacoco:check
 then
 	echo "Tests passed."
 	exit 0
 else
-	echo "Tests failed"
+	echo "Tests failed."
 	exit 1
 fi
